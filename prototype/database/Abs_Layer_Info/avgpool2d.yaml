@@ -1,0 +1,45 @@
+api: avgpool2d
+constraints:
+  ceil_mode:
+    default: false
+    descp: when True, will use
+    dtype: torch.bool
+  kernel_size:
+    descp: the size of the window
+    dtype: int
+    range:
+    - 1
+    - 8
+    shape: 2
+    structure:
+    - integer
+    - tuple
+  padding:
+    descp: implicit zero padding to be added on both sides
+    dtype: int
+    range:
+    - 1
+    - 8
+    shape: 2
+    structure:
+    - integer
+    - tuple
+  stride:
+    descp: the stride of the window.
+    dtype: int
+    range:
+    - 1
+    - 4
+    shape: 2
+    structure:
+    - integer
+    - tuple
+descp: Applies a 2D average pooling over an input signal composed of several input
+  planes.
+inputs:
+  optional:
+  - stride
+  - padding
+  - ceil_mode
+  required:
+  - kernel_size

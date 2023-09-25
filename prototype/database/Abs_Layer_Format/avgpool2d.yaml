@@ -1,0 +1,16 @@
+api:
+  paddle: paddle.nn.AvgPool2D
+  torch: torch.nn.AvgPool2d
+params:
+  ceil_mode:
+    paddle: ceil_mode
+    torch: ceil_mode
+  kernel_size:
+    paddle: kernel_size
+    torch: kernel_size
+  padding:
+    paddle: padding
+    torch: padding
+  stride:
+    paddle: stride
+    torch: stride

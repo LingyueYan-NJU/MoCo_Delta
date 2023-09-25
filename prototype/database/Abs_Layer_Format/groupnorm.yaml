@@ -1,0 +1,13 @@
+api:
+  paddle: paddle.nn.GroupNorm
+  torch: torch.nn.GroupNorm
+params:
+  eps:
+    paddle: epsilon
+    torch: eps
+  num_channels:
+    paddle: num_channels
+    torch: num_channels
+  num_groups:
+    paddle: num_groups
+    torch: num_groups

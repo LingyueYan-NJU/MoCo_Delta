@@ -1,0 +1,67 @@
+api: torch.nn.MaxPool1d(kernel_size, stride=None, padding=0, dilation=1, return_indices=False,
+  ceil_mode=False)
+check_nan: true
+constraints:
+  ceil_mode:
+    default: false
+    descp: If True, will use
+    dtype: torch.bool
+  dilation:
+    default: 1
+    descp: The stride between elements within a sliding window, must be > 0.
+    dtype: int
+    range:
+    - 1
+    - 6
+    shape: 1
+    structure:
+    - integer
+    - tuple
+  kernel_size:
+    default: 1
+    descp: The size of the sliding window, must be > 0.
+    dtype: int
+    range:
+    - 1
+    - 8
+    shape: 1
+    structure:
+    - integer
+    - tuple
+  padding:
+    default: 0
+    descp: Implicit negative infinity padding to be added on both sides, must be >=
+      0 and <= kernel_size / 2.
+    dtype: int
+    range:
+    - 1
+    - 8
+    shape: 1
+    structure:
+    - integer
+    - tuple
+  return_indices:
+    default: false
+    descp: If True, will return the argmax along with the max values. Useful for
+    dtype: torch.bool
+  stride:
+    default: None
+    descp: The stride of the sliding window, must be > 0.
+    dtype: int
+    range:
+    - 1
+    - 4
+    shape: 1
+    structure:
+    - integer
+    - tuple
+descp: Applies a 1D max pooling over an input signal composed of several input planes.
+inputs:
+  optional:
+  - stride
+  - padding
+  - dilation
+  - return_indices
+  - ceil_mode
+  required:
+  - kernel_size

@@ -1,0 +1,6 @@
+api: selu
+constraints: {}
+descp: 'Applied element-wise, as:'
+inputs:
+  optional: []
+  required: []

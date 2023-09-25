@@ -1,0 +1,32 @@
+api: groupnorm
+constraints:
+  eps:
+    default: 1e-05
+    descp: a value added to the denominator for numerical stability.
+    dtype: torch.float
+  num_channels:
+    descp: number of channels expected in input
+    dtype: int
+    range:
+    - 1
+    - 1028
+    shape: 1
+    structure:
+    - integer
+  num_groups:
+    descp: number of groups to separate the channels into
+    dtype: int
+    range:
+    - 1
+    - 3
+    shape: 1
+    structure:
+    - integer
+descp: Applies Group Normalization over a mini-batch of inputs as described in the
+  paper Group Normalization
+inputs:
+  optional:
+  - eps
+  required:
+  - num_groups
+  - num_channels

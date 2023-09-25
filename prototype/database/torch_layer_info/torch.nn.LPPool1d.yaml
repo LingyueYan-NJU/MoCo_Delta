@@ -1,0 +1,44 @@
+api: torch.nn.LPPool1d(norm_type, kernel_size, stride=None, ceil_mode=False)
+constraints:
+  ceil_mode:
+    default: false
+    descp: when True, will use
+    dtype: torch.bool
+  kernel_size:
+    descp: a single int, the size of the window
+    dtype: int
+    range:
+    - 1
+    - 8
+    shape: 2
+    structure:
+    - integer
+    - tuple
+  norm_type:
+    dtype: int
+    range:
+    - 1
+    - 4
+    shape: 2
+    structure:
+    - integer
+    - tuple
+  stride:
+    descp: a single int, the stride of the window.
+    dtype: int
+    range:
+    - 1
+    - 4
+    shape: 2
+    structure:
+    - integer
+    - tuple
+descp: Applies a 1D power-average pooling over an input signal composed of several
+  input planes.
+inputs:
+  optional:
+  - stride
+  - ceil_mode
+  required:
+  - norm_type
+  - kernel_size

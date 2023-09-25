@@ -1,0 +1,24 @@
+api: layernorm
+constraints:
+  eps:
+    default: 1e-05
+    descp: a value added to the denominator for numerical stability.
+    dtype: torch.float
+  normalized_shape:
+    descp: 'input shape from an expected input of size
+
+      If a single integer is used, it is treated as a singleton list, and this module
+      will normalize over the last dimension which is expected to be of that specific
+      size.'
+    dtype: int
+    shape: ANY
+    structure:
+    - integer
+    - list
+descp: Applies Layer Normalization over a mini-batch of inputs as described in the
+  paper Layer Normalization
+inputs:
+  optional:
+  - eps
+  required:
+  - normalized_shape

@@ -1,0 +1,31 @@
+api: linear
+constraints:
+  bias:
+    default: true
+    descp: If set to False, the layer will not learn an additive bias.
+    dtype: torch.bool
+  in_features:
+    descp: size of each input sample
+    dtype: int
+    range:
+    - 1
+    - 256
+    shape: 1
+    structure:
+    - integer
+  out_features:
+    descp: size of each output sample
+    dtype: int
+    range:
+    - 1
+    - 2
+    shape: 1
+    structure:
+    - integer
+descp: 'Applies a linear transformation to the incoming data: y=xAT+by = xA^T + by=xAT+b'
+inputs:
+  optional:
+  - bias
+  required:
+  - in_features
+  - out_features

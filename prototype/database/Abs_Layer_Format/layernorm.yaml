@@ -1,0 +1,10 @@
+api:
+  paddle: paddle.nn.LayerNorm
+  torch: torch.nn.LayerNorm
+params:
+  eps:
+    paddle: epsilon
+    torch: eps
+  normalized_shape:
+    paddle: normalized_shape
+    torch: normalized_shape

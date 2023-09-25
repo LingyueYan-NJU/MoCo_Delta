@@ -1,0 +1,28 @@
+api: instancenorm2d
+constraints:
+  eps:
+    default: 1e-05
+    descp: a value added to the denominator for numerical stability.
+    dtype: torch.float
+  momentum:
+    default: 0.1
+    descp: the value used for the running_mean and running_var computation.
+    dtype: torch.float
+  num_features:
+    descp: ''
+    dtype: int
+    range:
+    - 1
+    - 200
+    shape: 1
+    structure:
+    - integer
+descp: 'Applies Instance Normalization over a 4D input (a mini-batch of 2D inputs
+  with additional channel dimension) as described in the paper Instance Normalization:
+  The Missing Ingredient for Fast Stylization.'
+inputs:
+  optional:
+  - eps
+  - momentum
+  required:
+  - num_features

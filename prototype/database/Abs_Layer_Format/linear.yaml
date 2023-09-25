@@ -1,0 +1,13 @@
+api:
+  paddle: paddle.nn.Linear
+  torch: torch.nn.Linear
+params:
+  bias:
+    paddle: bias_attr
+    torch: bias
+  in_features:
+    paddle: in_features
+    torch: in_features
+  out_features:
+    paddle: out_features
+    torch: out_features

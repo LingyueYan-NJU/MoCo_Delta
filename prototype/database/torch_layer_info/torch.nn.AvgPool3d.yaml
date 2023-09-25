@@ -1,0 +1,52 @@
+api: torch.nn.AvgPool3d(kernel_size, stride=None, padding=0, ceil_mode=False, count_include_pad=True,
+  divisor_override=None)
+constraints:
+  ceil_mode:
+    default: false
+    descp: when True, will use
+    dtype: torch.bool
+  count_include_pad:
+    default: true
+    descp: when True, will include the zero-padding in the averaging calculation
+    dtype: torch.bool
+  kernel_size:
+    descp: the size of the window
+    dtype: int
+    range:
+    - 1
+    - 8
+    shape: 3
+    structure:
+    - integer
+    - tuple
+  padding:
+    descp: implicit zero padding to be added on all three sides
+    dtype: int
+    range:
+    - 1
+    - 8
+    shape: 3
+    structure:
+    - integer
+    - tuple
+  stride:
+    descp: the stride of the window.
+    dtype: int
+    range:
+    - 1
+    - 4
+    shape: 3
+    structure:
+    - integer
+    - tuple
+descp: Applies a 3D average pooling over an input signal composed of several input
+  planes.
+inputs:
+  optional:
+  - stride
+  - padding
+  - ceil_mode
+  - count_include_pad
+  - divisor_override
+  required:
+  - kernel_size

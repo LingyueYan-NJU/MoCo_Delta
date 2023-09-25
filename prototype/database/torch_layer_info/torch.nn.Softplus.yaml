@@ -1,0 +1,18 @@
+api: torch.nn.Softplus(beta=1, threshold=20)
+constraints:
+  beta:
+    default: 1
+    descp: the
+    dtype: int
+  threshold:
+    default: 20
+    descp: values above this revert to a linear function.
+    dtype: int
+descp: "Applies the Softplus function Softplus(x)=1\u03B2\u2217log\u2061(1+exp\u2061\
+  (\u03B2\u2217x))\\text{Softplus}(x) = \\frac{1}{\\beta} * \\log(1 + \\exp(\\beta\
+  \ * x))Softplus(x)=\u03B21\u200B\u2217log(1+exp(\u03B2\u2217x)) element-wise."
+inputs:
+  optional:
+  - beta
+  - threshold
+  required: []

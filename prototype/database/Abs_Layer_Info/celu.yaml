@@ -1,0 +1,11 @@
+api: celu
+constraints:
+  alpha:
+    default: 1.0
+    descp: the
+    dtype: torch.float
+descp: 'Applies the element-wise function:'
+inputs:
+  optional:
+  - alpha
+  required: []

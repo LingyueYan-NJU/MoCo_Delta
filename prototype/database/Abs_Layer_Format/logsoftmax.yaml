@@ -1,0 +1,7 @@
+api:
+  paddle: paddle.nn.LogSoftmax
+  torch: torch.nn.LogSoftmax
+params:
+  dim:
+    paddle: axis
+    torch: dim

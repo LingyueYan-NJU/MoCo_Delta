@@ -1,0 +1,17 @@
+api: softmax
+constraints:
+  dim:
+    dtype: int
+    range:
+    - -1
+    - 1
+    shape: 1
+    structure:
+    - integer
+descp: Applies the Softmax function to an n-dimensional input Tensor rescaling them
+  so that the elements of the n-dimensional output Tensor lie in the range [0,1] and
+  sum to 1.
+inputs:
+  optional:
+  - dim
+  required: []

@@ -1,0 +1,13 @@
+api: elu
+constraints:
+  alpha:
+    default: 1.0
+    descp: the
+    dtype: torch.float
+descp: 'Applies the Exponential Linear Unit (ELU) function, element-wise, as described
+  in the paper: Fast and Accurate Deep Network Learning by Exponential Linear Units
+  (ELUs).'
+inputs:
+  optional:
+  - alpha
+  required: []

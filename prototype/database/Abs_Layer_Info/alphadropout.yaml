@@ -1,0 +1,11 @@
+api: alphadropout
+constraints:
+  p:
+    default: 0.5
+    descp: probability of an element to be dropped.
+    dtype: torch.float
+descp: Applies Alpha Dropout over the input.
+inputs:
+  optional:
+  - p
+  required: []

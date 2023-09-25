@@ -1,0 +1,6 @@
+api: relu6
+constraints: {}
+descp: 'Applies the element-wise function:'
+inputs:
+  optional: []
+  required: []

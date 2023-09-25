@@ -1,0 +1,17 @@
+api: rrelu
+constraints:
+  lower:
+    default: 0.125
+    descp: lower bound of the uniform distribution.
+    dtype: torch.float
+  upper:
+    default: 0.3333333333333333
+    descp: upper bound of the uniform distribution.
+    dtype: torch.float
+descp: 'Applies the randomized leaky rectified liner unit function, element-wise,
+  as described in the paper:'
+inputs:
+  optional:
+  - lower
+  - upper
+  required: []

@@ -1,0 +1,31 @@
+api:
+  paddle: paddle.nn.Conv2D
+  torch: torch.nn.Conv2d
+params:
+  bias:
+    paddle: bias_attr
+    torch: bias
+  dilation:
+    paddle: dilation
+    torch: dilation
+  groups:
+    paddle: groups
+    torch: groups
+  in_channels:
+    paddle: in_channels
+    torch: in_channels
+  kernel_size:
+    paddle: kernel_size
+    torch: kernel_size
+  out_channels:
+    paddle: out_channels
+    torch: out_channels
+  padding:
+    paddle: padding
+    torch: padding
+  padding_mode:
+    paddle: padding_mode
+    torch: padding_mode
+  stride:
+    paddle: stride
+    torch: stride

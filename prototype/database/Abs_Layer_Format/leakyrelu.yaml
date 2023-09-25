@@ -1,0 +1,7 @@
+api:
+  paddle: paddle.nn.LeakyReLU
+  torch: torch.nn.LeakyReLU
+params:
+  negative_slope:
+    paddle: negative_slope
+    torch: negative_slope

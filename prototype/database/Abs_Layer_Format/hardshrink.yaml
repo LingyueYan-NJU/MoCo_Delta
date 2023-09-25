@@ -1,0 +1,7 @@
+api:
+  paddle: paddle.nn.Hardshrink
+  torch: torch.nn.Hardshrink
+params:
+  lambd:
+    paddle: threshold
+    torch: lambd

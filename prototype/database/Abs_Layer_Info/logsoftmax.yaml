@@ -1,0 +1,17 @@
+api: logsoftmax
+constraints:
+  dim:
+    dtype: int
+    range:
+    - 1
+    - 2
+    shape: 1
+    structure:
+    - integer
+descp: "Applies the log\u2061(Softmax(x))\\log(\\text{Softmax}(x))log(Softmax(x))\
+  \ function to an n-dimensional input Tensor. The LogSoftmax formulation can be simplified\
+  \ as:"
+inputs:
+  optional:
+  - dim
+  required: []

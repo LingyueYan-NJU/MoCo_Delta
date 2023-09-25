@@ -1,0 +1,7 @@
+api:
+  paddle: paddle.nn.ZeroPad2D
+  torch: torch.nn.ZeroPad2d
+params:
+  padding:
+    paddle: padding
+    torch: padding

@@ -1,0 +1,12 @@
+api: leakyrelu
+constraints:
+  negative_slope:
+    default: 0.01
+    descp: Controls the angle of the negative slope (which is used for negative input
+      values).
+    dtype: torch.float
+descp: 'Applies the element-wise function:'
+inputs:
+  optional:
+  - negative_slope
+  required: []

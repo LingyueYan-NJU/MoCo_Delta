@@ -1,0 +1,7 @@
+api:
+  paddle: paddle.nn.AlphaDropout
+  torch: torch.nn.AlphaDropout
+params:
+  p:
+    paddle: p
+    torch: p

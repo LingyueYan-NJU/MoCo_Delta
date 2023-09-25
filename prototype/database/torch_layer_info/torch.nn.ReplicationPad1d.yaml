@@ -1,0 +1,16 @@
+api: torch.nn.ReplicationPad1d(padding)
+constraints:
+  padding:
+    dtype: int
+    range:
+    - 1
+    - 8
+    shape: 2
+    structure:
+    - integer
+    - tuple
+descp: Pads the input tensor using replication of the input boundary.
+inputs:
+  optional: []
+  required:
+  - padding

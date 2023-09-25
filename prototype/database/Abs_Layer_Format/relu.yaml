@@ -1,0 +1,4 @@
+api:
+  paddle: paddle.nn.ReLU
+  torch: torch.nn.ReLU
+params: {}

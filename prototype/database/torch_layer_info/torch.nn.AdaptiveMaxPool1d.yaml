@@ -1,0 +1,24 @@
+api: torch.nn.AdaptiveMaxPool1d(output_size, return_indices=False)
+constraints:
+  output_size:
+    descp: the target output size
+    dtype: int
+    range:
+    - 1
+    - 42024
+    shape: 1
+    structure:
+    - integer
+    - tuple
+  return_indices:
+    default: false
+    descp: if True, will return the indices along with the outputs. Useful to pass
+      to nn.MaxUnpool1d.
+    dtype: torch.bool
+descp: Applies a 1D adaptive max pooling over an input signal composed of several
+  input planes.
+inputs:
+  optional:
+  - return_indices
+  required:
+  - output_size

@@ -1,0 +1,30 @@
+api: batchnorm2d
+constraints:
+  eps:
+    default: 1e-05
+    descp: a value added to the denominator for numerical stability.
+    dtype: torch.float
+  momentum:
+    default: 0.1
+    descp: the value used for the running_mean and running_var computation. Can be
+      set to None for cumulative moving average (i.e. simple average).
+    dtype: torch.float
+  num_features:
+    descp: ''
+    dtype: int
+    range:
+    - 1
+    - 12544
+    shape: 2
+    structure:
+    - integer
+    - tuple
+descp: 'Applies Batch Normalization over a 4D input (a mini-batch of 2D inputs with
+  additional channel dimension) as described in the paper Batch Normalization: Accelerating
+  Deep Network Training by Reducing Internal Covariate Shift .'
+inputs:
+  optional:
+  - eps
+  - momentum
+  required:
+  - num_features

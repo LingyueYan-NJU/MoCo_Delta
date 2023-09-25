@@ -1,0 +1,6 @@
+api: relu
+constraints: {}
+descp: 'Applies the rectified linear unit function element-wise:'
+inputs:
+  optional: []
+  required: []

@@ -1,0 +1,4 @@
+api:
+  paddle: paddle.nn.SELU
+  torch: torch.nn.SELU
+params: {}
