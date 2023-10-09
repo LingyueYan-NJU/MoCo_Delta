@@ -35,6 +35,8 @@ class googlenet(nn.Module):
         self.dropout = torch.nn.Dropout(p=0.4)
         self.fc = nn.Linear(in_features=1024, out_features=1000)
 
+        self.flatten = nn.Flatten()
+
     def forward(self, x):
         x = self.conv1(x)
         x = self.relu1(x)
@@ -61,7 +63,7 @@ class googlenet(nn.Module):
         x = self.inception5b(x)
         x = self.avgpool1(x)
 
-        x = torch.flatten(x, 1)
+        x = self.flatten(x)
         x = self.dropout(x)
         x = self.fc(x)
         return x
@@ -114,8 +116,10 @@ class Inception(nn.Module):
 
 
 def go():
-    net = googlenet().to('cuda')
+    net = googlenet()
     x = torch.randn((3, 3, 224, 224))
-    x = x.to('cuda')
     y = net(x)
     return net
+
+
+result = go()
