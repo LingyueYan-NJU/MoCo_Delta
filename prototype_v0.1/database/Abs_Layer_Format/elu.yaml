@@ -1,0 +1,8 @@
+api:
+  paddle: paddle.nn.ELU
+  torch: torch.nn.ELU
+  mindspore: mindspore.nn.ELU
+params:
+  alpha:
+    paddle: alpha
+    torch: alpha

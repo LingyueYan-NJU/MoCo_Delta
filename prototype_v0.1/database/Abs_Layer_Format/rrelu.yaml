@@ -1,0 +1,11 @@
+api:
+  paddle: paddle.nn.RReLU
+  torch: torch.nn.RReLU
+  mindspore: mindspore.nn.RReLU
+params:
+  lower:
+    paddle: lower
+    torch: lower
+  upper:
+    paddle: upper
+    torch: upper

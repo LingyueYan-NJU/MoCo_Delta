@@ -1,0 +1,14 @@
+api:
+  paddle: paddle.nn.BatchNorm2D
+  torch: torch.nn.BatchNorm2d
+  mindspore: mindspore.nn.BatchNorm2d
+params:
+  eps:
+    paddle: epsilon
+    torch: eps
+  momentum:
+    paddle: momentum
+    torch: momentum
+  num_features:
+    paddle: num_features
+    torch: num_features

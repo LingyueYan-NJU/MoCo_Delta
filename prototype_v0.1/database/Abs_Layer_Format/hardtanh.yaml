@@ -1,0 +1,11 @@
+api:
+  paddle: paddle.nn.Hardtanh
+  torch: torch.nn.Hardtanh
+  mindspore: mindspore.nn.Hardtanh
+params:
+  max_val:
+    paddle: max
+    torch: max_val
+  min_val:
+    paddle: min
+    torch: min_val

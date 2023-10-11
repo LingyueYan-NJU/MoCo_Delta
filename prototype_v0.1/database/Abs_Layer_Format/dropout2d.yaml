@@ -1,0 +1,8 @@
+api:
+  paddle: paddle.nn.Dropout2D
+  torch: torch.nn.Dropout2d
+  mindspore: mindspore.nn.Dropout2d
+params:
+  p:
+    paddle: p
+    torch: p

@@ -1,0 +1,5 @@
+api:
+  paddle: paddle.nn.ReLU
+  torch: torch.nn.ReLU
+  mindspore: mindspore.nn.ReLU
+params: {}

@@ -1,0 +1,32 @@
+api:
+  paddle: paddle.nn.Conv2DTranspose
+  torch: torch.nn.ConvTranspose2d
+  mindspore: mindspore.nn.Conv2dTranspose
+params:
+  bias:
+    paddle: bias_attr
+    torch: bias
+  dilation:
+    paddle: dilation
+    torch: dilation
+  groups:
+    paddle: groups
+    torch: groups
+  in_channels:
+    paddle: in_channels
+    torch: in_channels
+  kernel_size:
+    paddle: kernel_size
+    torch: kernel_size
+  out_channels:
+    paddle: out_channels
+    torch: out_channels
+  output_padding:
+    paddle: output_padding
+    torch: output_padding
+  padding:
+    paddle: padding
+    torch: padding
+  stride:
+    paddle: stride
+    torch: stride

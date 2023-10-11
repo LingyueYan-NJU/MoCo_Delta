@@ -1,0 +1,14 @@
+api:
+  paddle: paddle.nn.InstanceNorm2D
+  torch: torch.nn.InstanceNorm2d
+  mindspore: mindspore.nn.InstanceNorm2d
+params:
+  eps:
+    paddle: epsilon
+    torch: eps
+  momentum:
+    paddle: momentum
+    torch: momentum
+  num_features:
+    paddle: num_features
+    torch: num_features

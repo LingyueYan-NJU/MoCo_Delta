@@ -1,0 +1,8 @@
+api:
+  paddle: paddle.nn.Hardshrink
+  torch: torch.nn.Hardshrink
+  mindspore: mindspore.nn.HShrink
+params:
+  lambd:
+    paddle: threshold
+    torch: lambd
