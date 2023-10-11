@@ -1,5 +1,0 @@
-api:
-  paddle: paddle.nn.ReLU6
-  torch: torch.nn.ReLU6
-  mindspore: mindspore.nn.ReLU6
-params: {}

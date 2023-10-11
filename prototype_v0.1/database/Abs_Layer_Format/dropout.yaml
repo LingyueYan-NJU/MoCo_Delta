@@ -1,8 +1,0 @@
-api:
-  paddle: paddle.nn.Dropout
-  torch: torch.nn.Dropout
-  mindspore: mindspore.nn.Dropout
-params:
-  p:
-    paddle: p
-    torch: p

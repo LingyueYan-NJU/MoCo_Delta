@@ -1,8 +1,0 @@
-api:
-  paddle: paddle.nn.Softmax
-  torch: torch.nn.Softmax
-  mindspore: mindspore.nn.Softmax
-params:
-  dim:
-    paddle: axis
-    torch: dim

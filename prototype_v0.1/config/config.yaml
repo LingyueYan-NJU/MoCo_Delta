@@ -1,5 +1,5 @@
 LIBRARY_LIST:
-  0: torch
-  1: paddle
-  2: mindspore
+  0: paddle
+  1: mindspore
+  2: torch
 LIBRARY_NUM: 3

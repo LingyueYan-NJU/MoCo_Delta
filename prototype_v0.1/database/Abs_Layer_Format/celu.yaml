@@ -1,8 +1,0 @@
-api:
-  paddle: paddle.nn.CELU
-  torch: torch.nn.CELU
-  mindspore: mindspore.nn.CELU
-params:
-  alpha:
-    paddle: alpha
-    torch: alpha
