@@ -1,3 +1,4 @@
+import copy
 import os
 import os.path as p
 import yaml
@@ -26,6 +27,7 @@ class Database:
             config = yaml.full_load(f)
         self.__library_dict = config["LIBRARY_LIST"]
         self.__library_list = list(self.__library_dict.values())
+        THRESHOLD = config["THRESHOLD"]
         # config read over
 
         # read implicit layer info
@@ -88,7 +90,7 @@ class Database:
                 self.__inverse_map[self.__library_list[i]][implicit_library_api_name[i]] = abstract_api_name
         # abstract-to-implicit api_name table read over
 
-        self.__threshold = 0.5
+        self.__threshold = THRESHOLD
 
         # initializing candidate map
         print("### initializing candidate map")
@@ -219,11 +221,37 @@ class Database:
         # TODO
         return "no para"
 
+    def get_layer_info(self, library: str, implicit_api_name: str) -> dict:
+        assert self.is_library_valid(library), "check library input"
+        assert self.is_implicit_api_name_valid(library, implicit_api_name), "check implicit_api_name input"
+        return self.__layer_info[library][implicit_api_name]
+
+    def get_seed(self, seed_name: str) -> dict:
+        SEED_PATH = p.join(self.__database_path, "seed", seed_name + ".yaml")
+        f = open(SEED_PATH, "r")
+        seed = yaml.full_load(f)
+        f.close()
+        return seed
+
     def refresh(self) -> None:
         threshold = self.__threshold
         self.__init__()
         self.set_threshold(threshold)
         return
+
+    def refresh_config(self) -> None:
+        old_list = copy.deepcopy(self.__library_list)
+        print("### initializing config")
+        __config_path = p.join("..", "config", "config.yaml")
+        with open(__config_path, "r", encoding="utf-8") as f:
+            config = yaml.full_load(f)
+        self.__library_dict = config["LIBRARY_LIST"]
+        self.__library_list = list(self.__library_dict.values())
+        self.set_threshold(config["THRESHOLD"])
+        if old_list == self.__library_list:
+            return
+        else:
+            self.refresh()
 
 
 # d = Database()

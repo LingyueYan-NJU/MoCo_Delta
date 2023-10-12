@@ -95,9 +95,3 @@ class MoCo_Delta:
 
 
 mcd = MoCo_Delta()
-
-
-
-
-
-
