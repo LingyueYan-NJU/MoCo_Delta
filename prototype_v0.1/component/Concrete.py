@@ -35,6 +35,7 @@ class Performer:
 
 
 class TorchPerformer(Performer):
+    # TODO
     def __init__(self):
         super().__init__()
         return
@@ -56,6 +57,7 @@ class TorchPerformer(Performer):
 
 
 class PaddlePerformer(Performer):
+    # TODO
     def __init__(self):
         super().__init__()
         return
@@ -91,10 +93,10 @@ class MindSporePerformer(Performer):
         return "mindspore model"
 
     def train(self, model) -> float:
-        return 1.0
+        return 342864.0
 
     def run(self, model) -> (float, float):
-        return 1.0, 1.0
+        return 342864.0, 342864.0
 
 
 class TensorFlowPerformer(Performer):
@@ -209,7 +211,7 @@ class Concrete:
                     run_time_cost, calculate_result = performer.run(model)
             result_dict = {"test run result": test_run_result, "train result": train_result,
                            "train time cost": train_time_cost, "run time cost": run_time_cost,
-                           "calculate result": calculate_result}
+                           "calculate result": calculate_result, "case path": file_path}
             result.append(result_dict)
         return result
 
