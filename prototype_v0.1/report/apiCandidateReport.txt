@@ -1,0 +1,496 @@
+While with the threshold of 0.0, all api can be mutated.
+*With the threshold of 0.9, there are 25 apis that cannot be mutated
+
+adaptivemaxpool2d :
+[]
+avgpool2d :
+[]
+batchnorm2d :
+[]
+celu :
+[]
+conv2d :
+[]
+convtranspose2d :
+[]
+dropout :
+[]
+dropout2d :
+[]
+elu :
+[]
+groupnorm :
+[]
+hardshrink :
+[]
+hardtanh :
+[]
+instancenorm2d :
+[]
+layernorm :
+[]
+leakyrelu :
+[]
+linear :
+[]
+logsoftmax :
+[]
+maxpool2d :
+[]
+prelu :
+[]
+relu :
+[]
+relu6 :
+[]
+rrelu :
+[]
+selu :
+[]
+softmax :
+[]
+zeropad2d :
+[]
+
+
+
+*With the threshold of 0.8, there are 23 apis that cannot be mutated
+
+adaptivemaxpool2d :
+[]
+avgpool2d :
+['maxpool2d']
+batchnorm2d :
+[]
+celu :
+[]
+conv2d :
+[]
+convtranspose2d :
+[]
+dropout :
+[]
+dropout2d :
+[]
+elu :
+[]
+groupnorm :
+[]
+hardshrink :
+[]
+hardtanh :
+[]
+instancenorm2d :
+[]
+layernorm :
+[]
+leakyrelu :
+[]
+linear :
+[]
+logsoftmax :
+[]
+maxpool2d :
+['avgpool2d']
+prelu :
+[]
+relu :
+[]
+relu6 :
+[]
+rrelu :
+[]
+selu :
+[]
+softmax :
+[]
+zeropad2d :
+[]
+
+
+
+*With the threshold of 0.7, there are 23 apis that cannot be mutated
+
+adaptivemaxpool2d :
+[]
+avgpool2d :
+['maxpool2d']
+batchnorm2d :
+[]
+celu :
+[]
+conv2d :
+[]
+convtranspose2d :
+[]
+dropout :
+[]
+dropout2d :
+[]
+elu :
+[]
+groupnorm :
+[]
+hardshrink :
+[]
+hardtanh :
+[]
+instancenorm2d :
+[]
+layernorm :
+[]
+leakyrelu :
+[]
+linear :
+[]
+logsoftmax :
+[]
+maxpool2d :
+['avgpool2d']
+prelu :
+[]
+relu :
+[]
+relu6 :
+[]
+rrelu :
+[]
+selu :
+[]
+softmax :
+[]
+zeropad2d :
+[]
+
+
+
+*With the threshold of 0.6, there are 21 apis that cannot be mutated
+
+adaptivemaxpool2d :
+[]
+avgpool2d :
+['maxpool2d']
+batchnorm2d :
+[]
+celu :
+[]
+conv2d :
+[]
+convtranspose2d :
+[]
+dropout :
+[]
+dropout2d :
+[]
+elu :
+[]
+groupnorm :
+['layernorm']
+hardshrink :
+[]
+hardtanh :
+[]
+instancenorm2d :
+[]
+layernorm :
+['groupnorm']
+leakyrelu :
+[]
+linear :
+[]
+logsoftmax :
+[]
+maxpool2d :
+['avgpool2d']
+prelu :
+[]
+relu :
+[]
+relu6 :
+[]
+rrelu :
+[]
+selu :
+[]
+softmax :
+[]
+zeropad2d :
+[]
+
+
+
+*With the threshold of 0.5, there are 21 apis that cannot be mutated
+
+adaptivemaxpool2d :
+[]
+avgpool2d :
+['maxpool2d']
+batchnorm2d :
+[]
+celu :
+[]
+conv2d :
+[]
+convtranspose2d :
+[]
+dropout :
+[]
+dropout2d :
+[]
+elu :
+[]
+groupnorm :
+['layernorm']
+hardshrink :
+[]
+hardtanh :
+[]
+instancenorm2d :
+[]
+layernorm :
+['groupnorm']
+leakyrelu :
+[]
+linear :
+[]
+logsoftmax :
+[]
+maxpool2d :
+['avgpool2d']
+prelu :
+[]
+relu :
+[]
+relu6 :
+[]
+rrelu :
+[]
+selu :
+[]
+softmax :
+[]
+zeropad2d :
+[]
+
+
+
+*With the threshold of 0.4, there are 19 apis that cannot be mutated
+
+adaptivemaxpool2d :
+[]
+avgpool2d :
+['maxpool2d']
+batchnorm2d :
+['instancenorm2d']
+celu :
+[]
+conv2d :
+[]
+convtranspose2d :
+[]
+dropout :
+[]
+dropout2d :
+[]
+elu :
+[]
+groupnorm :
+['layernorm']
+hardshrink :
+[]
+hardtanh :
+[]
+instancenorm2d :
+['batchnorm2d']
+layernorm :
+['groupnorm']
+leakyrelu :
+[]
+linear :
+[]
+logsoftmax :
+[]
+maxpool2d :
+['avgpool2d']
+prelu :
+[]
+relu :
+[]
+relu6 :
+[]
+rrelu :
+[]
+selu :
+[]
+softmax :
+[]
+zeropad2d :
+[]
+
+
+
+*With the threshold of 0.3, there are 10 apis that cannot be mutated
+
+adaptivemaxpool2d :
+['maxpool2d', 'avgpool2d']
+avgpool2d :
+['maxpool2d', 'adaptivemaxpool2d']
+batchnorm2d :
+['instancenorm2d']
+celu :
+['elu']
+conv2d :
+['convtranspose2d']
+convtranspose2d :
+['conv2d']
+dropout :
+[]
+dropout2d :
+[]
+elu :
+['celu']
+groupnorm :
+['layernorm']
+hardshrink :
+['relu6']
+hardtanh :
+[]
+instancenorm2d :
+['batchnorm2d']
+layernorm :
+['groupnorm']
+leakyrelu :
+[]
+linear :
+[]
+logsoftmax :
+[]
+maxpool2d :
+['adaptivemaxpool2d', 'avgpool2d']
+prelu :
+['relu']
+relu :
+['prelu']
+relu6 :
+['hardshrink']
+rrelu :
+[]
+selu :
+[]
+softmax :
+[]
+zeropad2d :
+[]
+
+
+
+*With the threshold of 0.2, there are 5 apis that cannot be mutated
+
+adaptivemaxpool2d :
+['maxpool2d', 'avgpool2d']
+avgpool2d :
+['adaptivemaxpool2d', 'conv2d', 'maxpool2d', 'convtranspose2d']
+batchnorm2d :
+['instancenorm2d']
+celu :
+['elu', 'selu', 'hardshrink', 'rrelu', 'softmax', 'relu6']
+conv2d :
+['convtranspose2d', 'dropout2d', 'avgpool2d']
+convtranspose2d :
+['conv2d', 'maxpool2d', 'avgpool2d']
+dropout :
+[]
+dropout2d :
+['conv2d', 'zeropad2d']
+elu :
+['celu', 'rrelu', 'hardshrink', 'relu6']
+groupnorm :
+['instancenorm2d', 'layernorm']
+hardshrink :
+['elu', 'selu', 'rrelu', 'celu', 'relu6']
+hardtanh :
+[]
+instancenorm2d :
+['groupnorm', 'batchnorm2d', 'layernorm']
+layernorm :
+['instancenorm2d', 'groupnorm']
+leakyrelu :
+[]
+linear :
+[]
+logsoftmax :
+[]
+maxpool2d :
+['adaptivemaxpool2d', 'convtranspose2d', 'avgpool2d']
+prelu :
+['relu']
+relu :
+['prelu']
+relu6 :
+['elu', 'selu', 'hardshrink', 'rrelu', 'softmax', 'celu']
+rrelu :
+['elu', 'selu', 'hardshrink', 'softmax', 'celu', 'relu6']
+selu :
+['celu', 'rrelu', 'hardshrink', 'relu6']
+softmax :
+['celu', 'rrelu', 'relu6']
+zeropad2d :
+['dropout2d']
+
+
+
+*With the threshold of 0.1, there are 1 apis that cannot be mutated
+
+adaptivemaxpool2d :
+['maxpool2d', 'batchnorm2d', 'instancenorm2d', 'zeropad2d', 'avgpool2d', 'conv2d', 'dropout2d', 'convtranspose2d']
+avgpool2d :
+['maxpool2d', 'batchnorm2d', 'instancenorm2d', 'dropout', 'zeropad2d', 'adaptivemaxpool2d', 'conv2d', 'dropout2d', 'convtranspose2d']
+batchnorm2d :
+['maxpool2d', 'layernorm', 'instancenorm2d', 'avgpool2d', 'groupnorm', 'adaptivemaxpool2d', 'dropout2d']
+celu :
+['relu', 'elu', 'selu', 'prelu', 'rrelu', 'hardshrink', 'softmax', 'relu6']
+conv2d :
+['logsoftmax', 'maxpool2d', 'avgpool2d', 'zeropad2d', 'dropout', 'adaptivemaxpool2d', 'dropout2d', 'convtranspose2d']
+convtranspose2d :
+['maxpool2d', 'adaptivemaxpool2d', 'zeropad2d', 'avgpool2d', 'conv2d', 'dropout2d']
+dropout :
+['logsoftmax', 'instancenorm2d', 'zeropad2d', 'avgpool2d', 'conv2d', 'dropout2d']
+dropout2d :
+['logsoftmax', 'batchnorm2d', 'instancenorm2d', 'avgpool2d', 'dropout', 'zeropad2d', 'adaptivemaxpool2d', 'conv2d', 'convtranspose2d']
+elu :
+['relu', 'selu', 'prelu', 'rrelu', 'hardshrink', 'softmax', 'hardtanh', 'celu', 'relu6']
+groupnorm :
+['instancenorm2d', 'batchnorm2d', 'layernorm']
+hardshrink :
+['relu', 'elu', 'selu', 'prelu', 'rrelu', 'softmax', 'hardtanh', 'celu', 'relu6']
+hardtanh :
+['elu', 'rrelu', 'hardshrink', 'softmax', 'leakyrelu', 'relu6']
+instancenorm2d :
+['maxpool2d', 'layernorm', 'batchnorm2d', 'avgpool2d', 'dropout', 'zeropad2d', 'groupnorm', 'adaptivemaxpool2d', 'dropout2d']
+layernorm :
+['instancenorm2d', 'groupnorm', 'batchnorm2d']
+leakyrelu :
+['prelu', 'relu', 'hardtanh']
+linear :
+[]
+logsoftmax :
+['prelu', 'dropout', 'zeropad2d', 'conv2d', 'dropout2d']
+maxpool2d :
+['batchnorm2d', 'instancenorm2d', 'adaptivemaxpool2d', 'zeropad2d', 'avgpool2d', 'conv2d', 'convtranspose2d']
+prelu :
+['relu', 'elu', 'logsoftmax', 'selu', 'hardshrink', 'rrelu', 'softmax', 'celu', 'leakyrelu', 'relu6']
+relu :
+['elu', 'selu', 'prelu', 'rrelu', 'hardshrink', 'softmax', 'celu', 'leakyrelu', 'relu6']
+relu6 :
+['relu', 'elu', 'selu', 'prelu', 'hardshrink', 'rrelu', 'softmax', 'hardtanh', 'celu']
+rrelu :
+['relu', 'elu', 'selu', 'prelu', 'hardshrink', 'softmax', 'hardtanh', 'celu', 'relu6']
+selu :
+['relu', 'elu', 'prelu', 'rrelu', 'hardshrink', 'celu', 'relu6']
+softmax :
+['relu', 'elu', 'prelu', 'rrelu', 'hardshrink', 'hardtanh', 'celu', 'relu6']
+zeropad2d :
+['logsoftmax', 'maxpool2d', 'instancenorm2d', 'avgpool2d', 'dropout', 'adaptivemaxpool2d', 'conv2d', 'dropout2d', 'convtranspose2d']
+
+
+
