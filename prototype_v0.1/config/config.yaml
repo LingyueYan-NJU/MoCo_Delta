@@ -2,5 +2,7 @@ LIBRARY_LIST:
   0: torch
   1: paddle
   2: mindspore
+  3: tensorflow
+  4: jittor
 LIBRARY_NUM: 3
 THRESHOLD: 0.5

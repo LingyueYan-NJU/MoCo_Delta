@@ -84,10 +84,16 @@ class Database:
                 implicit_library_api_name.append(row[location])
             dict_for_main_map = {"id": api_id}
             for i in range(len(self.__library_list)):
-                dict_for_main_map[self.__library_dict[i]] = implicit_library_api_name[i]
+                dict_for_main_map[self.__library_dict[i]] = implicit_library_api_name[i] if \
+                    len(implicit_library_api_name[i]) > 5 else "NOAPI"
             self.__main_api_name_map[abstract_api_name] = dict_for_main_map
             for i in range(len(self.__library_list)):
                 self.__inverse_map[self.__library_list[i]][implicit_library_api_name[i]] = abstract_api_name
+            for i in range(len(self.__library_list)):
+                if "" in self.__inverse_map[self.__library_list[i]].keys():
+                    self.__inverse_map[self.__library_list[i]].pop("")
+                if "NOAPI" in self.__inverse_map[self.__library_list[i]].keys():
+                    self.__inverse_map[self.__library_list[i]].pop("NOAPI")
         # abstract-to-implicit api_name table read over
 
         self.__threshold = THRESHOLD
@@ -107,8 +113,7 @@ class Database:
         return abstract_api_name in list(self.__main_api_name_map.keys())
 
     def is_implicit_api_name_valid(self, library: str, implicit_api_name: str) -> bool:
-        return self.is_library_valid(library) and \
-            (implicit_api_name in implicit_api_name in list(self.__inverse_map[library].keys()))
+        return self.is_library_valid(library) and (implicit_api_name in list(self.__inverse_map[library].keys()))
 
     def set_threshold(self, threshold: float) -> None:
         assert 0.01 <= threshold <= 0.99, "check threshold, between 0.01 and 0.99."
@@ -159,6 +164,8 @@ class Database:
         abstract_candidate_api_list = list(self.__main_api_name_map.keys())
         for library in self.__library_list:
             current_implicit_api_name = self.get_implicit_api_name(library, abstract_api_name)
+            if current_implicit_api_name == "NOAPI" or current_implicit_api_name == "":
+                continue
             implicit_candidate_api_list = []
             current_abstract_candidate_api_list = []
             similarity_dict = self.get_api_similarity(library, current_implicit_api_name)
@@ -168,6 +175,8 @@ class Database:
             for layer in implicit_candidate_api_list:
                 current_abstract_candidate_api_list.append(self.get_abstract_api_name(library, layer))
             abstract_candidate_api_list = merge(abstract_candidate_api_list, current_abstract_candidate_api_list)
+        if abstract_api_name in abstract_candidate_api_list:
+            abstract_candidate_api_list.remove(abstract_api_name)
         return abstract_candidate_api_list
 
     def __get_candidate_dict(self, threshold: float) -> (dict, int):
@@ -254,5 +263,5 @@ class Database:
             self.refresh()
 
 
-# d = Database()
-# d.generate_candidate_report()
+d = Database()
+d.generate_candidate_report(None)
