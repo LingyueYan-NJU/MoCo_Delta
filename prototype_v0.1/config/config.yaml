@@ -5,4 +5,5 @@ LIBRARY_LIST:
   3: tensorflow
   4: jittor
 LIBRARY_NUM: 3
+N: 2
 THRESHOLD: 0.5

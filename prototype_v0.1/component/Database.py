@@ -243,9 +243,7 @@ class Database:
         return seed
 
     def refresh(self) -> None:
-        threshold = self.__threshold
         self.__init__()
-        self.set_threshold(threshold)
         return
 
     def refresh_config(self) -> None:
@@ -256,12 +254,14 @@ class Database:
             config = yaml.full_load(f)
         self.__library_dict = config["LIBRARY_LIST"]
         self.__library_list = list(self.__library_dict.values())
-        self.set_threshold(config["THRESHOLD"])
         if old_list == self.__library_list:
+            self.set_threshold(config["THRESHOLD"])
             return
         else:
             self.refresh()
+            self.set_threshold(config["THRESHOLD"])
+            return
 
 
-d = Database()
-d.generate_candidate_report(None)
+# d = Database()
+# d.generate_candidate_report(None)

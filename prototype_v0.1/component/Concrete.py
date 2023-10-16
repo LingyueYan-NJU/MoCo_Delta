@@ -1,3 +1,5 @@
+import random
+
 from _database import database
 import os.path as p
 import time
@@ -53,7 +55,7 @@ class TorchPerformer(Performer):
         return 1.0
 
     def run(self, model) -> (float, float):
-        return 1.0, 1.0
+        return random.choice([1.0, 2.0, 3.0, -1]), 1.0
 
 
 class PaddlePerformer(Performer):
@@ -172,6 +174,18 @@ class Concrete:
     def set_model_name(self, model_name: str) -> None:
         self.__model_name = model_name
 
+    def get_experiment_path(self) -> str:
+        return p.join("..", "result", self.__experiment_id)
+
+    def get_experiment_id(self) -> str:
+        return self.__experiment_id
+
+    def new_experiment(self):
+        self.__experiment_id = "experiment" + str(time.time())
+        print("experiment id: " + self.__experiment_id)
+        RESULT_PATH = p.join("..", "result")
+        os.makedirs(p.join(RESULT_PATH, self.__experiment_id))
+
     def refresh_config(self) -> None:
         old_library_list = self.__library_list
         config_path = p.join("..", "config", "config.yaml")
@@ -235,5 +249,6 @@ class Concrete:
         return file_path
 
 
-seed = database.get_seed("lenet")
-c = Concrete()
+# seed = database.get_seed("lenet")
+# c = Concrete()
+concrete = Concrete()

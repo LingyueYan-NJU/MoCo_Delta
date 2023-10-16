@@ -1,4 +1,4 @@
-lenet:
+LeNet:
   - layer: conv2d
     params:
       in_channels: 1
