@@ -36,9 +36,9 @@ class Analyser:
         report_path = result_list[0]["case path"].replace((self.library_list[0] + "_version.py"), "report.txt")
         generate_report(report, report_path)
         for result in result_list:
-            if not result["test run result"]:
+            if not result["run test"]:
                 return False
-            elif not result["train result"]:
+            elif not result["train test"]:
                 return False
             else:
                 return True

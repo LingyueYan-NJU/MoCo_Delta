@@ -25,14 +25,18 @@ class Database:
         __config_path = p.join("..", "config", "config.yaml")
         with open(__config_path, "r", encoding="utf-8") as f:
             config = yaml.full_load(f)
+        # check
+        assert (config["MODE"] == 1 and len(config["LIBRARY_LIST"].values()) == 1) or \
+               (config["MODE"] == 2 and len(config["LIBRARY_LIST"].values()) >= 2), "MODE and LIST are not matched"
         self.__library_dict = config["LIBRARY_LIST"]
         self.__library_list = list(self.__library_dict.values())
         THRESHOLD = config["THRESHOLD"]
+        self.mode = config["MODE"]
         # config read over
 
         # read implicit layer info
         print("### initializing layer info")
-        self.__layer_info = {}
+        self.__implicit_layer_info = {}
         dir_list = os.listdir(self.__implicit_database_path)
         for library in self.__library_list:
             assert library in dir_list, "check config"
@@ -46,7 +50,7 @@ class Database:
                     current_info = yaml.full_load(f)
                     current_layer_name = file_name[:-5]
                     current_library_layer_info[current_layer_name] = current_info
-            self.__layer_info[library] = current_library_layer_info
+            self.__implicit_layer_info[library] = current_library_layer_info
         # implicit layer info read over
 
         # read implicit layer similarity
@@ -94,6 +98,21 @@ class Database:
                     self.__inverse_map[self.__library_list[i]].pop("")
                 if "NOAPI" in self.__inverse_map[self.__library_list[i]].keys():
                     self.__inverse_map[self.__library_list[i]].pop("NOAPI")
+        self.__main_api_para_map = {}
+        if self.mode == 1:
+            for abstract_api_name in self.__main_api_name_map.keys():
+                self.__main_api_para_map[abstract_api_name] = {}
+                implicit_api_name = self.get_implicit_api_name(self.__library_list[0], abstract_api_name)
+                implicit_layer_info = self.get_implicit_layer_info(self.__library_list[0], implicit_api_name)
+                paras = list(implicit_layer_info["constraints"].keys())
+                for para in paras:
+                    abstract_para_name = para
+                    self.__main_api_para_map[abstract_api_name][abstract_para_name] = {}
+                    self.__main_api_para_map[abstract_api_name][abstract_para_name][self.__library_list[0]] = para
+        else:
+            self.__main_api_para_map = {}
+            # TODO
+            pass
         # abstract-to-implicit api_name table read over
 
         self.__threshold = THRESHOLD
@@ -102,6 +121,20 @@ class Database:
         print("### initializing candidate map")
         self.__candidate_map = self.__just_get_candidate_dict(self.__threshold)
         # candidate map initialize over
+
+        # initialize(calculate) abstract layer info
+        print("### initializing abstract layer info")
+        # calculate abstract layer info here
+        self.__abstract_layer_info = {}
+        if self.mode == 1:
+            for abstract_api_name in list(self.__main_api_name_map.keys()):
+                self.__abstract_layer_info[abstract_api_name] = self.get_implicit_layer_info(
+                    self.__library_list[0], self.get_implicit_api_name(self.__library_list[0], abstract_api_name))
+        else:
+            self.__abstract_layer_info = {}
+            # TODO
+            pass
+        # abstract layer info initialize over
 
         print("### Database OK")
         return
@@ -127,7 +160,7 @@ class Database:
 
     def __get_all_api_list(self, library: str) -> list:
         assert self.is_library_valid(library), "check library name"
-        return list(self.__layer_info[library].keys())
+        return list(self.__implicit_layer_info[library].keys())
 
     def __get_api_description(self, library: str, implicit_api_name: str) -> str:
         assert self.is_implicit_api_name_valid(library, implicit_api_name), "check input"
@@ -138,9 +171,9 @@ class Database:
             else:
                 flag = True
         if not flag:
-            return self.__layer_info[library][library + ".nn." + implicit_api_name]["descp"]
+            return self.__implicit_layer_info[library][library + ".nn." + implicit_api_name]["descp"]
         else:
-            return self.__layer_info[library][implicit_api_name]["descp"]
+            return self.__implicit_layer_info[library][implicit_api_name]["descp"]
 
     def get_api_similarity(self, library: str, implicit_api_name: str) -> dict:
         assert self.is_implicit_api_name_valid(library, implicit_api_name), "check input"
@@ -227,13 +260,26 @@ class Database:
     def get_implicit_para_name(self, library: str, abstract_api_name: str, abstract_para_name: str) -> str:
         assert self.is_library_valid(library), "check library input"
         assert self.is_abstract_api_name_valid(abstract_api_name), "check abstract_api_name input"
-        # TODO
-        return "no para"
+        if self.mode == 1:
+            return self.__main_api_para_map[abstract_api_name][abstract_para_name][library]
+        elif self.mode == 2:
+            # TODO
+            return "no para"
 
-    def get_layer_info(self, library: str, implicit_api_name: str) -> dict:
+    def get_implicit_layer_info(self, library: str, implicit_api_name: str) -> dict:
         assert self.is_library_valid(library), "check library input"
         assert self.is_implicit_api_name_valid(library, implicit_api_name), "check implicit_api_name input"
-        return self.__layer_info[library][implicit_api_name]
+        return self.__implicit_layer_info[library][implicit_api_name]
+
+    def get_abstract_layer_info(self, abstract_api_name: str) -> dict:
+        assert self.is_abstract_api_name_valid(abstract_api_name), "check abstract_api_name input"
+        if self.mode == 1:
+            return self.__abstract_layer_info[abstract_api_name]
+        elif self.mode == 2:
+            # TODO
+            return {}
+        else:
+            return {}
 
     def get_seed(self, seed_name: str) -> dict:
         SEED_PATH = p.join(self.__database_path, "seed", seed_name + ".yaml")

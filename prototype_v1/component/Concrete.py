@@ -1,146 +1,13 @@
-import random
-
-from _database import database
 import os.path as p
 import time
-
 import yaml
 import os
-
-
-class Performer:
-    def __init__(self):
-        pass
-
-    def get_library_name(self) -> str:
-        pass
-
-    def translate(self, abstract_model: dict) -> str:
-        # Given a dict of abstract model, translate it into a str which can be written into a .py file
-        # And then this .py file will be a whole model.
-        pass
-
-    def get_model_from_file(self, file_path: str):
-        # Given a file path of a .py file, turn the net in this file to a model in memory.
-        # Return this model.
-        pass
-
-    def train(self, model) -> float:
-        # Given a model, train it, and return time cost(if failed, return -1).
-        pass
-
-    def run(self, model) -> (float, float):
-        # Given a model, give a tensor and run it, then
-        # 1. return time cost(-1 if failed).
-        # 2. return the calculate result.
-        pass
-
-
-class TorchPerformer(Performer):
-    # TODO
-    def __init__(self):
-        super().__init__()
-        return
-
-    def get_library_name(self) -> str:
-        return "torch"
-
-    def translate(self, abstract_model: dict) -> str:
-        return "torch model code"
-
-    def get_model_from_file(self, file_path: str):
-        return "torch model"
-
-    def train(self, model) -> float:
-        return 1.0
-
-    def run(self, model) -> (float, float):
-        return random.choice([1.0, 2.0, 3.0, -1]), 1.0
-
-
-class PaddlePerformer(Performer):
-    # TODO
-    def __init__(self):
-        super().__init__()
-        return
-
-    def get_library_name(self) -> str:
-        return "paddle"
-
-    def translate(self, abstract_model: dict) -> str:
-        return "paddle model code"
-
-    def get_model_from_file(self, file_path: str):
-        return "paddle model"
-
-    def train(self, model) -> float:
-        return 1.0
-
-    def run(self, model) -> (float, float):
-        return 1.0, 1.0
-
-
-class MindSporePerformer(Performer):
-    def __init__(self):
-        super().__init__()
-        return
-
-    def get_library_name(self) -> str:
-        return "mindspore"
-
-    def translate(self, abstract_model: dict) -> str:
-        return "mindspore model code"
-
-    def get_model_from_file(self, file_path: str):
-        return "mindspore model"
-
-    def train(self, model) -> float:
-        return 342864.0
-
-    def run(self, model) -> (float, float):
-        return 342864.0, 342864.0
-
-
-class TensorFlowPerformer(Performer):
-    def __init__(self):
-        super().__init__()
-        return
-
-    def get_library_name(self) -> str:
-        return "tensorflow"
-
-    def translate(self, abstract_model: dict) -> str:
-        return "tensorflow model code"
-
-    def get_model_from_file(self, file_path: str):
-        return "tensorflow model"
-
-    def train(self, model) -> float:
-        return 1.0
-
-    def run(self, model) -> (float, float):
-        return 1.0, 1.0
-
-
-class JittorPerformer(Performer):
-    def __init__(self):
-        super().__init__()
-        return
-
-    def get_library_name(self) -> str:
-        return "jittor"
-
-    def translate(self, abstract_model: dict) -> str:
-        return "jittor model code"
-
-    def get_model_from_file(self, file_path: str):
-        return "jittor model"
-
-    def train(self, model) -> float:
-        return 1.0
-
-    def run(self, model) -> (float, float):
-        return 1.0, 1.0
+from MoCo_Delta.prototype_v1.component.Performer import Performer
+from MoCo_Delta.prototype_v1.component.TorchPerformer import TorchPerformer
+from MoCo_Delta.prototype_v1.component.PaddlePerformer import PaddlePerformer
+from MoCo_Delta.prototype_v1.component.MindSporePerformer import MindSporePerformer
+from MoCo_Delta.prototype_v1.component.TensorFlowPerformer import TensorFlowPerformer
+from MoCo_Delta.prototype_v1.component.JittorPerformer import JittorPerformer
 
 
 def translator_factory(library: str) -> Performer:
@@ -209,23 +76,27 @@ class Concrete:
             model_code = performer.translate(abstract_model)
             file_path = self.mo_co_assemble(model_code, gen, index, performer.get_library_name())
             model = performer.get_model_from_file(file_path)
-            test_run_result = True if performer.run(model)[0] > 0 else False
+            test_run_result, _1, _2, error_message = performer.run(model)
+            test_run_result = True if test_run_result >= 0 else False
             if not test_run_result:
                 train_result = False
                 train_time_cost = -1
                 run_time_cost = -1
                 calculate_result = -1
+                shape_result = []
             else:
                 train_time_cost = performer.train(model)
                 train_result = False if train_time_cost < 0 else True
                 if not train_result:
                     run_time_cost = -1
                     calculate_result = -1
+                    shape_result = []
                 else:
-                    run_time_cost, calculate_result = performer.run(model)
-            result_dict = {"test run result": test_run_result, "train result": train_result,
+                    run_time_cost, calculate_result, shape_result, _3 = performer.run(model)
+            result_dict = {"run test": test_run_result, "train test": train_result,
                            "train time cost": train_time_cost, "run time cost": run_time_cost,
-                           "calculate result": calculate_result, "case path": file_path}
+                           "calculate result": calculate_result, "case path": file_path,
+                           "shape result": shape_result, "error message": error_message}
             result.append(result_dict)
         return result
 

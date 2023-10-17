@@ -1,7 +1,7 @@
 import os
 from _database import database
 from Concrete import concrete
-from Mutate import mutate
+from Mutate import mutator
 from ResultAnalyse import analyser
 import os.path as p
 import yaml
@@ -24,6 +24,7 @@ def set_config():
 
 def refresh__config():
     set_config()
+    mutator.refresh_config()
     concrete.new_experiment()
     database.refresh_config()
     concrete.refresh_config()
@@ -74,7 +75,7 @@ def go(net: str = "LeNet") -> None:
             for model in queue:
                 for i in range(config["N"]):
                     temp = copy.deepcopy(model)
-                    mutated_dict, mutate_type = mutate(ele)
+                    mutated_dict, mutate_type = mutator.mutate(ele)
                     temp[net].append(mutated_dict)
                     gen = layer + 1
                     index = this_layer_count + 1
@@ -101,5 +102,5 @@ def go(net: str = "LeNet") -> None:
     report_f.close()
 
 
-if __name__ == "__main__":
-    go("LeNet")
+# if __name__ == "__main__":
+#     go("LeNet")

@@ -1,0 +1,7 @@
+LIBRARY_LIST:
+  0: torch
+  1: tensorflow
+LIBRARY_NUM: 2
+N: 2
+THRESHOLD: 0.5
+MODE: 2
