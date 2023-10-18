@@ -136,6 +136,8 @@ class Database:
             pass
         # abstract layer info initialize over
 
+        # initialize an abstract similarity dict, this is just for mode 1.
+
         print("### Database OK")
         return
 
@@ -309,5 +311,5 @@ class Database:
             return
 
 
-# d = Database()
+d = Database()
 # d.generate_candidate_report(None)

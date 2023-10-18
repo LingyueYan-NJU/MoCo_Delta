@@ -78,6 +78,8 @@ class Mutator:
             new_abstract_api_name = database.get_abstract_api_name(self.library_list[0], new_implicit_api_name)
             # choose api
 
+            # add context similarity here
+
             # new parameter adoption process
             params = {}
             new_layer_info = database.get_abstract_layer_info(new_abstract_api_name)
@@ -96,3 +98,7 @@ class Mutator:
 
 
 mutator = Mutator()
+# test
+layer = {'layer': 'maxpool2d', 'params': {}, 'in': 'x', 'out': 'x'}
+for i in range(100):
+    print(mutator.mutate(layer))
