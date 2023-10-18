@@ -9,6 +9,14 @@ implicit_database_path = p.join(database_path, "implicit")
 config_path = p.join("..", "config", "config.yaml")
 
 
+def merge(list1, list2):
+    set1 = set(list1)
+    set2 = set(list2)
+    intersection = set1 & set2
+    intersection_list = list(intersection)
+    return intersection_list
+
+
 class Database:
     def __init__(self):
         self.__library_list = []
@@ -27,9 +35,6 @@ class Database:
         self.__api_para_map = {}
         self.__abstract_api_layer_info = {}
         self.__total_refresh()
-
-    def refresh_config(self):
-        pass
 
     def __total_refresh(self):
         self.__read_implicit_layer_info()
@@ -178,6 +183,7 @@ class Database:
         return
 
     def __calculate_candidate_map(self):
+        self.__candidate_map = self.__just_get_candidate_dict(self.__threshold)
         pass
 
     def __read_api_para_map(self):
@@ -187,6 +193,135 @@ class Database:
     def __calculate_abstract_api_layer_info(self):
         # TODO
         pass
+
+    # validation check functions
+    def is_library_valid(self, library: str) -> bool:
+        return library in self.__library_list
+
+    def is_abstract_api_name_valid(self, abstract_api_name: str) -> bool:
+        return abstract_api_name in self.__all_api_list["abstract"]
+
+    def is_implicit_api_name_valid(self, library: str, implicit_api_name: str) -> bool:
+        return self.is_library_valid(library) and implicit_api_name in self.__all_api_list[library]
+
+    # information functions
+    def get_implicit_api_similarity_valid(self, library: str, implicit_api_name: str) -> dict:
+        assert self.is_library_valid(library) and self.is_implicit_api_name_valid(library, implicit_api_name),\
+            "check input"
+        return self.__implicit_layer_similarity_valid[library][implicit_api_name]
+
+    def get_implicit_layer_info(self, library: str, implicit_api_name: str) -> dict:
+        assert self.is_library_valid(library) and self.is_implicit_api_name_valid(library, implicit_api_name),\
+            "check input"
+        return self.__implicit_layer_info[library][implicit_api_name]
+
+    def get_implicit_api_name(self, library: str, abstract_api_name: str) -> str:
+        assert self.is_library_valid(library), "check input library"
+        assert self.is_abstract_api_name_valid(abstract_api_name), "check input abstract_api_name"
+        return self.__api_name_map_valid[abstract_api_name][library]
+
+    def get_abstract_api_name(self, library: str, implicit_api_name: str) -> str:
+        assert self.is_library_valid(library), "check input library"
+        assert self.is_implicit_api_name_valid(library, implicit_api_name), "check input"
+        return self.__inverse_api_name_map_valid[library][implicit_api_name]
+
+    def get_seed(self, seed_name: str) -> dict:
+        SEED_PATH = p.join(database_path, "seed", seed_name + ".yaml")
+        f = open(SEED_PATH, "r")
+        seed = yaml.full_load(f)
+        f.close()
+        return seed
+
+    # config functions
+    def set_threshold(self, threshold: float):
+        assert 0.01 <= threshold <= 0.99, "check threshold, between 0.01 and 0.99."
+        self.__threshold = threshold
+        self.__candidate_map = self.__just_get_candidate_dict(self.__threshold)
+        print("Threshold changed to " + str(threshold) + ", map updated.")
+        return
+
+    def get_threshold(self):
+        return self.__threshold
+
+    def refresh_config(self):
+        old_mode = copy.deepcopy(self.__mode)
+        old_list = copy.deepcopy(self.__library_list)
+        old_threshold = copy.deepcopy(self.__threshold)
+        self.__read_config()
+        if old_mode != self.__mode or old_list != self.__library_list:
+            self.__total_refresh()
+        elif old_threshold != self.__threshold:
+            self.__part_refresh_for_threshold()
+        return
+
+
+    # about candidate list calculation
+    def get_candidate_mutate_list(self, abstract_api_name: str) -> list[str]:
+        assert self.is_abstract_api_name_valid(abstract_api_name)
+        return self.__candidate_map[abstract_api_name]
+
+    def __get_candidate_mutate_list(self, abstract_api_name: str, threshold: float) -> list[str]:
+        abstract_candidate_api_list = self.__all_api_list["abstract"]
+        for library in self.__library_list:
+            current_implicit_api_name = self.get_implicit_api_name(library, abstract_api_name)
+            if current_implicit_api_name == "NOAPI" or current_implicit_api_name == "":
+                continue
+            current_abstract_candidate_api_list = []
+            implicit_candidate_api_list = \
+                list(self.__implicit_layer_similarity_valid[library][current_abstract_candidate_api_list].values())
+            for layer in implicit_candidate_api_list:
+                current_abstract_candidate_api_list.append(self.get_abstract_api_name(library, layer))
+            abstract_candidate_api_list = merge(abstract_candidate_api_list, current_abstract_candidate_api_list)
+        if abstract_api_name in abstract_candidate_api_list:
+            abstract_candidate_api_list.remove(abstract_api_name)
+        return abstract_candidate_api_list
+
+    def __get_candidate_dict(self, threshold: float) -> (dict, int):
+        zero_num = 0
+        # abstract_api_num = len(self.main_api_name_map)
+        result_dict = {}
+        abstract_api_list = self.__all_api_list["abstract"]
+        for abstract_api_name in abstract_api_list:
+            candidate_list = self.__get_candidate_mutate_list(abstract_api_name, threshold)
+            if len(candidate_list) == 0:
+                zero_num += 1
+            result_dict[abstract_api_name] = candidate_list
+        return result_dict, zero_num
+
+    def __just_get_candidate_dict(self, threshold: float) -> dict:
+        return self.__get_candidate_dict(threshold)[0]
+
+    def __generate_candidate_report(self, threshold: float) -> (str, int):
+        candidate_dict, zero_num = self.__get_candidate_dict(threshold)
+        report = "*With the threshold of " + str(threshold) + ", there are " + str(zero_num) + \
+                 " apis that cannot be mutated\n\n"
+        for abstract_api_name in candidate_dict.keys():
+            report += (abstract_api_name + " :\n")
+            report += str(candidate_dict[abstract_api_name])
+            report += "\n"
+        return report, zero_num
+
+    def generate_candidate_report(self, threshold: float = None) -> None:
+        if threshold is not None:
+            report = self.__generate_candidate_report(threshold=threshold)[0]
+        else:
+            min_threshold = 0.0
+            report = ""
+            for th in [0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1]:
+                current_report, zero_num = self.__generate_candidate_report(th)
+                report += current_report
+                if zero_num == 0:
+                    min_threshold = th
+                report += "\n\n\n"
+            recommend = "While with the threshold of " + str(min_threshold) + ", all api can be mutated.\n"
+            report = recommend + report
+        report_path = p.join("..", "report", "apiCandidateReport.txt")
+        f = open(report_path, "w", encoding="utf-8")
+        f.write(report)
+        f.close()
+        return
+
+    # about candidate list calculation
 
 
 d = Database()
