@@ -1,372 +1,94 @@
-*With the threshold of 0.5, there are 57 apis that cannot be mutated
+*With the threshold of 0.5, there are 17 apis that cannot be mutated
 
-adaptiveavgpool1d :
-['adaptiveavgpool2d', 'adaptiveavgpool3d', 'adaptivemaxpool2d', 'adaptivemaxpool1d', 'adaptivemaxpool3d']
 adaptiveavgpool2d :
-['adaptiveavgpool3d', 'adaptivemaxpool2d', 'adaptivemaxpool3d']
+['adaptivemaxpool2d', 'adaptiveavgpool3d', 'adaptivemaxpool3d']
 adaptiveavgpool3d :
 ['adaptivemaxpool2d', 'adaptivemaxpool3d', 'adaptiveavgpool2d']
-adaptivelogsoftmaxwithloss :
-[]
-adaptivemaxpool1d :
-['adaptiveavgpool2d', 'adaptiveavgpool3d', 'adaptivemaxpool2d', 'adaptiveavgpool1d', 'adaptivemaxpool3d']
 adaptivemaxpool2d :
 ['adaptiveavgpool3d', 'adaptivemaxpool3d', 'adaptiveavgpool2d']
 adaptivemaxpool3d :
-['adaptiveavgpool3d', 'adaptivemaxpool2d', 'adaptiveavgpool2d']
-alphadropout :
-['dropout']
-avgpool1d :
-['maxpool1d', 'maxpool2d', 'maxpool3d', 'avgpool2d', 'avgpool3d']
+['adaptivemaxpool2d', 'adaptiveavgpool3d', 'adaptiveavgpool2d']
 avgpool2d :
-['avgpool3d']
+['maxunpool2d', 'avgpool3d', 'maxunpool3d']
 avgpool3d :
-['avgpool2d', 'maxpool3d']
-basepruningmethod :
-['random_unstructured', 'is_pruned', 'customfrommask', 'identity', 'remove_weight_norm', 'remove_spectral_norm', 'l1_unstructured', 'remove', 'skip_init']
+['avgpool2d', 'maxunpool2d', 'maxpool3d', 'maxunpool3d']
 batchnorm1d :
-['instancenorm3d', 'instancenorm1d', 'batchnorm3d', 'instancenorm2d', 'batchnorm2d']
+['instancenorm2d', 'instancenorm3d', 'batchnorm2d', 'instancenorm1d', 'batchnorm3d']
 batchnorm2d :
-['instancenorm3d', 'instancenorm1d', 'batchnorm3d', 'batchnorm1d', 'instancenorm2d']
+['instancenorm2d', 'batchnorm1d', 'instancenorm3d', 'instancenorm1d', 'batchnorm3d']
 batchnorm3d :
-['instancenorm3d', 'instancenorm1d', 'batchnorm1d', 'instancenorm2d', 'batchnorm2d']
-bceloss :
-['bcewithlogitsloss', 'mseloss', 'softmarginloss', 'multilabelmarginloss', 'l1loss', 'multilabelsoftmarginloss']
-bcewithlogitsloss :
-['mseloss', 'softmarginloss', 'nllloss', 'multilabelmarginloss', 'l1loss', 'bceloss', 'multilabelsoftmarginloss']
-bilinear :
-[]
-cached :
-[]
-celu :
-['elu']
-channelshuffle :
-[]
-clip_grad_norm_ :
-['softmax2d', 'parameters_to_vector', 'clip_grad_value_']
-clip_grad_value_ :
-['clip_grad_norm_', 'parameters_to_vector']
-constantpad1d :
-['reflectionpad3d', 'constantpad2d', 'reflectionpad1d', 'zeropad2d', 'constantpad3d', 'reflectionpad2d', 'replicationpad2d', 'replicationpad1d', 'replicationpad3d']
+['instancenorm3d', 'batchnorm1d', 'batchnorm2d', 'instancenorm2d', 'instancenorm1d']
 constantpad2d :
-['zeropad2d', 'replicationpad2d', 'reflectionpad2d']
-constantpad3d :
-['reflectionpad3d', 'constantpad2d', 'reflectionpad1d', 'zeropad2d', 'constantpad1d', 'reflectionpad2d', 'replicationpad2d', 'replicationpad1d', 'replicationpad3d']
+['replicationpad2d', 'reflectionpad2d', 'zeropad2d']
 conv1d :
-['convtranspose2d', 'convtranspose3d', 'conv2d', 'conv3d']
+['conv3d', 'conv2d', 'convtranspose3d', 'convtranspose2d']
 conv2d :
-['convtranspose2d', 'convtranspose3d', 'conv1d', 'conv3d']
+['conv3d', 'conv1d', 'convtranspose3d', 'convtranspose2d']
 conv3d :
-['convtranspose2d', 'convtranspose3d', 'conv1d', 'conv2d']
-convtranspose1d :
-['conv3d', 'zeropad2d', 'convtranspose2d', 'convtranspose3d', 'conv1d', 'conv2d']
+['conv2d', 'convtranspose2d', 'conv1d', 'convtranspose3d', 'avgpool3d']
 convtranspose2d :
-['convtranspose3d', 'conv1d', 'conv2d', 'conv3d']
+['conv3d', 'conv1d', 'conv2d', 'convtranspose3d']
 convtranspose3d :
-['convtranspose2d', 'conv1d', 'conv2d', 'conv3d']
-cosineembeddingloss :
-['mseloss', 'softmarginloss', 'kldivloss', 'multilabelmarginloss', 'hingeembeddingloss', 'marginrankingloss', 'l1loss']
-cosinesimilarity :
-[]
-crossentropyloss :
-['bcewithlogitsloss', 'mseloss', 'softmarginloss', 'nllloss', 'multilabelmarginloss', 'l1loss', 'bceloss', 'multilabelsoftmarginloss']
-ctcloss :
-[]
-custom_from_mask :
-['random_structured', 'random_unstructured', 'is_pruned', 'randomunstructured', 'customfrommask', 'ln_structured', 'identity', 'remove_weight_norm', 'remove_spectral_norm', 'l1_unstructured', 'weight_norm', 'remove']
-customfrommask :
-['custom_from_mask', 'random_structured', 'random_unstructured', 'is_pruned', 'identity', 'remove_weight_norm', 'remove_spectral_norm', 'weight_norm', 'remove']
-dataparallel :
-['is_pruned']
-distributeddataparallel :
-['dataparallel', 'is_pruned']
+['conv3d', 'conv1d', 'conv2d', 'convtranspose2d']
 dropout :
-[]
-dropout1d :
-[]
+['dropout2d']
 dropout2d :
 []
-dropout3d :
-['dropout2d']
 elu :
 []
 embedding :
 []
-embeddingbag :
-['embedding']
-featurealphadropout :
-['hardsigmoid', 'relu6', 'selu', 'dropout1d', 'relu', 'hardswish']
 flatten :
 []
-fold :
-['unfold']
-fractionalmaxpool2d :
-['adaptiveavgpool2d', 'fractionalmaxpool3d', 'adaptiveavgpool3d', 'adaptivemaxpool2d', 'adaptiveavgpool1d', 'adaptivemaxpool1d', 'adaptivemaxpool3d']
-fractionalmaxpool3d :
-['maxpool3d', 'adaptiveavgpool2d', 'adaptiveavgpool3d', 'adaptivemaxpool2d', 'adaptiveavgpool1d', 'adaptivemaxpool1d', 'adaptivemaxpool3d']
-functional_call :
-['is_pruned', 'skip_init']
-gaussiannllloss :
-['poissonnllloss']
 gelu :
 []
-global_unstructured :
-['parameters_to_vector']
-glu :
-['softmax', 'logsoftmax', 'softmin']
 groupnorm :
 []
-gru :
-['lstm']
 grucell :
 ['lstmcell']
-hardshrink :
-['softshrink']
-hardsigmoid :
-['relu', 'relu6', 'hardswish']
-hardswish :
-['relu', 'hardsigmoid', 'relu6']
-hardtanh :
-[]
-hingeembeddingloss :
-['mseloss', 'softmarginloss', 'kldivloss', 'cosineembeddingloss', 'multilabelmarginloss', 'marginrankingloss', 'l1loss']
-huberloss :
-[]
-identity :
-[]
 instancenorm1d :
-['instancenorm3d', 'batchnorm3d', 'batchnorm1d', 'instancenorm2d', 'batchnorm2d']
+['instancenorm3d', 'batchnorm1d', 'instancenorm2d', 'groupnorm', 'batchnorm2d', 'batchnorm3d']
 instancenorm2d :
-['instancenorm3d', 'instancenorm1d', 'batchnorm3d', 'batchnorm1d', 'batchnorm2d']
+['instancenorm3d', 'batchnorm1d', 'batchnorm2d', 'groupnorm', 'instancenorm1d', 'batchnorm3d']
 instancenorm3d :
-['instancenorm1d', 'batchnorm3d', 'batchnorm1d', 'instancenorm2d', 'batchnorm2d']
-is_parametrized :
-['remove_parametrizations', 'is_pruned', 'identity', 'remove_spectral_norm', 'register_parametrization']
-is_pruned :
-['customfrommask']
-kldivloss :
-['mseloss', 'softmarginloss', 'multilabelmarginloss', 'hingeembeddingloss', 'l1loss']
-l1_unstructured :
-['custom_from_mask', 'random_structured', 'random_unstructured', 'is_pruned', 'lazymodulemixin', 'randomunstructured', 'customfrommask', 'ln_structured', 'identity', 'randomstructured', 'remove_weight_norm', 'l1unstructured', 'remove_spectral_norm', 'weight_norm', 'sigmoid', 'remove']
-l1loss :
-['mseloss', 'softmarginloss', 'multilabelmarginloss']
-l1unstructured :
-['random_unstructured', 'lnstructured', 'randomunstructured', 'randomstructured', 'l1_unstructured', 'sigmoid']
+['instancenorm2d', 'batchnorm1d', 'batchnorm2d', 'instancenorm1d', 'batchnorm3d']
 layernorm :
-[]
-lazybatchnorm1d :
-['lazyinstancenorm3d', 'instancenorm3d', 'lazybatchnorm3d', 'lazyinstancenorm1d', 'lazyinstancenorm2d', 'batchnorm3d', 'cached', 'syncbatchnorm', 'batchnorm1d', 'lazybatchnorm2d', 'instancenorm2d', 'batchnorm2d']
-lazybatchnorm2d :
-['lazyinstancenorm3d', 'lazybatchnorm1d', 'instancenorm3d', 'lazybatchnorm3d', 'lazyinstancenorm1d', 'lazyinstancenorm2d', 'batchnorm3d', 'cached', 'syncbatchnorm', 'batchnorm1d', 'instancenorm2d', 'batchnorm2d']
-lazybatchnorm3d :
-['lazyinstancenorm3d', 'lazybatchnorm1d', 'instancenorm3d', 'instancenorm1d', 'lazyinstancenorm1d', 'batchnorm3d', 'lazyinstancenorm2d', 'cached', 'syncbatchnorm', 'batchnorm1d', 'lazybatchnorm2d', 'instancenorm2d', 'batchnorm2d']
-lazyconv1d :
-['lazyconv3d', 'reflectionpad1d', 'constantpad3d', 'zeropad2d', 'lazyconvtranspose1d', 'reflectionpad2d', 'reflectionpad3d', 'lazyconv2d', 'lazylinear', 'maxunpool3d', 'maxunpool2d', 'constantpad2d', 'constantpad1d', 'lazyconvtranspose3d', 'channelshuffle', 'replicationpad2d', 'replicationpad1d', 'replicationpad3d', 'lazyconvtranspose2d', 'maxunpool1d']
-lazyconv2d :
-['lazyconv3d', 'reflectionpad1d', 'constantpad3d', 'zeropad2d', 'lazyconvtranspose1d', 'reflectionpad2d', 'reflectionpad3d', 'maxunpool3d', 'maxunpool2d', 'constantpad2d', 'constantpad1d', 'lazyconvtranspose3d', 'channelshuffle', 'replicationpad2d', 'replicationpad1d', 'replicationpad3d', 'lazyconv1d', 'lazyconvtranspose2d', 'maxunpool1d']
-lazyconv3d :
-['reflectionpad1d', 'constantpad3d', 'zeropad2d', 'lazyconvtranspose1d', 'reflectionpad2d', 'reflectionpad3d', 'lazyconv2d', 'maxunpool3d', 'maxunpool2d', 'constantpad2d', 'constantpad1d', 'lazyconvtranspose3d', 'channelshuffle', 'replicationpad2d', 'replicationpad1d', 'replicationpad3d', 'lazyconv1d', 'lazyconvtranspose2d', 'maxunpool1d']
-lazyconvtranspose1d :
-['lazyconv3d', 'reflectionpad1d', 'constantpad3d', 'zeropad2d', 'reflectionpad2d', 'reflectionpad3d', 'lazyconv2d', 'maxunpool3d', 'maxunpool2d', 'constantpad2d', 'constantpad1d', 'lazyconvtranspose3d', 'channelshuffle', 'replicationpad2d', 'replicationpad1d', 'replicationpad3d', 'lazyconv1d', 'lazyconvtranspose2d', 'maxunpool1d']
-lazyconvtranspose2d :
-['lazyconv3d', 'reflectionpad1d', 'constantpad3d', 'zeropad2d', 'lazyconvtranspose1d', 'reflectionpad2d', 'reflectionpad3d', 'lazyconv2d', 'maxunpool3d', 'maxunpool2d', 'constantpad2d', 'constantpad1d', 'lazyconvtranspose3d', 'channelshuffle', 'replicationpad2d', 'replicationpad1d', 'replicationpad3d', 'lazyconv1d', 'maxunpool1d']
-lazyconvtranspose3d :
-['lazyconv3d', 'reflectionpad1d', 'constantpad3d', 'zeropad2d', 'lazyconvtranspose1d', 'reflectionpad2d', 'reflectionpad3d', 'lazyconv2d', 'maxunpool3d', 'maxunpool2d', 'constantpad2d', 'constantpad1d', 'channelshuffle', 'replicationpad2d', 'replicationpad1d', 'replicationpad3d', 'lazyconv1d', 'lazyconvtranspose2d', 'maxunpool1d']
-lazyinstancenorm1d :
-['lazyinstancenorm3d', 'lazybatchnorm1d', 'lazybatchnorm3d', 'lazyinstancenorm2d', 'batchnorm3d', 'cached', 'lazybatchnorm2d', 'batchnorm2d']
-lazyinstancenorm2d :
-['lazyinstancenorm3d', 'lazybatchnorm1d', 'instancenorm3d', 'lazybatchnorm3d', 'lazyinstancenorm1d', 'batchnorm3d', 'cached', 'batchnorm1d', 'lazybatchnorm2d', 'instancenorm2d', 'batchnorm2d']
-lazyinstancenorm3d :
-['lazybatchnorm1d', 'instancenorm3d', 'lazybatchnorm3d', 'instancenorm1d', 'lazyinstancenorm1d', 'batchnorm3d', 'lazyinstancenorm2d', 'cached', 'batchnorm1d', 'lazybatchnorm2d', 'instancenorm2d', 'batchnorm2d']
-lazylinear :
-[]
-lazymodulemixin :
 []
 leakyrelu :
 []
-linear :
-[]
-ln_structured :
-['lazymodulemixin', 'custom_from_mask', 'is_pruned', 'randomunstructured', 'softmax', 'sigmoid', 'glu', 'spectral_norm', 'random_structured', 'softsign', 'lnstructured', 'customfrommask', 'identity', 'remove_weight_norm', 'l1unstructured', 'softmin', 'remove_spectral_norm', 'logsoftmax', 'random_unstructured', 'rnnbase', 'randomstructured', 'tanhshrink', 'l1_unstructured', 'weight_norm', 'remove']
-lnstructured :
-['ln_structured', 'rnnbase', 'softmax', 'randomstructured', 'l1unstructured', 'softmin', 'glu', 'logsoftmax']
-localresponsenorm :
-[]
-logsigmoid :
-[]
-logsoftmax :
-['softmax']
-lppool1d :
-['avgpool1d', 'maxpool1d', 'lppool2d']
-lppool2d :
-['avgpool1d', 'lppool1d']
-lstm :
-['gru']
 lstmcell :
 ['grucell']
-marginrankingloss :
-['mseloss', 'softmarginloss', 'cosineembeddingloss', 'multilabelmarginloss', 'hingeembeddingloss', 'l1loss']
-maxpool1d :
-['maxpool2d', 'maxpool3d', 'zeropad2d', 'avgpool2d', 'avgpool3d', 'avgpool1d']
 maxpool2d :
-['maxpool3d']
+['adaptivemaxpool2d', 'adaptivemaxpool3d', 'maxunpool2d', 'maxunpool3d', 'maxpool3d']
 maxpool3d :
-['avgpool3d', 'maxpool2d']
-maxunpool1d :
-['maxpool3d', 'zeropad2d', 'maxunpool2d', 'maxunpool3d', 'avgpool1d']
+['adaptivemaxpool2d', 'avgpool3d', 'adaptivemaxpool3d', 'maxunpool2d', 'maxunpool3d', 'maxpool2d']
 maxunpool2d :
 ['maxunpool3d']
 maxunpool3d :
 ['maxunpool2d']
 mish :
 []
-mseloss :
-['l1loss', 'softmarginloss', 'multilabelmarginloss']
-multiheadattention :
-[]
-multilabelmarginloss :
-['l1loss', 'mseloss', 'softmarginloss']
-multilabelsoftmarginloss :
-['nllloss', 'mseloss', 'softmarginloss', 'multilabelmarginloss', 'l1loss', 'bceloss']
-multimarginloss :
-['mseloss', 'softmarginloss', 'cosineembeddingloss', 'multilabelmarginloss', 'hingeembeddingloss', 'marginrankingloss', 'l1loss', 'bceloss', 'multilabelsoftmarginloss']
-nllloss :
-['bcewithlogitsloss', 'mseloss', 'kldivloss', 'softmarginloss', 'multilabelmarginloss', 'l1loss', 'bceloss', 'multilabelsoftmarginloss']
-orthogonal :
-['is_pruned', 'customfrommask', 'identity', 'remove_weight_norm', 'remove_spectral_norm', 'weight_norm', 'remove']
-pack_padded_sequence :
-['pack_sequence', 'unpad_sequence']
-pack_sequence :
-[]
-packedsequence :
-[]
-pad_packed_sequence :
-['pad_sequence']
-pad_sequence :
-['pack_sequence', 'pad_packed_sequence']
-pairwisedistance :
-[]
-parameters_to_vector :
-['vector_to_parameters']
-parametrizationlist :
-[]
 pixelshuffle :
 []
-pixelunshuffle :
-[]
-poissonnllloss :
-['mseloss', 'softmarginloss', 'kldivloss', 'gaussiannllloss', 'multilabelmarginloss', 'l1loss']
 prelu :
 []
-pruningcontainer :
-[]
-random_structured :
-['lazymodulemixin', 'ln_structured', 'custom_from_mask', 'is_pruned', 'randomunstructured', 'softmax', 'sigmoid', 'glu', 'spectral_norm', 'softsign', 'lnstructured', 'customfrommask', 'identity', 'remove_weight_norm', 'l1unstructured', 'softmin', 'remove_spectral_norm', 'logsoftmax', 'random_unstructured', 'rnnbase', 'randomstructured', 'tanhshrink', 'l1_unstructured', 'weight_norm', 'remove']
-random_unstructured :
-['custom_from_mask', 'random_structured', 'is_pruned', 'randomunstructured', 'customfrommask', 'ln_structured', 'identity', 'remove_weight_norm', 'l1unstructured', 'remove_spectral_norm', 'l1_unstructured', 'weight_norm', 'sigmoid', 'remove']
-randomstructured :
-['logsoftmax', 'softsign', 'lnstructured', 'ln_structured', 'rnnbase', 'softmax', 'l1unstructured', 'softmin', 'tanhshrink', 'sigmoid', 'glu', 'random_structured']
-randomunstructured :
-['random_unstructured', 'l1unstructured', 'l1_unstructured', 'sigmoid', 'random_structured']
-reflectionpad1d :
-['reflectionpad3d', 'zeropad2d', 'reflectionpad2d', 'replicationpad2d', 'replicationpad1d', 'replicationpad3d']
 reflectionpad2d :
-['zeropad2d', 'replicationpad2d']
-reflectionpad3d :
-['reflectionpad1d', 'zeropad2d', 'reflectionpad2d', 'replicationpad2d', 'replicationpad1d', 'replicationpad3d']
-register_parametrization :
-['remove_parametrizations', 'is_pruned', 'customfrommask', 'identity', 'is_parametrized', 'remove_spectral_norm']
+['replicationpad2d', 'zeropad2d']
 relu :
 []
 relu6 :
 []
-remove :
-['custom_from_mask', 'random_structured', 'random_unstructured', 'is_pruned', 'customfrommask', 'identity', 'remove_weight_norm', 'remove_spectral_norm', 'l1_unstructured']
-remove_parametrizations :
-['is_pruned', 'customfrommask', 'identity', 'remove_weight_norm', 'is_parametrized', 'remove_spectral_norm', 'register_parametrization', 'remove']
-remove_spectral_norm :
-['custom_from_mask', 'random_structured', 'random_unstructured', 'remove_parametrizations', 'is_pruned', 'customfrommask', 'identity', 'remove_weight_norm', 'is_parametrized', 'l1_unstructured', 'weight_norm', 'remove', 'spectral_norm']
-remove_weight_norm :
-['custom_from_mask', 'random_unstructured', 'is_pruned', 'customfrommask', 'identity', 'remove_spectral_norm', 'l1_unstructured', 'weight_norm', 'remove', 'spectral_norm']
-replicationpad1d :
-['reflectionpad3d', 'constantpad2d', 'reflectionpad1d', 'zeropad2d', 'constantpad3d', 'constantpad1d', 'reflectionpad2d', 'replicationpad2d', 'replicationpad3d']
 replicationpad2d :
-['zeropad2d', 'constantpad2d', 'reflectionpad2d']
-replicationpad3d :
-['reflectionpad3d', 'constantpad2d', 'reflectionpad1d', 'zeropad2d', 'constantpad3d', 'constantpad1d', 'reflectionpad2d', 'replicationpad2d', 'replicationpad1d']
-rnn :
-[]
-rnnbase :
-[]
+['reflectionpad2d', 'zeropad2d', 'constantpad2d']
 rnncell :
 ['lstmcell', 'grucell']
-rrelu :
-[]
-selu :
-[]
 sigmoid :
 []
-silu :
-[]
-skip_init :
-[]
-smoothl1loss :
-['mseloss', 'softmarginloss', 'multilabelmarginloss', 'l1loss']
-softmarginloss :
-['l1loss', 'mseloss', 'multilabelmarginloss']
 softmax :
 []
-softmax2d :
-[]
-softmin :
-['softmax', 'glu', 'logsoftmax']
-softplus :
-[]
-softshrink :
-[]
-softsign :
-[]
-spectral_norm :
-['custom_from_mask', 'is_pruned', 'softmax', 'glu', 'softsign', 'customfrommask', 'identity', 'remove_weight_norm', 'softmin', 'remove_spectral_norm', 'tanh', 'logsoftmax', 'remove', 'random_unstructured', 'rnnbase', 'is_parametrized', 'weight_norm', 'random_structured']
-syncbatchnorm :
-['instancenorm3d', 'instancenorm1d', 'batchnorm3d', 'layernorm', 'batchnorm1d', 'instancenorm2d', 'batchnorm2d']
 tanh :
-[]
-tanhshrink :
-[]
-threshold :
-['selu']
-transformer :
-['transformerencoderlayer', 'transformerdecoderlayer']
-transformerdecoder :
-[]
-transformerdecoderlayer :
-['transformer', 'transformerencoderlayer']
-transformerencoder :
-['transformerdecoder']
-transformerencoderlayer :
-['transformer', 'transformerdecoderlayer']
-tripletmarginloss :
-['mseloss', 'softmarginloss', 'kldivloss', 'cosineembeddingloss', 'multilabelmarginloss', 'hingeembeddingloss', 'marginrankingloss', 'l1loss']
-tripletmarginwithdistanceloss :
-[]
-unflatten :
-['softmax', 'softmin', 'glu', 'logsoftmax']
-unfold :
-[]
-unpack_sequence :
-[]
-unpad_sequence :
 []
 upsample :
 []
-upsamplingbilinear2d :
-['upsamplingnearest2d']
-upsamplingnearest2d :
-['upsamplingbilinear2d']
-vector_to_parameters :
-['parameters_to_vector']
-weight_norm :
-['custom_from_mask', 'random_unstructured', 'is_pruned', 'softsign', 'logsoftmax', 'customfrommask', 'rnnbase', 'softmax', 'identity', 'remove_weight_norm', 'softmin', 'remove_spectral_norm', 'remove', 'glu', 'random_structured', 'spectral_norm']
 zeropad2d :
-[]
+['replicationpad2d', 'reflectionpad2d', 'constantpad2d']
