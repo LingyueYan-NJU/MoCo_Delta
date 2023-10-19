@@ -47,10 +47,12 @@ class Database:
         self.__calculate_candidate_map()
         self.__read_api_para_map()
         self.__calculate_abstract_api_layer_info()
+        print("### Database OK.")
 
     def __part_refresh_for_threshold(self):
         self.__calculate_implicit_layer_similarity_valid()
         self.__calculate_candidate_map()
+        print("### Database OK.")
 
     def __read_config(self):
         # unit test passed
@@ -357,5 +359,25 @@ class Database:
 
     # about candidate list calculation
 
+    def modify_similarity_dict_with_shape(self) -> None:
+        if self.__mode != 1:
+            return
+        similarity_valid_dict = copy.deepcopy(self.__implicit_layer_similarity_valid[self.__library_list[0]])
+        for implicit_api_name in similarity_valid_dict.keys():
+            if '1d' in implicit_api_name:
+                pool = ['2d', '3d']
+            elif '2d' in implicit_api_name:
+                pool = ['1d', '3d']
+            elif '3d' in implicit_api_name:
+                pool = ['1d', '2d']
+            else:
+                continue
+            for simi_implicit_api_name in similarity_valid_dict[implicit_api_name].keys():
+                if pool[0] in simi_implicit_api_name or pool[1] in simi_implicit_api_name:
+                    self.__implicit_layer_similarity_valid[self.__library_list[0]][implicit_api_name].pop(simi_implicit_api_name)
+                else:
+                    continue
+        return
 
-d = Database()
+
+# d = Database()

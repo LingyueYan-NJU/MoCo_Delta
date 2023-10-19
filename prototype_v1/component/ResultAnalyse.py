@@ -41,7 +41,7 @@ class Analyser:
             elif not result["train test"]:
                 return False
             else:
-                return True
+                continue
         return True
 
 

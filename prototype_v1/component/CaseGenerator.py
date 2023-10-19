@@ -75,12 +75,14 @@ def go(net: str = "LeNet") -> None:
             for model in queue:
                 for i in range(config["N"]):
                     temp = copy.deepcopy(model)
-                    mutated_dict, mutate_type = mutator.mutate(ele)
+                    mutated_dict, mutate_info = mutator.mutate(ele)
                     temp[net].append(mutated_dict)
                     gen = layer + 1
                     index = this_layer_count + 1
                     this_layer_count += 1
                     result = concrete.perform(temp, gen, index)
+                    for r in result:
+                        r["mutate info"] = mutate_info
                     ana = analyser.analyse_result(result)
                     if ana:
                         pass_list.append(temp)
