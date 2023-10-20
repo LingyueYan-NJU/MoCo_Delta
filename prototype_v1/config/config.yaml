@@ -1,7 +1,6 @@
 LIBRARY_LIST:
   0: jittor
-  1: torch
-LIBRARY_NUM: 3
+LIBRARY_NUM: 1
 N: 2
 THRESHOLD: 0.5
-MODE: 2
+MODE: 1

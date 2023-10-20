@@ -1,6 +1,6 @@
 1. 修复Jittor的layer_info，起码与torch同步。
       目前，jittor可以先用以前的假get_value。
-2.  Mutate逻辑，主要是getValue的逻辑※※。为了顺利执行getValue，数据需要完善。
+2. Mutate逻辑，主要是getValue的逻辑※※。为了顺利执行getValue，数据需要完善。
 3. 删除不用的层信息。然后，在数据库层面，整理出一张新表csv，包括所有合法的要用的层信息。然后数据库就完整了。
 4. 翻译执行记录方法填充
 5. 主过程思考，包括Fuzzing和Boundary。主过程的剪枝，使用扫描记录的方法。
