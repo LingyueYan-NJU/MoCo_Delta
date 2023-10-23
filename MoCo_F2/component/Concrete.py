@@ -1,10 +1,13 @@
 import os.path as p
+import random
 import time
 import yaml
 import os
-import random
 from abc import ABC, abstractmethod
 from _database import database
+import sys
+from importlib import import_module
+import traceback
 
 
 def generate_line(api_name: str, params_dict: dict) -> str:
@@ -34,7 +37,7 @@ class Performer(ABC):
         pass
 
     @abstractmethod
-    def get_model_from_file(self, file_path: str):
+    def get_model_from_file(self, case_path: str, file_name: str):
         # Given a file path of a .py file, turn the net in this file to a model in memory.
         # Return this model.
         pass
@@ -45,11 +48,11 @@ class Performer(ABC):
         pass
 
     @abstractmethod
-    def run(self, model) -> (float, float, list[int], str):
+    def run(self, model) -> (float, str):
         # Given a model, give a tensor and run it, then
         # 1. return time cost(-1 if failed).
-        # 2. return the calculate result(-1 if failed).
-        # 3. return the shape([] if failed).
+        # # # 2. return the calculate result(-1 if failed). (MODE 1 DONT RETURN)
+        # # # 3. return the shape([] if failed). (MODE 1 DONT RETURN)
         # 4. return the error info("" if succeeded).
         pass
 
@@ -58,7 +61,30 @@ class TorchPerformer(Performer):
     # TODO
     def __init__(self):
         super().__init__()
+        import torch
+        # import Trainers.TorchTrainer as Trainer
+        self.LeNet_test_tensor = torch.randn(3, 1, 28, 28)
+        self.s244_test_tensor = torch.randn(3, 3, 244, 244)
+
+        self.LeNet_test_code = "    x = torch.randn(3, 1, 28, 28)\n    y = model(x)\n    return model\n"
+        self.s244_test_code = "    x = torch.randn(3, 3, 244, 244)\n    y = model(x)\n    return model\n"
         return
+
+    def __get_test_code(self, model_name: str):
+        if model_name == "LeNet":
+            return self.LeNet_test_code
+        elif model_name == "googlenet":
+            return self.s244_test_code
+        else:
+            return None
+
+    def __get_test_tensor(self, model_name: str):
+        if model_name == "LeNet":
+            return self.LeNet_test_tensor
+        elif model_name == "googlenet":
+            return self.s244_test_tensor
+        else:
+            return None
 
     def get_library_name(self) -> str:
         return "torch"
@@ -67,18 +93,47 @@ class TorchPerformer(Performer):
         head = "import torch\nimport torch.nn as nn\n\n\n"
         body = ""
         model_name_list = list(abstract_model.keys())
+        main_model_name = model_name_list[0]
         for model in abstract_model:
             body += self.__dict_to_model_class(abstract_model[model], model, model_name_list)
-        return head + body
+        return head + body + "def go():\n    model = " + main_model_name + "()\n" +\
+            self.__get_test_code(main_model_name)
 
-    def get_model_from_file(self, file_path: str):
-        return "torch model"
+    def get_model_from_file(self, case_path: str, file_name: str):
+        model_name = file_name.replace(".py", "")
+        sys.path.append(case_path)
+        model = import_module(model_name)
+        try:
+            model = model.go()
+        except Exception:
+            model = "error message: \n" + str(traceback.format_exc())
+        sys.path.remove(case_path)
+        return model
 
     def train(self, model) -> float:
-        return 1.0
+        # fake train
+        return random.choice([random.uniform(3.0, 100.0), random.uniform(100.0, 200.0), random.uniform(1.0, 3.0)])
 
-    def run(self, model) -> (float, float, list[int], str):
-        return random.choice([1.0, 2.0, 3.0, -1]), 1.0, [1, 1, 1, 1], "error?"
+    def run(self, model) -> (float, str):
+        if isinstance(model, str):
+            return -1.0, model
+        start_time = time.time()
+        model_name = str(model).split("(", 1)[0]
+        test_tensor = self.__get_test_tensor(model_name)
+        flag = True
+        error_message = ""
+        try:
+            y = model(test_tensor)
+        except Exception:
+            flag = False
+            error_message = str(traceback.format_exc())
+        if flag:
+            end_time = time.time()
+            time_cost = end_time - start_time
+        else:
+            time_cost = -1.0
+
+        return time_cost, error_message
 
     def __dict_to_model_class(self, model_dict: dict, model_name: str, model_name_list: list[str]) -> str:
         def_part = "class " + model_name + "(nn.Module):\n    def __init__(self):\n        super("\
@@ -127,7 +182,7 @@ class TorchPerformer(Performer):
                                     layer_dict["in"] + ")\n"
                 def_part += def_part_line
                 forward_part += forward_part_line
-        return def_part + "\n" + forward_part + "        return x\n\n"
+        return def_part + "\n" + forward_part + "        return x\n\n\n"
 
 
 class JittorPerformer(Performer):
@@ -141,14 +196,14 @@ class JittorPerformer(Performer):
     def translate(self, abstract_model: dict) -> str:
         return "jittor model code"
 
-    def get_model_from_file(self, file_path: str):
+    def get_model_from_file(self, case_path: str, file_name: str):
         return "jittor model"
 
     def train(self, model) -> float:
         return 1.0
 
-    def run(self, model) -> (float, float, list[int], str):
-        return 1.0, 1.0, [1, 1, 1, 1], ""
+    def run(self, model) -> (float, str):
+        return 1.0, ""
 
 
 class TensorFlowPerformer(Performer):
@@ -162,14 +217,14 @@ class TensorFlowPerformer(Performer):
     def translate(self, abstract_model: dict) -> str:
         return "tensorflow model code"
 
-    def get_model_from_file(self, file_path: str):
+    def get_model_from_file(self, case_path: str, file_name: str):
         return "tensorflow model"
 
     def train(self, model) -> float:
         return 1.0
 
-    def run(self, model) -> (float, float, list[int], str):
-        return 1.0, 1.0, [1, 1, 1, 1], ""
+    def run(self, model) -> (float, str):
+        return 1.0, ""
 
 
 def translator_factory(library: str) -> Performer | None:
@@ -185,10 +240,11 @@ def translator_factory(library: str) -> Performer | None:
 
 class Concrete:
     def __init__(self):
-        self.__experiment_id = "experiment" + str(time.time())
+        self.__experiment_id = "experiment" + str(int(time.time()))
         print("experiment id: " + self.__experiment_id)
         RESULT_PATH = p.join("..", "result")
         os.makedirs(p.join(RESULT_PATH, self.__experiment_id))
+        self.RESULT_PATH = p.join(os.getcwd(), "..", "result", self.__experiment_id)
         self.__model_name = ""
         self.__library_list: list[str] = []
         self.__performer_list: list[Performer] = []
@@ -206,10 +262,11 @@ class Concrete:
         return self.__experiment_id
 
     def new_experiment(self):
-        self.__experiment_id = "experiment" + str(time.time())
+        self.__experiment_id = "experiment" + str(int(time.time()))
         print("experiment id: " + self.__experiment_id)
         RESULT_PATH = p.join("..", "result")
         os.makedirs(p.join(RESULT_PATH, self.__experiment_id))
+        self.RESULT_PATH = p.join(os.getcwd(), "..", "result", self.__experiment_id)
 
     def refresh_config(self) -> None:
         old_library_list = self.__library_list
@@ -232,42 +289,35 @@ class Concrete:
         self.mo_co_assemble(abstract_model, gen, index, library="abstract")
         for performer in self.__performer_list:
             model_code = performer.translate(abstract_model)
-            file_path = self.mo_co_assemble(model_code, gen, index, performer.get_library_name())
-            model = performer.get_model_from_file(file_path)
-            test_run_result, _1, _2, error_message = performer.run(model)
-            test_run_result = True if test_run_result >= 0 else False
-            if not test_run_result:
-                train_result = False
+            case_path, file_name = self.mo_co_assemble(model_code, gen, index, performer.get_library_name())
+            model = performer.get_model_from_file(case_path, file_name)
+            run_time_cost, error_message = performer.run(model)
+            run_test = True if run_time_cost >= 0 else False
+            if not run_test:
+                train_test = False
                 train_time_cost = -1
                 run_time_cost = -1
-                calculate_result = -1
-                shape_result = []
             else:
                 train_time_cost = performer.train(model)
-                train_result = False if train_time_cost < 0 else True
-                if not train_result:
-                    run_time_cost = -1
-                    calculate_result = -1
-                    shape_result = []
-                else:
-                    run_time_cost, calculate_result, shape_result, _3 = performer.run(model)
-            result_dict = {"run test": test_run_result, "train test": train_result,
+                train_test = False if train_time_cost < 0 else True
+            result_dict = {"run test": run_test, "train test": train_test,
                            "train time cost": train_time_cost, "run time cost": run_time_cost,
-                           "calculate result": calculate_result, "case path": file_path,
-                           "shape result": shape_result, "error message": error_message}
+                           "case path": case_path + "\\" + file_name,
+                           "error message": error_message}
             result.append(result_dict)
         return result
 
-    def mo_co_assemble(self, model_code: str | dict, gen: int, index: int, library: str) -> str:
-        RESULT_PATH = p.join("..", "result", self.__experiment_id)
+    def mo_co_assemble(self, model_code: str | dict, gen: int, index: int, library: str) -> (str, str):
         case_id = self.__model_name + "-" + str(gen) + "-" + str(index)
-        case_path = p.join(RESULT_PATH, case_id)
+        case_path = p.join(self.RESULT_PATH, case_id)
         if not p.exists(case_path):
             os.makedirs(case_path)
         if library != "abstract":
-            file_path = p.join(case_path, case_id + "_" + library + ".py")
+            file_name = case_id + "_" + library + ".py"
+            file_path = p.join(case_path, file_name)
         else:
-            file_path = p.join(case_path, case_id + "_abstract.yaml")
+            file_name = case_id + "_abstract.yaml"
+            file_path = p.join(case_path, file_name)
             f = open(file_path, "w", encoding="utf-8")
             yaml.dump(model_code, f)
             f.close()
@@ -275,7 +325,10 @@ class Concrete:
         f = open(file_path, "w", encoding="utf-8")
         f.write(model_code)
         f.close()
-        return file_path
+        return case_path, file_name
 
 
 concrete = Concrete()
+# seed = database.get_seed("LeNet")
+# concrete.set_model_name("testLeNet")
+# result = concrete.perform(seed, 0, 1)
