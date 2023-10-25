@@ -48,11 +48,11 @@ class Performer(ABC):
         pass
 
     @abstractmethod
-    def run(self, model) -> (float, str):
+    def run(self, model) -> (float, list[int], str):
         # Given a model, give a tensor and run it, then
         # 1. return time cost(-1 if failed).
         # # # 2. return the calculate result(-1 if failed). (MODE 1 DONT RETURN)
-        # # # 3. return the shape([] if failed). (MODE 1 DONT RETURN)
+        # 3. return the shape([] if failed).
         # 4. return the error info("" if succeeded).
         pass
 
@@ -114,9 +114,9 @@ class TorchPerformer(Performer):
         # fake train
         return random.choice([random.uniform(3.0, 100.0), random.uniform(100.0, 200.0), random.uniform(1.0, 3.0)])
 
-    def run(self, model) -> (float, str):
+    def run(self, model) -> (float, list[int], str):
         if isinstance(model, str):
-            return -1.0, model
+            return -1.0, [], model
         start_time = time.time()
         model_name = str(model).split("(", 1)[0]
         test_tensor = self.__get_test_tensor(model_name)
@@ -124,8 +124,10 @@ class TorchPerformer(Performer):
         error_message = ""
         try:
             y = model(test_tensor)
+            shape = list(y.shape)
         except Exception:
             flag = False
+            shape = []
             error_message = str(traceback.format_exc())
         if flag:
             end_time = time.time()
@@ -133,7 +135,7 @@ class TorchPerformer(Performer):
         else:
             time_cost = -1.0
 
-        return time_cost, error_message
+        return time_cost, shape, error_message
 
     def __dict_to_model_class(self, model_dict: dict, model_name: str, model_name_list: list[str]) -> str:
         def_part = "class " + model_name + "(nn.Module):\n    def __init__(self):\n        super("\
@@ -202,28 +204,48 @@ class JittorPerformer(Performer):
     def train(self, model) -> float:
         return 1.0
 
-    def run(self, model) -> (float, str):
+    def run(self, model) -> (float, list[int], str):
         return 1.0, ""
 
 
 class TensorFlowPerformer(Performer):
     def __init__(self):
+        # 你可以看看我的TorchPerformer怎么写的，或者运行一下我的各种函数看看效果，数据库在这里就是一个database对象
+        # 数据库怎么用我有个文档
+        # 然后下面有段小测试，在配置里把0号框架改成tensorflow，就自动加载TensorFlowPerformer。
+        # 这段小测试意思就是把LeNet种子拉出来能通，就算这个Performer做好了
+        # 文件确实很长你忍一下
         super().__init__()
         return
 
     def get_library_name(self) -> str:
+        # 这个别动
         return "tensorflow"
 
     def translate(self, abstract_model: dict) -> str:
+        # 这里给你输入一个abstract_model，就是我们的网络结构，这个方法要输出一个字符串，
+        # 这个字符串是根据我们的抽象网络结构翻译好的一个完整的模型，可以直接write到py文件里不会报错的
+        # 注意是字符串
         return "tensorflow model code"
 
     def get_model_from_file(self, case_path: str, file_name: str):
+        # 这里给你输入一个路径，一个文件名。路径就是模型py文件所在的文件夹，文件名就是py文件的文件名
+        # 示例输入：case_path = "D:/pythonProject/MoCo_F2/result/experiment1/LeNet-0-1",
+        #          file_name = "LeNet-0-1_tensorflow.py"
+        # 然后要把这个模型加载到内存中，并返回这个模型。
         return "tensorflow model"
 
     def train(self, model) -> float:
+        # 先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管
+        # 先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管
         return 1.0
 
-    def run(self, model) -> (float, str):
+    def run(self, model) -> (float, list[int], str):
+        # 这里的model传入的是一个内存中的模型
+        # 用它该用的形状跑它，然后输出：
+        # 1. 运行时间，float类型（如果运行失败就输出-1）
+        # 2. 输出形状，一个列表，list[int]（如果运行失败就输出[]空队列）
+        # 3. 报错信息，str类型（如果运行成功没有报错信息就输出""空字符串）
         return 1.0, ""
 
 
@@ -291,7 +313,7 @@ class Concrete:
             model_code = performer.translate(abstract_model)
             case_path, file_name = self.mo_co_assemble(model_code, gen, index, performer.get_library_name())
             model = performer.get_model_from_file(case_path, file_name)
-            run_time_cost, error_message = performer.run(model)
+            run_time_cost, shape, error_message = performer.run(model)
             run_test = True if run_time_cost >= 0 else False
             if not run_test:
                 train_test = False
@@ -302,7 +324,7 @@ class Concrete:
                 train_test = False if train_time_cost < 0 else True
             result_dict = {"run test": run_test, "train test": train_test,
                            "train time cost": train_time_cost, "run time cost": run_time_cost,
-                           "case path": case_path + "\\" + file_name,
+                           "case path": case_path + "\\" + file_name, "shape": shape,
                            "error message": error_message}
             result.append(result_dict)
         return result
@@ -329,6 +351,6 @@ class Concrete:
 
 
 concrete = Concrete()
-# seed = database.get_seed("LeNet")
-# concrete.set_model_name("testLeNet")
-# result = concrete.perform(seed, 0, 1)
+seed = database.get_seed("LeNet")
+concrete.set_model_name("testLeNet")
+result = concrete.perform(seed, 0, 1)
