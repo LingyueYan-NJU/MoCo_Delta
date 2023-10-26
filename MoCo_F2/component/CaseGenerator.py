@@ -174,6 +174,43 @@ def goFuzzing(net: str = "LeNet") -> None:
             pass_model_list = save_model_list
             # BRANCH CUTTING
 
+            # generate MoCo_NA file
+            library_name = config["LIBRARY_LIST"][0]
+            # if you want to generate for cases cut too, change this to "pass_gen_index_list".
+            for gen_index in save_list:
+                gen, index = gen_index[0], gen_index[1]
+                target_path = p.join(concrete.get_experiment_path(), net + "-" + str(gen) + "-" + str(index))
+                # get shape
+                with open(p.join(target_path, "report.txt"), "r", encoding="utf-8") as ff:
+                    info = ff.read()
+                    shape_str = info.split("shape: ", 1)[1].split("\n")[0]
+                    shape_ints = shape_str.replace("[", "").replace("]", "").split(",")
+                if library_name in ["torch", "jittor"]:
+                    input_sentence = "import " + library_name + "\n\nx = " + library_name + \
+                                     ".randn(" + shape_str + ")\n"
+                else:
+                    # TODO
+                    input_sentence = ""
+                # get final definition
+                file_list = os.listdir(target_path)
+                py_file = ""
+                for file_name in file_list:
+                    if file_name.endswith(".py"):
+                        py_file = file_name
+                if library_name in ["torch", "jittor"]:
+                    with open(p.join(target_path, py_file), "r", encoding="utf-8") as ff:
+                        info = ff.read()
+                        target_line = info.split("    def forward", 1)[0].split("\n")[-3].split(" = ", 1)[1]
+                else:
+                    # TODO
+                    target_line = ""
+                input_sentence += "layer = " + target_line + "\n"
+                input_sentence += "y = layer(x)\n"
+                # generate py file
+                with open(p.join(target_path, "MoCoNA.py"), "w", encoding="utf-8") as ff:
+                    ff.write(input_sentence)
+            # generate MoCo_NA file
+
             queue = pass_model_list
             layer += 1
         report = str(layer) + "层: 成功" + str(this_layer_pass) + "个, 失败" + str(this_layer_err) + "个, 通过剪枝丢弃掉" + str(abandoned_case_num) + "个。 \n"
