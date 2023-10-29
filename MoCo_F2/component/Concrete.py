@@ -137,7 +137,7 @@ class TorchPerformer(Performer):
 
         return time_cost, shape, error_message
 
-    def __dict_to_model_class(self, model_dict: dict, model_name: str, model_name_list: list[str]) -> str:
+    def __dict_to_model_class(self, model_dict: list, model_name: str, model_name_list: list[str]) -> str:
         def_part = "class " + model_name + "(nn.Module):\n    def __init__(self):\n        super("\
                    + model_name + ", self).__init__()\n"
         forward_part = "    def forward(self, x):\n"
@@ -147,7 +147,7 @@ class TorchPerformer(Performer):
             _model_dict = model_dict[1:]
             extra = ", ".join(model_dict[0])
             def_part = "class " + model_name + "(nn.Module):\n    def __init__(self, " + extra + ")" +\
-                       ":\n        super("+ model_name + ", self).__init__()\n"
+                       ":\n        super(" + model_name + ", self).__init__()\n"
         else:
             _model_dict = model_dict
         for layer_dict in _model_dict:
@@ -190,22 +190,129 @@ class TorchPerformer(Performer):
 class JittorPerformer(Performer):
     def __init__(self):
         super().__init__()
+        import jittor
+        # import Trainers.TorchTrainer as Trainer
+        self.LeNet_test_tensor = jittor.randn(3, 1, 28, 28)
+        self.s244_test_tensor = jittor.randn(3, 3, 244, 244)
+
+        self.LeNet_test_code = "    x = jittor.randn(3, 1, 28, 28)\n    y = model(x)\n    return model\n"
+        self.s244_test_code = "    x = jittor.randn(3, 3, 244, 244)\n    y = model(x)\n    return model\n"
         return
 
     def get_library_name(self) -> str:
         return "jittor"
 
+    def __get_test_code(self, model_name: str):
+        if model_name == "LeNet":
+            return self.LeNet_test_code
+        elif model_name == "googlenet":
+            return self.s244_test_code
+        else:
+            return None
+
+    def __get_test_tensor(self, model_name: str):
+        if model_name == "LeNet":
+            return self.LeNet_test_tensor
+        elif model_name == "googlenet":
+            return self.s244_test_tensor
+        else:
+            return None
+
     def translate(self, abstract_model: dict) -> str:
-        return "jittor model code"
+        head = "import jittor\nimport jittor.nn as nn\n\n\n"
+        body = ""
+        model_name_list = list(abstract_model.keys())
+        main_model_name = model_name_list[0]
+        for model in abstract_model:
+            body += self.__dict_to_model_class(abstract_model[model], model, model_name_list)
+        return head + body + "def go():\n    model = " + main_model_name + "()\n" +\
+            self.__get_test_code(main_model_name)
 
     def get_model_from_file(self, case_path: str, file_name: str):
-        return "jittor model"
+        model_name = file_name.replace(".py", "")
+        sys.path.append(case_path)
+        model = import_module(model_name)
+        try:
+            model = model.go()
+        except Exception:
+            model = "error message: \n" + str(traceback.format_exc())
+        sys.path.remove(case_path)
+        return model
 
     def train(self, model) -> float:
         return 1.0
 
     def run(self, model) -> (float, list[int], str):
-        return 1.0, ""
+        if isinstance(model, str):
+            return -1.0, [], model
+        start_time = time.time()
+        model_name = str(model).split("(", 1)[0]
+        test_tensor = self.__get_test_tensor(model_name)
+        flag = True
+        error_message = ""
+        try:
+            y = model(test_tensor)
+            shape = list(y.shape)
+        except Exception:
+            flag = False
+            shape = []
+            error_message = str(traceback.format_exc())
+        if flag:
+            end_time = time.time()
+            time_cost = end_time - start_time
+        else:
+            time_cost = -1.0
+
+        return time_cost, shape, error_message
+
+    def __dict_to_model_class(self, model_dict: list, model_name: str, model_name_list: list[str]) -> str:
+        def_part = "class " + model_name + "(nn.Module):\n    def __init__(self):\n        super("\
+                   + model_name + ", self).__init__()\n"
+        forward_part = "    def execute(self, x):\n"
+        # layer_name = "layer"
+        layer_index = 0
+        if isinstance(model_dict[0], list):
+            _model_dict = model_dict[1:]
+            extra = ", ".join(model_dict[0])
+            def_part = "class " + model_name + "(nn.Module):\n    def __init__(self, " + extra + ")" +\
+                       ":\n        super(" + model_name + ", self).__init__()\n"
+        else:
+            _model_dict = model_dict
+        for layer_dict in _model_dict:
+            layer_index += 1
+            abstract_layer_name = layer_dict["layer"]
+            if abstract_layer_name == "cat":
+                forward_part_line = "        " + layer_dict["out"] + " = torch.cat("
+                if isinstance(layer_dict["in"], list):
+                    forward_part_line += str(layer_dict["in"]).replace("'", "")
+                else:
+                    forward_part_line += layer_dict["in"]
+                forward_part_line += ", dim=" + str(layer_dict["params"]["dims"]) + ")\n"
+                forward_part += forward_part_line
+            elif abstract_layer_name in model_name_list:
+                implicit_layer_name = abstract_layer_name
+                implicit_params = layer_dict["params"]
+                def_part_line = "        self." + "layer" + str(layer_index) + " = " +\
+                                generate_line(implicit_layer_name, implicit_params) + "\n"
+                forward_part_line = "        " + layer_dict["out"] + " = " + "self.layer" + str(layer_index) + "(" +\
+                                    layer_dict["in"] + ")\n"
+                def_part += def_part_line
+                forward_part += forward_part_line
+            else:
+                implicit_layer_name = database.get_implicit_api_name(self.get_library_name(), abstract_layer_name)
+                implicit_params = {}
+                abstract_params = layer_dict["params"]
+                for abstract_param_name in abstract_params.keys():
+                    implicit_param_name = database.get_implicit_para_name(self.get_library_name(),
+                                                                          abstract_layer_name, abstract_param_name)
+                    implicit_params[implicit_param_name] = abstract_params[abstract_param_name]
+                def_part_line = "        self." + "layer" + str(layer_index) + " = " +\
+                                generate_line(implicit_layer_name, implicit_params) + "\n"
+                forward_part_line = "        " + layer_dict["out"] + " = " + "self.layer" + str(layer_index) + "(" +\
+                                    layer_dict["in"] + ")\n"
+                def_part += def_part_line
+                forward_part += forward_part_line
+        return def_part + "\n" + forward_part + "        return x\n\n\n"
 
 
 class TensorFlowPerformer(Performer):
@@ -351,6 +458,6 @@ class Concrete:
 
 
 concrete = Concrete()
-seed = database.get_seed("LeNet")
-concrete.set_model_name("testLeNet")
-result = concrete.perform(seed, 0, 1)
+# seed = database.get_seed("LeNet")
+# concrete.set_model_name("testLeNet")
+# result = concrete.perform(seed, 0, 1)

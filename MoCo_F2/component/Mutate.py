@@ -176,8 +176,23 @@ class TorchMutator(Mutator):
 
 
 class JittorMutator(Mutator):
+    def __init__(self):
+        super().__init__()
+        self.count = 0
+
     def mutate(self, layer_dict: dict) -> (dict, str):
-        return layer_dict, "hei_hei"
+        if "layer" in layer_dict.keys():
+            abstract_layer_name = layer_dict["layer"]
+        else:
+            abstract_layer_name = list(layer_dict.keys())[0]
+        if abstract_layer_name == "cat":
+            return layer_dict, "dont mutate this one"
+        if not database.is_abstract_api_name_valid(abstract_layer_name):
+            return self.child_model_mutate(layer_dict)
+        if random.choice([1, 2]) == 1:
+            return self.api_name_mutate(layer_dict)
+        else:
+            return self.api_para_mutate(layer_dict)
 
     def api_name_mutate(self, layer_dict: dict) -> (dict, str):
         pass
@@ -188,8 +203,74 @@ class JittorMutator(Mutator):
     def child_model_mutate(self, layer_dict: dict) -> (dict, str):
         pass
 
-    def get_value(self, para_constraint_dict: dict) -> str:
-        pass
+    def get_value(dic: dict, para_name: str):  # now, get_value will return (value, choice_type)
+        value = ""
+        choice_type = ''
+        if "dtype" in dic:
+            dtype = dic["dtype"]
+            type = random.choice(dtype) if isinstance(dtype, list) else dtype
+            if type == "str":
+                if "range" in dic:
+                    value = random.choice((dic["range"]))
+                    choice_type += str(value)
+                    value = str(value)
+                else:
+                    value = dic["default"]
+                    choice_type += 'default'
+                    if value == "no default":
+                        value = 'None'
+                        choice_type += 'None'
+                    else:
+                        value = value
+                        choice_type += 'default'
+            elif type == "bool":
+                value = random.choice([True, False])
+                choice_type += str(value)
+            elif type == "float":
+                value = random.random().__str__()
+                choice_type += 'legal float'
+            elif type == "int":
+                if para_name == 'dilation':
+                    _min, _max = 1, 6
+                elif para_name == 'padding':
+                    _min, _max = 0, 8
+                elif para_name == 'groups':
+                    _min, _max = 1, 3
+                elif para_name == 'kernel_size':
+                    _min, _max = 1, 8
+                elif para_name == 'stride':
+                    _min, _max = 1, 4
+                elif 'channels' in para_name or 'features' in para_name or 'size' in para_name:
+                    _min, _max = 1, 512
+                else:
+                    _min, _max = 1, 8
+                min_v = _min
+                max_v = _max
+                value = random.choice([random.randint(min_v, max_v), min_v, max_v])
+                if value == min_v:
+                    choice_type += 'min int'
+                elif value == max_v:
+                    choice_type += 'max int'
+                else:
+                    choice_type += 'legal int'
+            elif type == "tuple":
+                value = (random.randint(1, 8), random.randint(1, 8))
+                choice_type = 'legal tuple'
+            else:
+                if dic['default'] != 'no default':
+                    value = dic["default"]
+                    choice_type += 'default'
+                else:
+                    value = 'None'
+                    choice_type += 'None'
+        else:
+            if dic['default'] != 'no default':
+                value = dic["default"]
+                choice_type += 'default'
+            else:
+                value = 'None'
+                choice_type += 'None'
+        return value, choice_type
 
 
 class TensorFlowMutator(Mutator):
