@@ -82,8 +82,12 @@ class TorchMutator(Mutator):
 
     def api_para_mutate(self, layer_dict: dict) -> (dict, str):
         now_api_para_data = database.get_abstract_layer_info(layer_dict["layer"])["constraints"]
+        required = database.get_abstract_layer_info(layer_dict["layer"])["inputs"]["required"]
+        optional = database.get_abstract_layer_info(layer_dict["layer"])["inputs"]["optional"]
         params = copy.deepcopy(layer_dict["params"])
-        choice_list = list(params.keys())
+        choice_list = required
+        for _ in optional:
+            choice_list.append(_)
         no_mutate_pool = ['in_channels', 'out_channels', 'in_features', 'out_features', 'input_size', 'output_size',
                           'num_features']
         for no_mutate_para in no_mutate_pool:
@@ -195,15 +199,70 @@ class JittorMutator(Mutator):
             return self.api_para_mutate(layer_dict)
 
     def api_name_mutate(self, layer_dict: dict) -> (dict, str):
-        pass
+        abstract_layer_name = layer_dict["layer"]
+        implicit_layer_name = database.get_implicit_api_name("jittor", abstract_layer_name)
+        valid_similarity_dict = database.get_implicit_api_similarity_valid("jittor", implicit_layer_name)
+        if len(valid_similarity_dict) == 0:
+            return layer_dict, "no mutate"
+        else:
+            new_implicit_layer_name = roulette_wheel_selection(valid_similarity_dict)
+            new_abstract_layer_name = database.get_abstract_api_name("jittor", new_implicit_layer_name)
+            abstract_layer_info = database.get_abstract_layer_info(new_abstract_layer_name)
+            required_list = abstract_layer_info["inputs"]["required"]
+            param_constraints = abstract_layer_info["constraints"]
+            new_para_dict = {}
+            old_para_dict = layer_dict["params"]
+            for p in old_para_dict.items():
+                if p[0] in param_constraints.keys():
+                    new_para_dict[p[0]] = p[1]
+            for param_name in required_list:
+                if param_name not in new_para_dict.keys():
+                    new_para_dict[param_name] = self.__get_value(param_constraints[param_name], param_name)[0]
+            return {"layer": new_abstract_layer_name, "params": new_para_dict,
+                    "in": layer_dict["in"], "out": layer_dict["out"]}, new_abstract_layer_name
 
     def api_para_mutate(self, layer_dict: dict) -> (dict, str):
+        now_api_para_data = database.get_abstract_layer_info(layer_dict["layer"])["constraints"]
+        required = database.get_abstract_layer_info(layer_dict["layer"])["inputs"]["required"]
+        optional = database.get_abstract_layer_info(layer_dict["layer"])["inputs"]["optional"]
+        params = copy.deepcopy(layer_dict["params"])
+        choice_list = required
+        for _ in optional:
+            choice_list.append(_)
+        no_mutate_pool = ['in_channels', 'out_channels', 'in_features', 'out_features', 'input_size', 'output_size',
+                          'num_features']
+        for no_mutate_para in no_mutate_pool:
+            if no_mutate_para in choice_list:
+                choice_list.remove(no_mutate_para)
+        if len(choice_list) == 0:
+            return layer_dict, 'no mutate'
+        param_to_mutate = random.choice(choice_list)
+        res_mutate_type = str(param_to_mutate)
+        value, choice_type = self.__get_value(now_api_para_data[param_to_mutate], param_to_mutate)
+        params[param_to_mutate] = value
+        res_mutate_type += choice_type
+        result_layer_dict = copy.deepcopy(layer_dict)
+        result_layer_dict["params"] = params
+        return result_layer_dict, res_mutate_type
         pass
 
     def child_model_mutate(self, layer_dict: dict) -> (dict, str):
+        self.count += 1
+        child_model_name = list(layer_dict.keys())[0]
+        new_name = child_model_name + "_" + str(self.count)
+        child_model_layer_list = layer_dict[child_model_name]
+        new_layer_list = [child_model_layer_list[0]]
+        child_model_layer_list = child_model_layer_list[1:]
+        for layer in child_model_layer_list:
+            if random.choice(list(range(10))) > 3:
+                new_layer_list.append(layer)
+                continue
+            new_layer, _ = self.mutate(layer)
+            new_layer_list.append(new_layer)
+        return {new_name: new_layer_list}, "child_model_mutate"
         pass
 
-    def get_value(dic: dict, para_name: str):  # now, get_value will return (value, choice_type)
+    def __get_value(self, dic: dict, para_name: str):  # now, get_value will return (value, choice_type)
         value = ""
         choice_type = ''
         if "dtype" in dic:
@@ -301,7 +360,12 @@ def get_mutator(library: str) -> Mutator | None:
         return None
 
 
-# mutator = get_mutator("torch")
-# lenetSeed = database.get_seed("LeNet")
-# googlenetSeed = database.get_seed("googlenet")
-
+# if __name__ == "__main__":
+#     mutator = get_mutator("jittor")
+#     net = "vgg19"
+#     seed = database.get_seed(net)
+#     for layer in seed[net]:
+#         for i in range(100):
+#             tmp = copy.deepcopy(layer)
+#             tmp = mutator.mutate(tmp)
+#             print(str(i) + ":" + str(tmp))

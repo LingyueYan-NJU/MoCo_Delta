@@ -65,26 +65,40 @@ class TorchPerformer(Performer):
         # import Trainers.TorchTrainer as Trainer
         self.LeNet_test_tensor = torch.randn(3, 1, 28, 28)
         self.s244_test_tensor = torch.randn(3, 3, 244, 244)
+        self.s224_test_tensor = torch.randn(3, 3, 224, 224)
+        self.s299_test_tensor = torch.randn(3, 3, 299, 299)
 
         self.LeNet_test_code = "    x = torch.randn(3, 1, 28, 28)\n    y = model(x)\n    return model\n"
         self.s244_test_code = "    x = torch.randn(3, 3, 244, 244)\n    y = model(x)\n    return model\n"
+        self.s224_test_code = "    x = torch.randn(3, 3, 224, 224)\n    y = model(x)\n    return model\n"
+        self.s299_test_code = "    x = torch.randn(3, 3, 299, 299)\n    y = model(x)\n    return model\n"
         return
 
     def __get_test_code(self, model_name: str):
         if model_name == "LeNet":
             return self.LeNet_test_code
-        elif model_name == "googlenet":
+        elif model_name in ["googlenet", "resnet18", "resnet50", "alexnet", "densenet",
+                            "mobilenet", "vgg16", "vgg19", "xception"]:
+            return self.s224_test_code
+        elif model_name == "inceptionv3":
+            return self.s299_test_code
+        elif model_name == "squeezenet":
             return self.s244_test_code
         else:
-            return None
+            return self.s224_test_code
 
     def __get_test_tensor(self, model_name: str):
         if model_name == "LeNet":
             return self.LeNet_test_tensor
-        elif model_name == "googlenet":
+        elif model_name in ["googlenet", "resnet18", "resnet50", "alexnet", "densenet",
+                            "mobilenet", "vgg16", "vgg19", "xception"]:
+            return self.s224_test_tensor
+        elif model_name == "inceptionv3":
+            return self.s299_test_tensor
+        elif model_name == "squeezenet":
             return self.s244_test_tensor
         else:
-            return None
+            return self.s224_test_tensor
 
     def get_library_name(self) -> str:
         return "torch"
@@ -194,9 +208,13 @@ class JittorPerformer(Performer):
         # import Trainers.TorchTrainer as Trainer
         self.LeNet_test_tensor = jittor.randn(3, 1, 28, 28)
         self.s244_test_tensor = jittor.randn(3, 3, 244, 244)
+        self.s224_test_tensor = jittor.randn(3, 3, 224, 224)
+        self.s299_test_tensor = jittor.randn(3, 3, 299, 299)
 
         self.LeNet_test_code = "    x = jittor.randn(3, 1, 28, 28)\n    y = model(x)\n    return model\n"
         self.s244_test_code = "    x = jittor.randn(3, 3, 244, 244)\n    y = model(x)\n    return model\n"
+        self.s224_test_code = "    x = jittor.randn(3, 3, 224, 224)\n    y = model(x)\n    return model\n"
+        self.s299_test_code = "    x = jittor.randn(3, 3, 299, 299)\n    y = model(x)\n    return model\n"
         return
 
     def get_library_name(self) -> str:
@@ -205,7 +223,12 @@ class JittorPerformer(Performer):
     def __get_test_code(self, model_name: str):
         if model_name == "LeNet":
             return self.LeNet_test_code
-        elif model_name == "googlenet":
+        elif model_name in ["googlenet", "resnet18", "resnet50", "alexnet", "densenet",
+                            "mobilenet", "vgg16", "vgg19", "xception"]:
+            return self.s224_test_code
+        elif model_name == "inceptionv3":
+            return self.s299_test_code
+        elif model_name == "squeezenet":
             return self.s244_test_code
         else:
             return None
@@ -213,10 +236,15 @@ class JittorPerformer(Performer):
     def __get_test_tensor(self, model_name: str):
         if model_name == "LeNet":
             return self.LeNet_test_tensor
-        elif model_name == "googlenet":
+        elif model_name in ["googlenet", "resnet18", "resnet50", "alexnet", "densenet",
+                            "mobilenet", "vgg16", "vgg19", "xception"]:
+            return self.s224_test_tensor
+        elif model_name == "inceptionv3":
+            return self.s299_test_tensor
+        elif model_name == "squeezenet":
             return self.s244_test_tensor
         else:
-            return None
+            return self.s224_test_tensor
 
     def translate(self, abstract_model: dict) -> str:
         head = "import jittor\nimport jittor.nn as nn\n\n\n"
@@ -282,7 +310,7 @@ class JittorPerformer(Performer):
             layer_index += 1
             abstract_layer_name = layer_dict["layer"]
             if abstract_layer_name == "cat":
-                forward_part_line = "        " + layer_dict["out"] + " = torch.cat("
+                forward_part_line = "        " + layer_dict["out"] + " = jittor.cat("
                 if isinstance(layer_dict["in"], list):
                     forward_part_line += str(layer_dict["in"]).replace("'", "")
                 else:
@@ -458,6 +486,21 @@ class Concrete:
 
 
 concrete = Concrete()
-# seed = database.get_seed("LeNet")
-# concrete.set_model_name("testLeNet")
-# result = concrete.perform(seed, 0, 1)
+# if __name__ == "__main__":
+#     net_list = ["alexnet", "LeNet", "densenet", "mobilenet", "squeezenet", "vgg16", "vgg19", "googlenet"]
+#     tbm_torch = ["mobilenet", "googlenet"]
+#     tbm_jittor = ["mobilenet", "googlenet"]
+#
+#
+#     def test(net: str):
+#         time.sleep(1.0)
+#         concrete.new_experiment()
+#         seed = database.get_seed(net)
+#         concrete.set_model_name("test_" + net)
+#         result = concrete.perform(seed, 0, 1)
+#         if not result[0]["run test"]:
+#             print(net + " has some questions")
+#         return result[0]
+#
+#
+#     result = test("inceptionv3")

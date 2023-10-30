@@ -189,7 +189,7 @@ def goFuzzing(net: str = "LeNet") -> None:
                     input_sentence = "import " + library_name + "\n\nx = " + library_name + \
                                      ".randn(" + shape_str + ")\n"
                 else:
-                    # TODO
+                    # TODO tensorflow
                     input_sentence = ""
                 # get final definition
                 file_list = os.listdir(target_path)
@@ -200,9 +200,10 @@ def goFuzzing(net: str = "LeNet") -> None:
                 if library_name in ["torch", "jittor"]:
                     with open(p.join(target_path, py_file), "r", encoding="utf-8") as ff:
                         info = ff.read()
-                        target_line = info.split("    def forward", 1)[0].split("\n")[-3].split(" = ", 1)[1]
+                        desperate_flag = "    def forward" if library_name == "torch" else "    def execute"
+                        target_line = info.split(desperate_flag, 1)[0].split("\n")[-3].split(" = ", 1)[1]
                 else:
-                    # TODO
+                    # TODO tensorflow
                     target_line = ""
                 input_sentence += "layer = " + target_line + "\n"
                 input_sentence += "y = layer(x)\n"
