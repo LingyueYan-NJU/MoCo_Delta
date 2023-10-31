@@ -150,8 +150,12 @@ class TorchMutator(Mutator):
                     structure = random.choice(dic["structure"]) if isinstance(structure,
                                                                               list) else structure
                     drange = dic["range"]
-                    min_v = int(drange[0])
-                    max_v = int(drange[1])
+                    if drange is not None:
+                        min_v = int(drange[0])
+                        max_v = int(drange[1])
+                    else:
+                        min_v = 1
+                        max_v = 8
 
                     if structure == "integer":
                         value = random.choice([random.randint(min_v, max_v), min_v, max_v])

@@ -116,8 +116,8 @@ class TorchPerformer(Performer):
     def get_model_from_file(self, case_path: str, file_name: str):
         model_name = file_name.replace(".py", "")
         sys.path.append(case_path)
-        model = import_module(model_name)
         try:
+            model = import_module(model_name)
             model = model.go()
         except Exception:
             model = "error message: \n" + str(traceback.format_exc())
@@ -259,8 +259,8 @@ class JittorPerformer(Performer):
     def get_model_from_file(self, case_path: str, file_name: str):
         model_name = file_name.replace(".py", "")
         sys.path.append(case_path)
-        model = import_module(model_name)
         try:
+            model = import_module(model_name)
             model = model.go()
         except Exception:
             model = "error message: \n" + str(traceback.format_exc())

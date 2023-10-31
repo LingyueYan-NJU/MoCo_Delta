@@ -1,14 +1,18 @@
 import os
+import random
+
 from _database import database
 from Concrete import concrete
 from Mutate import get_mutator
 from ResultAnalyse import analyser
+from BoundaryGenerator import generateBoundary
 import os.path as p
 import yaml
 import copy
 
 
 config = {"N": 3, "LIBRARY_LIST": []}
+generateBoundary = generateBoundary
 
 
 def set_config():
@@ -152,7 +156,7 @@ def goFuzzing(net: str = "LeNet") -> None:
                     else:
                         with open(p.join(concrete.get_experiment_path(), net + tag + str(index), "report.txt"), "r") as f:
                             info = f.read()
-                        train_time_cost = float(info.split("train time cost: ")[1].split("\n", 1)[0])
+                        train_time_cost = float(info.split("run time cost: ")[1].split("\n", 1)[0])
                         mutate_info = info.split("mutate info: ")[1]
                         if mutate_info in cutting_dict.keys():
                             cutting_dict[mutate_info][(gen, index)] = train_time_cost
@@ -184,7 +188,17 @@ def goFuzzing(net: str = "LeNet") -> None:
                 with open(p.join(target_path, "report.txt"), "r", encoding="utf-8") as ff:
                     info = ff.read()
                     shape_str = info.split("shape: ", 1)[1].split("\n")[0]
-                    shape_ints = shape_str.replace("[", "").replace("]", "").split(",")
+                    shape_num = len(shape_str.split(","))
+                    # shape_ints = shape_str.replace("[", "").replace("]", "").split(",")
+                shape_max = [8, 8, 224, 224, 224]
+                shape_str = ""
+                for i in range(shape_num):
+                    shape_str += str(random.randint(1, shape_max[i]))
+                    shape_str += ", "
+                if len(shape_str) <= 2:
+                    shape_str = "1, 3, 224, 224"
+                else:
+                    shape_str = shape_str[:-2]
                 if library_name in ["torch", "jittor"]:
                     input_sentence = "import " + library_name + "\n\nx = " + library_name + \
                                      ".randn(" + shape_str + ")\n"
