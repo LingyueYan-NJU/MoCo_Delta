@@ -181,7 +181,8 @@ def goFuzzing(net: str = "LeNet") -> None:
             # generate MoCo_NA file
             library_name = config["LIBRARY_LIST"][0]
             # if you want to generate for cases cut too, change this to "pass_gen_index_list".
-            for gen_index in save_list:
+            # if you don't want to generate for cases cut, change this to "save_list".
+            for gen_index in pass_gen_index_list:
                 gen, index = gen_index[0], gen_index[1]
                 target_path = p.join(concrete.get_experiment_path(), net + "-" + str(gen) + "-" + str(index))
                 # get shape
