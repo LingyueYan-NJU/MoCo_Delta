@@ -216,7 +216,7 @@ inception:
       kernel_size: 3
       stride: 1
       padding: 1
-    in: x
+    in: branch2
     out: branch2
   - layer: relu
     params: { }
@@ -241,7 +241,7 @@ inception:
       kernel_size: 5
       stride: 1
       padding: 2
-    in: x
+    in: branch3
     out: branch3
   - layer: relu
     params: { }

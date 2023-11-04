@@ -503,4 +503,4 @@ concrete = Concrete()
 #         return result[0]
 #
 #
-#     result = test("inceptionv3")
+#     result = test("googlenet")
