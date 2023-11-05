@@ -48,7 +48,7 @@ class TorchMutator(Mutator):
             abstract_layer_name = layer_dict["layer"]
         else:
             abstract_layer_name = list(layer_dict.keys())[0]
-        if abstract_layer_name == "cat":
+        if abstract_layer_name == "cat" or abstract_layer_name == "add":
             return layer_dict, "dont mutate this one"
         if not database.is_abstract_api_name_valid(abstract_layer_name):
             return self.child_model_mutate(layer_dict)
@@ -193,7 +193,7 @@ class JittorMutator(Mutator):
             abstract_layer_name = layer_dict["layer"]
         else:
             abstract_layer_name = list(layer_dict.keys())[0]
-        if abstract_layer_name == "cat":
+        if abstract_layer_name == "cat" or abstract_layer_name == "add":
             return layer_dict, "dont mutate this one"
         if not database.is_abstract_api_name_valid(abstract_layer_name):
             return self.child_model_mutate(layer_dict)

@@ -81,7 +81,7 @@ class TorchPerformer(Performer):
                             "mobilenet", "vgg16", "vgg19", "xception"]:
             return self.s224_test_code
         elif model_name == "inceptionv3":
-            return self.s299_test_code
+            return self.s224_test_code
         elif model_name == "squeezenet":
             return self.s244_test_code
         else:
@@ -94,7 +94,7 @@ class TorchPerformer(Performer):
                             "mobilenet", "vgg16", "vgg19", "xception"]:
             return self.s224_test_tensor
         elif model_name == "inceptionv3":
-            return self.s299_test_tensor
+            return self.s224_test_tensor
         elif model_name == "squeezenet":
             return self.s244_test_tensor
         else:
@@ -175,6 +175,10 @@ class TorchPerformer(Performer):
                     forward_part_line += layer_dict["in"]
                 forward_part_line += ", dim=" + str(layer_dict["params"]["dims"]) + ")\n"
                 forward_part += forward_part_line
+            elif abstract_layer_name == "add":
+                forward_part_line =\
+                    ("        " + layer_dict["out"] + " = " + "+".join(layer_dict["in"].split(",")) + "\n")
+                forward_part += forward_part_line
             elif abstract_layer_name in model_name_list:
                 implicit_layer_name = abstract_layer_name
                 implicit_params = layer_dict["params"]
@@ -191,7 +195,8 @@ class TorchPerformer(Performer):
                 for abstract_param_name in abstract_params.keys():
                     implicit_param_name = database.get_implicit_para_name(self.get_library_name(),
                                                                           abstract_layer_name, abstract_param_name)
-                    implicit_params[implicit_param_name] = abstract_params[abstract_param_name]
+                    if implicit_param_name != "None":
+                        implicit_params[implicit_param_name] = abstract_params[abstract_param_name]
                 def_part_line = "        self." + "layer" + str(layer_index) + " = " +\
                                 generate_line(implicit_layer_name, implicit_params) + "\n"
                 forward_part_line = "        " + layer_dict["out"] + " = " + "self.layer" + str(layer_index) + "(" +\
@@ -227,7 +232,7 @@ class JittorPerformer(Performer):
                             "mobilenet", "vgg16", "vgg19", "xception"]:
             return self.s224_test_code
         elif model_name == "inceptionv3":
-            return self.s299_test_code
+            return self.s224_test_code
         elif model_name == "squeezenet":
             return self.s244_test_code
         else:
@@ -240,7 +245,7 @@ class JittorPerformer(Performer):
                             "mobilenet", "vgg16", "vgg19", "xception"]:
             return self.s224_test_tensor
         elif model_name == "inceptionv3":
-            return self.s299_test_tensor
+            return self.s224_test_tensor
         elif model_name == "squeezenet":
             return self.s244_test_tensor
         else:
@@ -317,6 +322,10 @@ class JittorPerformer(Performer):
                     forward_part_line += layer_dict["in"]
                 forward_part_line += ", dim=" + str(layer_dict["params"]["dims"]) + ")\n"
                 forward_part += forward_part_line
+            elif abstract_layer_name == "add":
+                forward_part_line =\
+                    ("        " + layer_dict["out"] + " = " + "+".join(layer_dict["in"].split(",")) + "\n")
+                forward_part += forward_part_line
             elif abstract_layer_name in model_name_list:
                 implicit_layer_name = abstract_layer_name
                 implicit_params = layer_dict["params"]
@@ -333,7 +342,8 @@ class JittorPerformer(Performer):
                 for abstract_param_name in abstract_params.keys():
                     implicit_param_name = database.get_implicit_para_name(self.get_library_name(),
                                                                           abstract_layer_name, abstract_param_name)
-                    implicit_params[implicit_param_name] = abstract_params[abstract_param_name]
+                    if implicit_param_name != "None":
+                        implicit_params[implicit_param_name] = abstract_params[abstract_param_name]
                 def_part_line = "        self." + "layer" + str(layer_index) + " = " +\
                                 generate_line(implicit_layer_name, implicit_params) + "\n"
                 forward_part_line = "        " + layer_dict["out"] + " = " + "self.layer" + str(layer_index) + "(" +\
@@ -486,21 +496,17 @@ class Concrete:
 
 
 concrete = Concrete()
-# if __name__ == "__main__":
-#     net_list = ["alexnet", "LeNet", "densenet", "mobilenet", "squeezenet", "vgg16", "vgg19", "googlenet"]
-#     tbm_torch = ["mobilenet", "googlenet"]
-#     tbm_jittor = ["mobilenet", "googlenet"]
-#
-#
-#     def test(net: str):
-#         time.sleep(1.0)
-#         concrete.new_experiment()
-#         seed = database.get_seed(net)
-#         concrete.set_model_name("test_" + net)
-#         result = concrete.perform(seed, 0, 1)
-#         if not result[0]["run test"]:
-#             print(net + " has some questions")
-#         return result[0]
-#
-#
-#     result = test("googlenet")
+if __name__ == "__main__":
+    net_list = ["alexnet", "LeNet", "densenet", "mobilenet", "squeezenet", "vgg16", "vgg19", "googlenet"]
+    tbm_torch = ["inceptionv3", "xception", "resnet18", "resnet50"]
+
+
+    def test(net: str):
+        time.sleep(1.0)
+        concrete.new_experiment()
+        seed = database.get_seed(net)
+        concrete.set_model_name("test_" + net)
+        result = concrete.perform(seed, 0, 1)
+        if not result[0]["run test"]:
+            print(net + " has some questions")
+        return result[0]

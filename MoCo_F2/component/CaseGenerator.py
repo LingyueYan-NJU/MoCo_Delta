@@ -83,10 +83,10 @@ def goFuzzing(net: str = "LeNet") -> None:
         abandoned_case_num = 0
         if len(queue) == 0:
             break
-        if (not isinstance(ele, dict)) or ("layer" in ele.keys() and ele["layer"] == "cat"):
+        if (not isinstance(ele, dict)) or ("layer" in ele.keys() and (ele["layer"] == "cat" or ele["layer"] == "add")):
             for model in queue:
                 model[net].append(ele)
-                # just for cat now
+                # just for cat and add now
         elif isinstance(ele, dict) and "layer" in ele.keys():
             pass_model_list = []
             pass_gen_index_list = []
@@ -240,3 +240,4 @@ def goFuzzing(net: str = "LeNet") -> None:
 
 # if __name__ == "__main__":
 #     go("LeNet")
+goFuzzing("resnet50")
