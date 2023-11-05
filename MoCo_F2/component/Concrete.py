@@ -645,10 +645,5 @@ if __name__ == "__main__":
             print(net + " has some questions")
         return result[0]
 
-    results = []
-    for net in net_list:
-        try:
-            result = test(net)
-            results.append(result)
-        except Exception:
-            pass
+
+    result = test("densenet")
