@@ -1,5 +1,8 @@
+from __future__ import annotations
+
 import os.path as p
 import random
+import numpy as np
 import time
 import yaml
 import os
@@ -354,44 +357,174 @@ class JittorPerformer(Performer):
 
 
 class TensorFlowPerformer(Performer):
+    model_name = ''
+
     def __init__(self):
-        # 你可以看看我的TorchPerformer怎么写的，或者运行一下我的各种函数看看效果，数据库在这里就是一个database对象
-        # 数据库怎么用我有个文档
-        # 然后下面有段小测试，在配置里把0号框架改成tensorflow，就自动加载TensorFlowPerformer。
-        # 这段小测试意思就是把LeNet种子拉出来能通，就算这个Performer做好了
-        # 文件确实很长你忍一下
         super().__init__()
         return
 
     def get_library_name(self) -> str:
-        # 这个别动
         return "tensorflow"
 
     def translate(self, abstract_model: dict) -> str:
-        # 这里给你输入一个abstract_model，就是我们的网络结构，这个方法要输出一个字符串，
-        # 这个字符串是根据我们的抽象网络结构翻译好的一个完整的模型，可以直接write到py文件里不会报错的
-        # 注意是字符串
-        return "tensorflow model code"
+        self.model_name = list(abstract_model.keys())[0]
+        head = "import tensorflow as tf\n"
+        body = ""
+        model_name_list = list(abstract_model.keys())
+        main_model_name = model_name_list[0]
+        for model in abstract_model:
+            body += self.__dict_to_model_class(abstract_model[model], model, model_name_list)
+
+        go = f'def go():\n' \
+             f'    model = {main_model_name}(input_shape={self.__get_shape().__str__()})\n' \
+             f'    x = tf.random.normal(shape=(1,) + {self.__get_shape().__str__()})\n' \
+             f'    y = model(x)\n' \
+             f'    return model\n'
+
+        code = f'{head}\n' \
+               f'{body}\n' \
+               f'{go}\n\n'
+        return code
 
     def get_model_from_file(self, case_path: str, file_name: str):
-        # 这里给你输入一个路径，一个文件名。路径就是模型py文件所在的文件夹，文件名就是py文件的文件名
-        # 示例输入：case_path = "D:/pythonProject/MoCo_F2/result/experiment1/LeNet-0-1",
-        #          file_name = "LeNet-0-1_tensorflow.py"
-        # 然后要把这个模型加载到内存中，并返回这个模型。
-        return "tensorflow model"
+        module_name = file_name.split('.')[0]
+        sys.path.append(case_path)
+        model = import_module(module_name)
+        try:
+            model = model.go()
+        except Exception:
+            model = "error message: \n" + str(traceback.format_exc())
+        sys.path.remove(case_path)
+        return model
 
     def train(self, model) -> float:
-        # 先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管
-        # 先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管
         return 1.0
 
     def run(self, model) -> (float, list[int], str):
-        # 这里的model传入的是一个内存中的模型
-        # 用它该用的形状跑它，然后输出：
-        # 1. 运行时间，float类型（如果运行失败就输出-1）
-        # 2. 输出形状，一个列表，list[int]（如果运行失败就输出[]空队列）
-        # 3. 报错信息，str类型（如果运行成功没有报错信息就输出""空字符串）
-        return 1.0, ""
+        if isinstance(model, str):
+            return -1.0, [], model
+        start_time = time.time()
+        test_tensor = self.__get_test_tensor()
+        shape = []
+        error_message = ""
+        try:
+            result = model(test_tensor)
+            shape = list(result.shape)
+            end_time = time.time()
+            time_cost = end_time - start_time
+        except Exception:
+            end_time = time.time()
+            time_cost = end_time - start_time
+            error_message = str(traceback.format_exc())
+        return time_cost, shape, error_message
+
+    def __dict_to_model_class(self, model_dict: list, model_name: str, model_name_list: list[str]) -> str:
+        layer_index = 0
+        input_layers = ''
+        hidden_layers = '    # hidden layers\n'
+        output_layers = '    # output layers\n'
+        if isinstance(model_dict[0], list):
+            # inception block defination
+            def_params = 'x, '
+            def_params = f'{def_params}{", ".join(model_dict[0])}'
+            input_layers = f'{input_layers}def {model_name} ({def_params}):\n'
+
+            _model_dict = model_dict[1:]
+        else:
+            input_layers = f'{input_layers}def {model_name}(input_shape):\n' \
+                           f'    # input layers\n' \
+                           f'    input_tensor = tf.keras.Input(shape=input_shape, dtype="float32")\n' \
+                           f'    x = input_tensor\n'
+            _model_dict = model_dict
+
+        for layer in _model_dict:
+            layer_index += 1
+            abstract_layer_name = layer['layer']
+            if abstract_layer_name in ['cat', 'add']:
+                reshape_layer = f'    # reshape layer\n' \
+                                f'    target_height = x.shape[1]\n' \
+                                f'    target_width = x.shape[2]\n'
+                branchs = layer['in']
+                branchs = branchs if isinstance(branchs, list) else branchs.split(', ')
+                cat_add_params = ', '.join(branchs)
+                for branch in branchs:
+                    reshape_layer = f'{reshape_layer}' \
+                                    f'    {branch} = tf.keras.layers.Lambda(lambda _: tf.image.resize(_, (target_height, target_width)))({branch})\n'
+                if abstract_layer_name == 'cat':
+                    hidden_layers = f'{hidden_layers}' \
+                                    f'{reshape_layer}' \
+                                    f'    {layer["out"]} = tf.keras.layers.concatenate([{cat_add_params}])\n'
+                else:
+                    hidden_layers = f'{hidden_layers}' \
+                                    f'{reshape_layer}' \
+                                    f'    {layer["out"]} = tf.keras.layers.add([{cat_add_params}])\n'
+            elif abstract_layer_name in model_name_list:
+                implicit_layer_name = abstract_layer_name
+                implicit_params = dict([(layer['in'], layer['in'])])
+                abstract_params = layer['params']
+                for abstract_param_name in abstract_params:
+                    implicit_param_name = abstract_param_name
+                    implicit_params.update(dict([(implicit_param_name, abstract_params[abstract_param_name])]))
+                output_ = layer['out']
+                hidden_layers = f'{hidden_layers}' \
+                                f'    {output_} = {generate_line(implicit_layer_name, implicit_params)}\n'
+            else:
+                abstract_params = self.__convert_to_tf(abstract_layer_name, layer['params'])
+                implicit_layer_name = database.get_implicit_api_name(self.get_library_name(), abstract_layer_name)
+                implicit_params = {}
+                for abstract_param_name in abstract_params:
+                    implicit_param_name = abstract_param_name
+                    implicit_params[implicit_param_name] = abstract_params[abstract_param_name]
+                input_ = str(layer['in']).replace("'", "") if isinstance(layer['in'], list) else layer['in']
+                output_ = layer['out']
+                hidden_layers = f'{hidden_layers}' \
+                                f'    {output_} = {generate_line(implicit_layer_name, implicit_params)}({input_})\n'
+
+        if isinstance(model_dict[0], list):
+            output_layers = f'{output_layers}' \
+                            f'    return x\n'
+        else:
+            output_layers = f'{output_layers}' \
+                            f'    output_tensor = x\n' \
+                            f'    model = tf.keras.models.Model(inputs=input_tensor, outputs=output_tensor)\n' \
+                            f'    return model\n'
+
+        code = f'{input_layers}\n' \
+               f'{hidden_layers}\n' \
+               f'{output_layers}\n'
+
+        return code
+
+    def __convert_to_tf(self, abstract_layer_name: str, para_dict: dict) -> dict:
+        """
+        Convert an abstract parameter name to a corresponding parameter name
+        @param para_dict: Abstract argument list
+        @return: Transformed argument list
+        """
+        res_para_dict = {}
+
+        for param in para_dict:
+            implicit_param_name = database.get_implicit_para_name(self.get_library_name(), abstract_layer_name, param)
+            if implicit_param_name != "None":
+                res_para_dict[implicit_param_name] = para_dict[param]
+            else:
+                pass
+        # modify padding
+        if "padding" in para_dict.keys():
+            res_para_dict["padding"] = '"valid"' if para_dict["padding"] == 0 else '"same"'
+        return res_para_dict
+
+    def __get_shape(self) -> tuple:
+        if self.model_name == "LeNet":
+            return 28, 28, 1
+        else:
+            return 224, 224, 3
+
+    def __get_test_tensor(self):
+        if self.model_name == "LeNet":
+            return np.random.rand(3, 28, 28, 1)
+        else:
+            return np.random.rand(3, 224, 224, 3)
 
 
 def translator_factory(library: str) -> Performer | None:
@@ -497,8 +630,9 @@ class Concrete:
 
 concrete = Concrete()
 if __name__ == "__main__":
-    net_list = ["alexnet", "LeNet", "densenet", "mobilenet", "squeezenet", "vgg16", "vgg19", "googlenet"]
-    tbm_torch = ["inceptionv3", "xception", "resnet18", "resnet50"]
+    net_list = ["alexnet", "LeNet", "densenet", "mobilenet", "squeezenet", "vgg16",
+                "vgg19", "googlenet", "inceptionv3", "xception", "resnet18", "resnet50"]
+    tensorflow_tbm = ["densenet", "inceptionv3", "xception", "resnet18", "resnet50"]
 
 
     def test(net: str):
@@ -510,3 +644,11 @@ if __name__ == "__main__":
         if not result[0]["run test"]:
             print(net + " has some questions")
         return result[0]
+
+    results = []
+    for net in net_list:
+        try:
+            result = test(net)
+            results.append(result)
+        except Exception:
+            pass
