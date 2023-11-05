@@ -469,7 +469,8 @@ class TensorFlowPerformer(Performer):
                 hidden_layers = f'{hidden_layers}' \
                                 f'    {output_} = {generate_line(implicit_layer_name, implicit_params)}\n'
             else:
-                abstract_params = self.__convert_to_tf(abstract_layer_name, layer['params'])
+                # abstract_params = self.__convert_to_tf(abstract_layer_name, layer['params'])
+                abstract_params = layer["params"]
                 implicit_layer_name = database.get_implicit_api_name(self.get_library_name(), abstract_layer_name)
                 implicit_params = {}
                 for abstract_param_name in abstract_params:
@@ -632,7 +633,7 @@ concrete = Concrete()
 if __name__ == "__main__":
     net_list = ["alexnet", "LeNet", "densenet", "mobilenet", "squeezenet", "vgg16",
                 "vgg19", "googlenet", "inceptionv3", "xception", "resnet18", "resnet50"]
-    tensorflow_tbm = ["densenet", "inceptionv3", "xception", "resnet18", "resnet50"]
+    tensorflow_tbm = ["xception"]
 
 
     def test(net: str):
@@ -644,6 +645,3 @@ if __name__ == "__main__":
         if not result[0]["run test"]:
             print(net + " has some questions")
         return result[0]
-
-
-    result = test("densenet")

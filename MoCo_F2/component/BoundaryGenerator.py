@@ -63,13 +63,13 @@ def generateBoundaryCases(case_path: str, abstract_model: dict) -> int:
                 max_value = _max
                 int_pool = [(min_value, 1), (min_value - 1, 0), (min_value + 1, 1),
                             (max_value, 1), (max_value - 1, 1), (max_value + 1, 2)]
-                if (library == "torch" and "integer" in constraints[para]["structure"]) or \
+                if ((library == "torch" or "tensorflow") and "integer" in constraints[para]["structure"]) or \
                         (library == "jittor" and "int" in constraints[para]["dtype"]):
                     for value in int_pool:
                         new_layer = copy.deepcopy(layer_to_bound)
                         new_layer["params"][para] = value[0]
                         new_layer_list.append((new_layer, value[1]))
-                if (library == "torch" and "tuple" in constraints[para]["structure"]) or \
+                if ((library == "torch" or "tensorflow") and "tuple" in constraints[para]["structure"]) or \
                         (library == "jittor" and "tuple" in constraints[para]["dtype"]):
                     tuple_pool = []
                     for i in int_pool:
@@ -137,3 +137,11 @@ def generateBoundary(experiment_id: str):
             generateBoundaryCases(current_case_path, model)
             print("generate boundary cases for " + case)
     return
+
+
+if __name__ == "__main__":
+    case_path = "D:/PythonProjects/MoCo_Delta/MoCo_F2/result/experiment1699202204/LeNet-3-4"
+    abstract_model_path = p.join(case_path, "LeNet-3-4_abstract.yaml")
+    with open(abstract_model_path, "r", encoding="utf-8") as f:
+        abstract_model = yaml.full_load(f)
+    num = generateBoundaryCases(case_path, abstract_model)

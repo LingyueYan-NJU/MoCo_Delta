@@ -1,4 +1,4 @@
-Xception:
+xception:
   - layer: conv2d
     params:
       in_channels: 3

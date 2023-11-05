@@ -1,4 +1,4 @@
-DenseNet:
+densenet:
 - in: x
   layer: conv2d
   out: x

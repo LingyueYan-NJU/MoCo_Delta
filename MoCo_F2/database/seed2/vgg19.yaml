@@ -1,4 +1,4 @@
-VGG19:
+vgg19:
   - layer: conv2d
     params:
       in_channels: 3

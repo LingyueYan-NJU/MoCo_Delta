@@ -204,8 +204,7 @@ def goFuzzing(net: str = "LeNet") -> None:
                     input_sentence = "import " + library_name + "\n\nx = " + library_name + \
                                      ".randn(" + shape_str + ")\n"
                 else:
-                    # TODO tensorflow
-                    input_sentence = ""
+                    input_sentence = "import " + library_name + " as tf\n\nx = tf.random.normal(shape=[" + shape_str + "])\n"
                 # get final definition
                 file_list = os.listdir(target_path)
                 py_file = ""
@@ -217,11 +216,15 @@ def goFuzzing(net: str = "LeNet") -> None:
                         info = ff.read()
                         desperate_flag = "    def forward" if library_name == "torch" else "    def execute"
                         target_line = info.split(desperate_flag, 1)[0].split("\n")[-3].split(" = ", 1)[1]
+                        input_sentence += "layer = " + target_line + "\n"
+                        input_sentence += "y = layer(x)\n"
                 else:
                     # TODO tensorflow
-                    target_line = ""
-                input_sentence += "layer = " + target_line + "\n"
-                input_sentence += "y = layer(x)\n"
+                    with open(p.join(target_path, py_file), "r", encoding="utf-8") as ff:
+                        info = ff.read()
+                        desperate_flag = "\n    # output layers"
+                        target_line = info.split(desperate_flag, 1)[0].split("\n")[-2].replace("    ", "") + "\n"
+                        input_sentence += target_line
                 # generate py file
                 with open(p.join(target_path, "MoCoNA.py"), "w", encoding="utf-8") as ff:
                     ff.write(input_sentence)
@@ -240,4 +243,3 @@ def goFuzzing(net: str = "LeNet") -> None:
 
 # if __name__ == "__main__":
 #     go("LeNet")
-goFuzzing("resnet50")

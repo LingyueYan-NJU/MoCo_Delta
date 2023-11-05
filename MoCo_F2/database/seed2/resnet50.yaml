@@ -1,4 +1,4 @@
-ResNet50:
+resnet50:
   - layer: conv2d
     params:
       in_channels: 3

@@ -1,4 +1,4 @@
-InceptionV3:
+inceptionv3:
   - layer: conv2d
     params:
       in_channels: 3

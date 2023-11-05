@@ -1,4 +1,4 @@
-VGG16:
+vgg16:
   - layer: conv2d
     params:
       in_channels: 3
