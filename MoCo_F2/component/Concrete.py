@@ -645,3 +645,4 @@ if __name__ == "__main__":
         if not result[0]["run test"]:
             print(net + " has some questions")
         return result[0]
+    test("PointNet")
