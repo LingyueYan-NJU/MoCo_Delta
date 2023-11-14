@@ -14,6 +14,64 @@ def roulette_wheel_selection(dictionary):
             return key
 
 
+class Barrel:
+    def __init__(self):
+        # 桶
+        self.b: dict[str: int] = {}
+        return
+
+    def add_elements(self, ele_list: list[str]):
+        for ele in ele_list:
+            self.add_new_element(ele)
+        return
+
+    def add_new_element(self, ele_name: str):
+        if ele_name not in self.b.keys():
+            self.b[ele_name] = 0
+        return
+
+    def add_one(self, ele_name: str):
+        if ele_name in self.b.keys():
+            self.b[ele_name] += 1
+        return
+
+    def calculate_unbalance_point(self, ele_range: list[str] | None = None) -> int:
+        if ele_range is None:
+            point_list = list(self.b.values())
+        else:
+            point_list = []
+            for ele in ele_range:
+                if ele in self.b.keys():
+                    point_list.append(self.b[ele])
+        return max(point_list) - min(point_list)
+
+    def find_prefer(self, ele_range: list[str] | None = None):
+        current_min = 10000000
+        current_prefer = ""
+        if ele_range is None:
+            ele_range = list(self.b.keys())
+        if len(ele_range) == 0:
+            return "no prefer"
+        elif len(ele_range) == 1:
+            return ele_range[0]
+        else:
+            for ele in ele_range:
+                if ele in self.b.keys():
+                    if self.b[ele] < current_min:
+                        current_min = self.b[ele]
+                        current_prefer = ele
+        return current_prefer
+
+    def show_barrel_report(self) -> str:
+        report = ""
+        for ele in self.b.keys():
+            report += f"{ele} : {str(self.b[ele])} \n"
+        return report
+
+
+barrel_point = 10
+
+
 class Mutator(ABC):
     def __init__(self):
         return
@@ -42,6 +100,28 @@ class TorchMutator(Mutator):
     def __init__(self):
         super().__init__()
         self.count = 0
+        all_api_list = database._Database__all_api_list["abstract"]
+        self.api_barrel = Barrel()
+        self.api_barrel.add_elements(all_api_list)
+        self.para_barrel = {}
+        for api in all_api_list:
+            self.para_barrel[api] = Barrel()
+            paras = list(database.get_abstract_layer_info(api)["constraints"].keys())
+            self.para_barrel[api].add_elements(paras)
+
+    def barrel_report(self):
+        pth = "../report/barrel_report.txt"
+        f = open(pth, "w", encoding="utf-8")
+        f.close()
+        f = open(pth, "a", encoding="utf-8")
+        f.write(self.api_barrel.show_barrel_report())
+        f.write("\n\n=================\n\n")
+        for key in self.para_barrel.keys():
+            f.write(f"{key}:\n")
+            f.write(f"{self.para_barrel[key].show_barrel_report()}\n")
+            f.write("\n\n=================\n\n")
+        f.close()
+        return
 
     def mutate(self, layer_dict: dict) -> (dict, str):
         if "layer" in layer_dict.keys():
@@ -66,6 +146,17 @@ class TorchMutator(Mutator):
         else:
             new_implicit_layer_name = roulette_wheel_selection(valid_similarity_dict)
             new_abstract_layer_name = database.get_abstract_api_name("torch", new_implicit_layer_name)
+
+            # 桶处理
+            range_implicit = list(valid_similarity_dict.keys())
+            range_abstract = []
+            for implicit_layer_name_ in range_implicit:
+                range_abstract.append(database.get_abstract_api_name("torch", implicit_layer_name_))
+            if self.api_barrel.calculate_unbalance_point(range_abstract) > barrel_point:
+                new_abstract_layer_name = self.api_barrel.find_prefer(range_abstract)
+            self.api_barrel.add_one(new_abstract_layer_name)
+            # 桶处理
+
             abstract_layer_info = database.get_abstract_layer_info(new_abstract_layer_name)
             required_list = abstract_layer_info["inputs"]["required"]
             param_constraints = abstract_layer_info["constraints"]
@@ -96,10 +187,19 @@ class TorchMutator(Mutator):
         if len(choice_list) == 0:
             return layer_dict, 'no mutate'
         param_to_mutate = random.choice(choice_list)
-        res_mutate_type = str(param_to_mutate)
+
+        # 桶处理
+        abstract_layer_name = layer_dict["layer"]
+        barrel = self.para_barrel[abstract_layer_name]
+        if barrel.calculate_unbalance_point(choice_list) > barrel_point:
+            param_to_mutate = barrel.find_prefer(choice_list)
+        barrel.add_one(param_to_mutate)
+        # 桶处理
+
+        res_mutate_type = abstract_layer_name + "|" + str(param_to_mutate)
         value, choice_type = self.__get_value(now_api_para_data[param_to_mutate])
         params[param_to_mutate] = value
-        res_mutate_type += choice_type
+        res_mutate_type += "|" + choice_type
         result_layer_dict = copy.deepcopy(layer_dict)
         result_layer_dict["params"] = params
         return result_layer_dict, res_mutate_type
@@ -597,8 +697,8 @@ def get_mutator(library: str) -> Mutator | None:
 
 
 if __name__ == "__main__":
-    mutator = get_mutator("tensorflow")
-    net = "vgg19"
+    mutator = get_mutator("torch")
+    net = "alexnet"
     seed = database.get_seed(net)
     for layer in seed[net]:
         for i in range(100):
