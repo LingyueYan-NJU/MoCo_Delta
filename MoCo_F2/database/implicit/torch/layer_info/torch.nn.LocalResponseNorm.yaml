@@ -7,11 +7,11 @@ constraints:
   beta:
     descp: exponent.
     default: 0.75
-    dtype: torch.float
+    dtype: float
   k:
     descp: additive factor.
     default: 1.0
-    dtype: torch.float
+    dtype: float
   size:
     descp: amount of neighbouring channels used for normalization
     dtype: int

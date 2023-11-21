@@ -8,11 +8,11 @@ constraints:
   max_val:
     descp: maximum value of the linear region range.
     default: 1.0
-    dtype: torch.float
+    dtype: float
   min_val:
     descp: minimum value of the linear region range.
     default: -1.0
-    dtype: torch.float
+    dtype: float
 descp: Applies the HardTanh function element-wise.
 inputs:
   optional:

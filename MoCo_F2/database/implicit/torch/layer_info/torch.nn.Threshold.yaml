@@ -6,10 +6,10 @@ constraints:
     dtype: torch.bool
   threshold:
     descp: The value to threshold at
-    dtype: torch.float
+    dtype: float
   value:
     descp: The value to replace with
-    dtype: torch.float
+    dtype: float
 descp: Thresholds each element of the input Tensor.
 inputs:
   optional:

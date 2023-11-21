@@ -20,7 +20,7 @@ constraints:
     - trilinear
   scale_factor:
     descp: multiplier for spatial size. Has to match input size if it is a tuple.
-    dtype: torch.float
+    dtype: float
   size:
     descp: output spatial sizes
     dtype: int

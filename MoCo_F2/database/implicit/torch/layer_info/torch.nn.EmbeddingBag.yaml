@@ -17,7 +17,8 @@ constraints:
     dtype: torch.bool
   max_norm:
     descp: If given, each embedding vector with norm larger than
-    dtype: torch.float
+    default: None
+    dtype: float
   mode:
     descp: '"sum", "mean" or "max". Specifies the way to reduce the bag. "sum" computes
       the weighted sum, taking "mean" computes the average of the values in the bag,
@@ -31,7 +32,7 @@ constraints:
   norm_type:
     descp: The p of the p-norm to compute for the 2.
     default: 2.0
-    dtype: torch.float
+    dtype: float
   num_embeddings:
     descp: size of the dictionary of embeddings
     dtype: int

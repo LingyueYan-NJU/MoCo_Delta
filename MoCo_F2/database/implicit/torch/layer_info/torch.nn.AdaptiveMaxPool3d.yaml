@@ -10,7 +10,7 @@ constraints:
     shape: 3
     range:
     - 1
-    - 42024
+    - 224
   return_indices:
     descp: if True, will return the indices along with the outputs. Useful to pass
       to nn.MaxUnpool3d.

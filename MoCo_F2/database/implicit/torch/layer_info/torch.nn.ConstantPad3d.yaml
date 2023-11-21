@@ -9,8 +9,15 @@ constraints:
     range:
     - 1
     - 8
+  value:
+    dtype: int
+    structure:
+      - integer
+    range: [ 1, 224 ]
+    shape: 1
 descp: Pads the input tensor boundaries with a constant value.
 inputs:
   optional: []
   required:
   - padding
+  - value

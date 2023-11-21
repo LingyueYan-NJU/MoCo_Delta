@@ -9,7 +9,7 @@ constraints:
   eps:
     descp: a value added to the denominator for numerical stability.
     default: 1e-05
-    dtype: torch.float
+    dtype: float
   normalized_shape:
     descp: 'input shape from an expected input of size
 

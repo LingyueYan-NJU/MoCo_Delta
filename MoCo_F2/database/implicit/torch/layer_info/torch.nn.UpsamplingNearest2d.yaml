@@ -2,7 +2,7 @@ api: torch.nn.UpsamplingNearest2d(size=None, scale_factor=None)
 constraints:
   scale_factor:
     descp: multiplier for spatial size.
-    dtype: torch.float
+    dtype: float
   size:
     descp: output spatial sizes
     default: None

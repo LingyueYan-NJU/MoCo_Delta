@@ -7,7 +7,7 @@ constraints:
   p:
     descp: probability of an element to be zero-ed.
     default: 0.5
-    dtype: torch.float
+    dtype: float
 descp: Randomly zero out entire channels (a channel is a 2D feature map, e.g., the
   jjj-th channel of the iii-th sample in the batched input is a 2D tensor input[i,j]\text{input}[i,
   j]input[i,j]). Each channel will be zeroed out independently on every forward call

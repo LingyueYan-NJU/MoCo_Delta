@@ -7,7 +7,7 @@ constraints:
   p:
     descp: probability of an element to be dropped.
     default: 0.5
-    dtype: torch.float
+    dtype: float
 descp: Applies Alpha Dropout over the input.
 inputs:
   optional:

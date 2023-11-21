@@ -39,6 +39,14 @@ constraints:
     range:
     - 1
     - 4
+  divisor_override:
+    descp: if specified, it will be used as divisor, otherwise size of the pooling region will be used.
+    dtype: int
+    structure:
+    - integer
+    default: "None"
+    shape: 1
+    range: [1, 8]
 descp: Applies a 2D average pooling over an input signal composed of several input
   planes.
 inputs:

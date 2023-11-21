@@ -13,11 +13,12 @@ constraints:
     - 1026
   max_norm:
     descp: If given, each embedding vector with norm larger than
-    dtype: torch.float
+    default: None
+    dtype: float
   norm_type:
     descp: The p of the p-norm to compute for the 2.
     default: 2.0
-    dtype: torch.float
+    dtype: float
   num_embeddings:
     descp: size of the dictionary of embeddings
     dtype: int

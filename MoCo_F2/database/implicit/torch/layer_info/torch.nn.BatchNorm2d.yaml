@@ -9,12 +9,12 @@ constraints:
   eps:
     descp: a value added to the denominator for numerical stability.
     default: 1e-05
-    dtype: torch.float
+    dtype: float
   momentum:
     descp: the value used for the running_mean and running_var computation. Can be
       set to None for cumulative moving average (i.e. simple average).
     default: 0.1
-    dtype: torch.float
+    dtype: float
   num_features:
     descp: ''
     dtype: int

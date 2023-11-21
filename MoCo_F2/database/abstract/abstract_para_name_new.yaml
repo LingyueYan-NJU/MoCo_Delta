@@ -91,6 +91,10 @@ avgpool2d:
     jittor: stride
     tensorflow: strides
     torch: stride
+  divisor_override:
+    jittor: None
+    tensorflow: None
+    torch: divisor_override
 avgpool3d:
   ceil_mode:
     jittor: ceil_mode
@@ -112,6 +116,10 @@ avgpool3d:
     jittor: stride
     tensorflow: strides
     torch: stride
+  divisor_override:
+    jittor: None
+    tensorflow: None
+    torch: divisor_override
 batchnorm:
   affine:
     jittor: affine
@@ -264,6 +272,10 @@ constantpad1d:
     jittor: None
     tensorflow: None
     torch: padding
+  value:
+    jittor: value
+    tensorflow: None
+    torch: value
 constantpad2d:
   padding:
     jittor: padding
@@ -272,12 +284,16 @@ constantpad2d:
   value:
     jittor: value
     tensorflow: None
-    torch: None
+    torch: value
 constantpad3d:
   padding:
     jittor: None
     tensorflow: None
     torch: padding
+  value:
+    jittor: value
+    tensorflow: None
+    torch: value
 conv:
   bias:
     jittor: bias

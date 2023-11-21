@@ -3,7 +3,7 @@ constraints:
   alpha:
     descp: the
     default: 1.0
-    dtype: torch.float
+    dtype: float
   inplace:
     descp: can optionally do the operation in-place.
     default: false

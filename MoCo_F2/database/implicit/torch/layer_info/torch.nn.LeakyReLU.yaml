@@ -8,7 +8,7 @@ constraints:
     descp: Controls the angle of the negative slope (which is used for negative input
       values).
     default: 0.01
-    dtype: torch.float
+    dtype: float
 descp: 'Applies the element-wise function:'
 inputs:
   optional:

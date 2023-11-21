@@ -3,7 +3,7 @@ constraints:
   init:
     descp: the initial value of
     default: 0.25
-    dtype: torch.float
+    dtype: float
   num_parameters:
     descp: number of
     default: 1

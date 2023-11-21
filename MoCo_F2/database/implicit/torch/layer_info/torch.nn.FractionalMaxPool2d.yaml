@@ -16,7 +16,7 @@ constraints:
   output_ratio:
     descp: If one wants to have an output size as a ratio of the input size, this
       option can be given. This has to be a number or tuple in the range (0, 1)
-    dtype: torch.float
+    dtype: float
     structure:
     - float
     - tuple

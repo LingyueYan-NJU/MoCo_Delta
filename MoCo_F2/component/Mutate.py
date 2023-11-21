@@ -1,4 +1,5 @@
 import copy
+import traceback
 from abc import ABC, abstractmethod
 import random
 from _database import database
@@ -100,6 +101,7 @@ class TorchMutator(Mutator):
     def __init__(self):
         super().__init__()
         self.count = 0
+        self.barrel_report_count = 0
         all_api_list = database._Database__all_api_list["abstract"]
         self.api_barrel = Barrel()
         self.api_barrel.add_elements(all_api_list)
@@ -110,7 +112,8 @@ class TorchMutator(Mutator):
             self.para_barrel[api].add_elements(paras)
 
     def barrel_report(self):
-        pth = "../report/barrel_report.txt"
+        pth = f"../report/barrel_report{str(self.barrel_report_count)}.txt"
+        self.barrel_report_count += 1
         f = open(pth, "w", encoding="utf-8")
         f.close()
         f = open(pth, "a", encoding="utf-8")
@@ -132,77 +135,96 @@ class TorchMutator(Mutator):
             return layer_dict, "dont mutate this one"
         if not database.is_abstract_api_name_valid(abstract_layer_name):
             return self.child_model_mutate(layer_dict)
-        if random.choice([1, 2]) == 1:
-            return self.api_name_mutate(layer_dict)
+        if random.choice([1, 2, 3]) != 1:
+            ld, _ = self.api_name_mutate(layer_dict)
         else:
-            return self.api_para_mutate(layer_dict)
+            ld = layer_dict
+        if random.choice([1, 2]) == 1:
+            return self.api_name_mutate(ld)
+        else:
+            return self.api_para_mutate(ld)
 
     def api_name_mutate(self, layer_dict: dict) -> (dict, str):
-        abstract_layer_name = layer_dict["layer"]
-        implicit_layer_name = database.get_implicit_api_name("torch", abstract_layer_name)
-        valid_similarity_dict = database.get_implicit_api_similarity_valid("torch", implicit_layer_name)
-        if len(valid_similarity_dict) == 0:
+        try:
+            abstract_layer_name = layer_dict["layer"]
+            implicit_layer_name = database.get_implicit_api_name("torch", abstract_layer_name)
+            valid_similarity_dict = database.get_implicit_api_similarity_valid("torch", implicit_layer_name)
+            if len(valid_similarity_dict) == 0:
+                return layer_dict, "no mutate"
+            else:
+                new_implicit_layer_name = roulette_wheel_selection(valid_similarity_dict)
+                new_abstract_layer_name = database.get_abstract_api_name("torch", new_implicit_layer_name)
+
+                # 桶处理
+                # range_implicit = list(valid_similarity_dict.keys())
+                # range_abstract = []
+                # for implicit_layer_name_ in range_implicit:
+                #     range_abstract.append(database.get_abstract_api_name("torch", implicit_layer_name_))
+                # if self.api_barrel.calculate_unbalance_point(range_abstract) > barrel_point:
+                #     new_abstract_layer_name = self.api_barrel.find_prefer(range_abstract)
+                self.api_barrel.add_one(new_abstract_layer_name)
+                # 桶处理
+
+                abstract_layer_info = database.get_abstract_layer_info(new_abstract_layer_name)
+                required_list = abstract_layer_info["inputs"]["required"]
+                param_constraints = abstract_layer_info["constraints"]
+                new_para_dict = {}
+                old_para_dict = layer_dict["params"]
+                for p in old_para_dict.items():
+                    if p[0] in param_constraints.keys():
+                        new_para_dict[p[0]] = p[1]
+                for param_name in required_list:
+                    if param_name not in new_para_dict.keys():
+                        new_para_dict[param_name] = self.__get_value(param_constraints[param_name])[0]
+                return {"layer": new_abstract_layer_name, "params": new_para_dict,
+                        "in": layer_dict["in"], "out": layer_dict["out"]}, new_abstract_layer_name
+        except Exception:
+            f = open("../report/error_report.txt", "a", encoding="utf-8")
+            f.write("this one error while name mutate: " + str(layer_dict) + "\n")
+            f.write(traceback.format_exc())
+            f.write("\n================\n")
+            f.close()
             return layer_dict, "no mutate"
-        else:
-            new_implicit_layer_name = roulette_wheel_selection(valid_similarity_dict)
-            new_abstract_layer_name = database.get_abstract_api_name("torch", new_implicit_layer_name)
-
-            # 桶处理
-            range_implicit = list(valid_similarity_dict.keys())
-            range_abstract = []
-            for implicit_layer_name_ in range_implicit:
-                range_abstract.append(database.get_abstract_api_name("torch", implicit_layer_name_))
-            if self.api_barrel.calculate_unbalance_point(range_abstract) > barrel_point:
-                new_abstract_layer_name = self.api_barrel.find_prefer(range_abstract)
-            self.api_barrel.add_one(new_abstract_layer_name)
-            # 桶处理
-
-            abstract_layer_info = database.get_abstract_layer_info(new_abstract_layer_name)
-            required_list = abstract_layer_info["inputs"]["required"]
-            param_constraints = abstract_layer_info["constraints"]
-            new_para_dict = {}
-            old_para_dict = layer_dict["params"]
-            for p in old_para_dict.items():
-                if p[0] in param_constraints.keys():
-                    new_para_dict[p[0]] = p[1]
-            for param_name in required_list:
-                if param_name not in new_para_dict.keys():
-                    new_para_dict[param_name] = self.__get_value(param_constraints[param_name])[0]
-            return {"layer": new_abstract_layer_name, "params": new_para_dict,
-                    "in": layer_dict["in"], "out": layer_dict["out"]}, new_abstract_layer_name
 
     def api_para_mutate(self, layer_dict: dict) -> (dict, str):
-        now_api_para_data = database.get_abstract_layer_info(layer_dict["layer"])["constraints"]
-        required = database.get_abstract_layer_info(layer_dict["layer"])["inputs"]["required"]
-        optional = database.get_abstract_layer_info(layer_dict["layer"])["inputs"]["optional"]
-        params = copy.deepcopy(layer_dict["params"])
-        choice_list = required
-        for _ in optional:
-            choice_list.append(_)
-        no_mutate_pool = ['in_channels', 'out_channels', 'in_features', 'out_features', 'input_size', 'output_size',
-                          'num_features']
-        for no_mutate_para in no_mutate_pool:
-            if no_mutate_para in choice_list:
-                choice_list.remove(no_mutate_para)
-        if len(choice_list) == 0:
-            return layer_dict, 'no mutate'
-        param_to_mutate = random.choice(choice_list)
+        try:
+            now_api_para_data = database.get_abstract_layer_info(layer_dict["layer"])["constraints"]
+            required = database.get_abstract_layer_info(layer_dict["layer"])["inputs"]["required"]
+            optional = database.get_abstract_layer_info(layer_dict["layer"])["inputs"]["optional"]
+            params = copy.deepcopy(layer_dict["params"])
+            choice_list = required
+            for _ in optional:
+                choice_list.append(_)
+            no_mutate_pool = ['in_channels', 'out_channels', 'in_features', 'out_features', 'input_size', 'output_size',
+                              'num_features']
+            for no_mutate_para in no_mutate_pool:
+                if no_mutate_para in choice_list:
+                    choice_list.remove(no_mutate_para)
+            if len(choice_list) == 0:
+                return layer_dict, 'no mutate'
+            param_to_mutate = random.choice(choice_list)
 
-        # 桶处理
-        abstract_layer_name = layer_dict["layer"]
-        barrel = self.para_barrel[abstract_layer_name]
-        if barrel.calculate_unbalance_point(choice_list) > barrel_point:
-            param_to_mutate = barrel.find_prefer(choice_list)
-        barrel.add_one(param_to_mutate)
-        # 桶处理
+            # 桶处理
+            abstract_layer_name = layer_dict["layer"]
+            barrel = self.para_barrel[abstract_layer_name]
+            # if barrel.calculate_unbalance_point(choice_list) > barrel_point:
+            #     param_to_mutate = barrel.find_prefer(choice_list)
+            barrel.add_one(param_to_mutate)
+            # 桶处理
 
-        res_mutate_type = abstract_layer_name + "|" + str(param_to_mutate)
-        value, choice_type = self.__get_value(now_api_para_data[param_to_mutate])
-        params[param_to_mutate] = value
-        res_mutate_type += "|" + choice_type
-        result_layer_dict = copy.deepcopy(layer_dict)
-        result_layer_dict["params"] = params
-        return result_layer_dict, res_mutate_type
+            res_mutate_type = abstract_layer_name + "|" + str(param_to_mutate)
+            value, choice_type = self.__get_value(now_api_para_data[param_to_mutate])
+            params[param_to_mutate] = value
+            res_mutate_type += "|" + choice_type
+            result_layer_dict = copy.deepcopy(layer_dict)
+            result_layer_dict["params"] = params
+            return result_layer_dict, res_mutate_type
+        except Exception:
+            f = open("../report/error_report.txt", "a", encoding="utf-8")
+            f.write("this one error while para mutate: " + str(layer_dict))
+            f.write("\n================\n")
+            f.close()
+            return layer_dict, "no mutate"
 
     def child_model_mutate(self, layer_dict: dict) -> (dict, str):
         self.count += 1
@@ -212,7 +234,7 @@ class TorchMutator(Mutator):
         new_layer_list = [child_model_layer_list[0]]
         child_model_layer_list = child_model_layer_list[1:]
         for layer in child_model_layer_list:
-            if random.choice(list(range(10))) > 3:
+            if random.choice(list(range(10))) > 2:
                 new_layer_list.append(layer)
                 continue
             new_layer, _ = self.mutate(layer)
@@ -698,10 +720,10 @@ def get_mutator(library: str) -> Mutator | None:
 
 if __name__ == "__main__":
     mutator = get_mutator("torch")
-    net = "alexnet"
-    seed = database.get_seed(net)
-    for layer in seed[net]:
-        for i in range(100):
-            tmp = copy.deepcopy(layer)
-            tmp = mutator.mutate(tmp)
-            print(str(i) + ":" + str(tmp))
+    # net = "alexnet"
+    # seed = database.get_seed(net)
+    # for layer in seed[net]:
+    #     for i in range(100):
+    #         tmp = copy.deepcopy(layer)
+    #         tmp = mutator.mutate(tmp)
+    #         print(str(i) + ":" + str(tmp))

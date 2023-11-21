@@ -5,17 +5,19 @@ constraints:
     dtype:
     - int
     structure:
-    - single
-    shape: null
-    range: null
+    - integer
+    shape: 1
+    range: [1, 4]
+    default: 1
   end_dim:
     descp: last dim to flatten (default = -1).
     dtype:
     - int
     structure:
-    - single
-    shape: null
-    range: null
+    - integer
+    shape: 1
+    range: [-1, 4]
+    default: -1
 descp: Flattens a contiguous range of dims into a tensor. For use with Sequential.
 inputs:
   optional: []
