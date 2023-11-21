@@ -4,6 +4,8 @@ import os.path as p
 import random
 import numpy as np
 import time
+
+import torch.cuda
 import yaml
 import os
 from abc import ABC, abstractmethod
@@ -143,6 +145,7 @@ class TorchPerformer(Performer):
                 end_time = time.time()
             except Exception:
                 end_time = start_time - 1.0
+        torch.cuda.empty_cache()
         return end_time - start_time
 
 

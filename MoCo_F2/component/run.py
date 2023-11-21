@@ -15,3 +15,8 @@ def go(net_name):
         print(traceback.format_exc())
         end_time = time.time()
     print("total time cost: " + str(end_time - start_time))
+
+
+if __name__ == "__main__":
+    for model in ["LeNet", "alexnet", "googlenet", "mobilenet", "resnet18", "squeezenet", "vgg16", "vgg19"]:
+        go(model)
