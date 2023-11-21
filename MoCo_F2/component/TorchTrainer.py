@@ -306,11 +306,29 @@ class Trainer:
         self.dataloader_dict['squeezenet'] = self.dataloader_dict['resnet18']
         self.dataloader_dict['vgg16'] = self.dataloader_dict['alexnet']
         self.dataloader_dict['vgg19'] = self.dataloader_dict['alexnet']
-        self.dataloader_dict['LSTM'] = get_stockprice()
+        self.dataloader_dict['lstm'] = get_stockprice()
         self.dataloader_dict['googlenet'] = self.dataloader_dict['resnet18']
         return
 
     def train(self, net_to_train: nn.Module, net_name: str) -> None:
+        # pointnet
+        if net_name == "pointnet":
+            net = net_to_train
+            criterion = nn.MSELoss()
+            optimizer = optim.Adam(net.parameters(), lr=lr)
+            for i in range(20):
+                reshaped_inputs = torch.randn(BATCH_SIZE, 3, 5)
+                labels = torch.randn(BATCH_SIZE, 10)
+                optimizer.zero_grad()  # 梯度清零
+
+                outputs = net(reshaped_inputs)  # 前向传播
+                outputs = reshape_tensor(outputs, (BATCH_SIZE, 10))
+                loss = criterion(outputs, labels)  # 计算损失
+                loss.backward()  # 反向传播
+                optimizer.step()  # 更新参数
+            return
+        # pointnet
+
         if net_name in self.dataloader_dict.keys():
             dataloader = self.dataloader_dict[net_name]
         else:
@@ -321,17 +339,18 @@ class Trainer:
         net = net_to_train
 
         # rnn
-        if net_name in ['LSTM', 'BiLSTM', 'GRU']:
+        if net_name in ['lstm', 'BiLSTM', 'GRU']:
             criterion = nn.MSELoss()
             optimizer = optim.Adam(net.parameters(), lr=lr)
             for i, inputs in enumerate(dataloader):
-                reshaped_inputs = torch.unsqueeze(torch.unsqueeze(inputs, dim=1), dim=2)
+                reshaped_inputs = torch.unsqueeze(inputs, dim=1)
                 labels = inputs.clone()  # 在这个示例中，将输入作为标签（仅用于示例目的，您可能需要更改为目标变量）
 
                 optimizer.zero_grad()  # 梯度清零
 
                 outputs = net(reshaped_inputs)  # 前向传播
                 outputs = reshape_tensor(outputs, (5, 1))
+                labels = reshape_tensor(labels, (5, 1))
                 loss = criterion(outputs, labels)  # 计算损失
                 loss.backward()  # 反向传播
                 optimizer.step()  # 更新参数

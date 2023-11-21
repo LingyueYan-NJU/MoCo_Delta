@@ -12454,7 +12454,7 @@ torch.nn.LSTMCell:
   torch.nn.FractionalMaxPool3d: 0.0371277779340744
   torch.nn.GELU: 0.02446701005101204
   torch.nn.GLU: 0.04320897161960602
-  torch.nn.GRU: 0.19451852568558284
+  torch.nn.GRU: 0.5000000000000000
   torch.nn.GRUCell: 0.6727936565876007
   torch.nn.GaussianNLLLoss: 0.04921223223209381
   torch.nn.GroupNorm: 0.0526607483625412
@@ -12472,7 +12472,7 @@ torch.nn.LSTMCell:
   torch.nn.L1Loss: 0.02158130332827568
   torch.nn.LPPool1d: 0.012723222374916077
   torch.nn.LPPool2d: 0.008663664571940899
-  torch.nn.LSTM: 0.372705340385437
+  torch.nn.LSTM: 0.5000000000000000
   torch.nn.LSTMCell: 1.0
   torch.nn.LayerNorm: 0.079666867852211
   torch.nn.LazyBatchNorm1d: 0.09007918834686279
@@ -12512,9 +12512,9 @@ torch.nn.LSTMCell:
   torch.nn.PixelShuffle: 0.04674989730119705
   torch.nn.PixelUnshuffle: 0.047081172466278076
   torch.nn.PoissonNLLLoss: 0.06157373636960983
-  torch.nn.RNN: 0.21068479120731354
-  torch.nn.RNNBase: 0.03374002128839493
-  torch.nn.RNNCell: 0.4451694041490555
+  torch.nn.RNN: 0.5000000000000000
+  torch.nn.RNNBase: 0.5000000000000000
+  torch.nn.RNNCell: 0.5000000000000000
   torch.nn.RReLU: 0.06297282874584198
   torch.nn.ReLU: 0.01626347005367279
   torch.nn.ReLU6: 0.0018165167421102524

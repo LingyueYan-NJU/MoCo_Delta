@@ -5,7 +5,7 @@ constraints:
     structure:
     - integer
     - tuple
-    shape: 2
+    shape: 1
     range:
     - 1
     - 8

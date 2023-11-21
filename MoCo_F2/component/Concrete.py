@@ -72,11 +72,15 @@ class TorchPerformer(Performer):
         self.s244_test_tensor = torch.randn(3, 3, 244, 244)
         self.s224_test_tensor = torch.randn(3, 3, 224, 224)
         self.s299_test_tensor = torch.randn(3, 3, 299, 299)
+        self.pointnet_test_tensor = torch.randn(3, 3, 5)
+        self.lstm_test_tensor = torch.randn(5, 1)
 
         self.LeNet_test_code = "    x = torch.randn(3, 1, 28, 28)\n    y = model(x)\n    return model\n"
         self.s244_test_code = "    x = torch.randn(3, 3, 244, 244)\n    y = model(x)\n    return model\n"
         self.s224_test_code = "    x = torch.randn(3, 3, 224, 224)\n    y = model(x)\n    return model\n"
         self.s299_test_code = "    x = torch.randn(3, 3, 299, 299)\n    y = model(x)\n    return model\n"
+        self.pointnet_test_code = "    x = torch.randn(3, 3, 5)\n    y = model(x)\n    return model\n"
+        self.lstm_test_code = "    x = torch.randn(5, 1)\n    y = model(x)\n    return model\n"
 
         from TorchTrainer import torch_trainer
         self.trainer = torch_trainer
@@ -92,6 +96,10 @@ class TorchPerformer(Performer):
             return self.s224_test_code
         elif model_name == "squeezenet":
             return self.s244_test_code
+        elif model_name == "pointnet":
+            return self.pointnet_test_code
+        elif model_name == "lstm":
+            return self.lstm_test_code
         else:
             return self.s224_test_code
 
@@ -105,6 +113,10 @@ class TorchPerformer(Performer):
             return self.s224_test_tensor
         elif model_name == "squeezenet":
             return self.s244_test_tensor
+        elif model_name == "pointnet":
+            return self.pointnet_test_tensor
+        elif model_name == "lstm":
+            return self.lstm_test_tensor
         else:
             return self.s224_test_tensor
 
@@ -650,7 +662,7 @@ class Concrete:
 concrete = Concrete()
 if __name__ == "__main__":
     net_list = ["alexnet", "LeNet", "mobilenet", "squeezenet", "vgg16",
-                "vgg19", "googlenet", "resnet18"]
+                "vgg19", "googlenet", "resnet18", "pointnet", "lstm"]
 
 
     def test(net: str):
