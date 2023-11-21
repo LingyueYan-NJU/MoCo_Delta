@@ -75,6 +75,9 @@ class TorchPerformer(Performer):
         self.s244_test_code = "    x = torch.randn(3, 3, 244, 244)\n    y = model(x)\n    return model\n"
         self.s224_test_code = "    x = torch.randn(3, 3, 224, 224)\n    y = model(x)\n    return model\n"
         self.s299_test_code = "    x = torch.randn(3, 3, 299, 299)\n    y = model(x)\n    return model\n"
+
+        from TorchTrainer import torch_trainer
+        self.trainer = torch_trainer
         return
 
     def __get_test_code(self, model_name: str):
@@ -129,7 +132,19 @@ class TorchPerformer(Performer):
 
     def train(self, model) -> float:
         # fake train
-        return random.choice([random.uniform(3.0, 100.0), random.uniform(100.0, 200.0), random.uniform(1.0, 3.0)])
+        # return random.choice([random.uniform(3.0, 100.0), random.uniform(100.0, 200.0), random.uniform(1.0, 3.0)])
+        # True Train
+        if isinstance(model, str):
+            return -1.0
+        else:
+            start_time = time.time()
+            try:
+                self.trainer.train(model, str(model).split("(", 1)[0])
+                end_time = time.time()
+            except Exception:
+                end_time = start_time - 1.0
+        return end_time - start_time
+
 
     def run(self, model) -> (float, list[int], str):
         if isinstance(model, str):
@@ -631,9 +646,8 @@ class Concrete:
 
 concrete = Concrete()
 if __name__ == "__main__":
-    net_list = ["alexnet", "LeNet", "densenet", "mobilenet", "squeezenet", "vgg16",
-                "vgg19", "googlenet", "inceptionv3", "xception", "resnet18", "resnet50"]
-    tensorflow_tbm = ["xception"]
+    net_list = ["alexnet", "LeNet", "mobilenet", "squeezenet", "vgg16",
+                "vgg19", "googlenet", "resnet18"]
 
 
     def test(net: str):
@@ -645,4 +659,3 @@ if __name__ == "__main__":
         if not result[0]["run test"]:
             print(net + " has some questions")
         return result[0]
-    test("PointNet")

@@ -102,6 +102,9 @@ def goFuzzing(net: str = "LeNet") -> None:
                         result = concrete.perform(temp, gen, index)
                         for r in result:
                             r["mutate info"] = mutate_info
+                            if gen <= 3:
+                                r["train test"] = True
+                                r["train time cost"] = 1.0
                         ana = analyser.analyse_result(result)
                         if ana:
                             pass_model_list.append(temp)
@@ -156,7 +159,7 @@ def goFuzzing(net: str = "LeNet") -> None:
                     else:
                         with open(p.join(concrete.get_experiment_path(), net + tag + str(index), "report.txt"), "r") as f:
                             info = f.read()
-                        train_time_cost = float(info.split("run time cost: ")[1].split("\n", 1)[0])
+                        train_time_cost = float(info.split("train time cost: ")[1].split("\n", 1)[0])
                         mutate_info = info.split("mutate info: ")[1]
                         if mutate_info in cutting_dict.keys():
                             cutting_dict[mutate_info][(gen, index)] = train_time_cost

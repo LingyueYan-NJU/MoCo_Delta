@@ -135,7 +135,7 @@ class TorchMutator(Mutator):
             return layer_dict, "dont mutate this one"
         if not database.is_abstract_api_name_valid(abstract_layer_name):
             return self.child_model_mutate(layer_dict)
-        if random.choice([1, 2, 3]) != 1:
+        if random.choice([1, 2, 3]) == 1:
             ld, _ = self.api_name_mutate(layer_dict)
         else:
             ld = layer_dict
