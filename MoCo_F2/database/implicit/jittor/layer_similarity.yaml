@@ -2293,7 +2293,7 @@ jittor.nn.LSTMCell:
   jittor.nn.PixelShuffle: 0.3415
   jittor.nn.Pool: 0.1348
   jittor.nn.Pool3d: 0.1265
-  jittor.nn.RNNBase: 0.2246
+  jittor.nn.RNNBase: 0.5000
   jittor.nn.RNNCell: 0.6754
   jittor.nn.ReLU: 0.0771
   jittor.nn.ReLU6: 0.0771

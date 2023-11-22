@@ -5,7 +5,7 @@ import random
 import numpy as np
 import time
 
-import torch.cuda
+
 import yaml
 import os
 from abc import ABC, abstractmethod
@@ -157,6 +157,7 @@ class TorchPerformer(Performer):
                 end_time = time.time()
             except Exception:
                 end_time = start_time - 1.0
+        import torch.cuda
         torch.cuda.empty_cache()
         return end_time - start_time
 
@@ -243,16 +244,23 @@ class JittorPerformer(Performer):
     def __init__(self):
         super().__init__()
         import jittor
+        jittor.flags.use_cuda = 1
+        from JittorTrainer import jittor_trainer
+        self.trainer = jittor_trainer
         # import Trainers.TorchTrainer as Trainer
         self.LeNet_test_tensor = jittor.randn(3, 1, 28, 28)
         self.s244_test_tensor = jittor.randn(3, 3, 244, 244)
         self.s224_test_tensor = jittor.randn(3, 3, 224, 224)
         self.s299_test_tensor = jittor.randn(3, 3, 299, 299)
+        self.pointnet_test_tensor = jittor.randn(3, 3, 5)
+        self.lstm_test_tensor = jittor.randn(5, 1)
 
         self.LeNet_test_code = "    x = jittor.randn(3, 1, 28, 28)\n    y = model(x)\n    return model\n"
         self.s244_test_code = "    x = jittor.randn(3, 3, 244, 244)\n    y = model(x)\n    return model\n"
         self.s224_test_code = "    x = jittor.randn(3, 3, 224, 224)\n    y = model(x)\n    return model\n"
         self.s299_test_code = "    x = jittor.randn(3, 3, 299, 299)\n    y = model(x)\n    return model\n"
+        self.pointnet_test_code = "    x = jittor.randn(3, 3, 5)\n    y = model(x)\n    return model\n"
+        self.lstm_test_code = "    x = jittor.randn(5, 1)\n    y = model(x)\n    return model\n"
         return
 
     def get_library_name(self) -> str:
@@ -268,6 +276,10 @@ class JittorPerformer(Performer):
             return self.s224_test_code
         elif model_name == "squeezenet":
             return self.s244_test_code
+        elif model_name == "pointnet":
+            return self.pointnet_test_code
+        elif model_name == "lstm":
+            return self.lstm_test_code
         else:
             return None
 
@@ -281,6 +293,10 @@ class JittorPerformer(Performer):
             return self.s224_test_tensor
         elif model_name == "squeezenet":
             return self.s244_test_tensor
+        elif model_name == "pointnet":
+            return self.pointnet_test_tensor
+        elif model_name == "lstm":
+            return self.lstm_test_tensor
         else:
             return self.s224_test_tensor
 
@@ -306,7 +322,17 @@ class JittorPerformer(Performer):
         return model
 
     def train(self, model) -> float:
-        return 1.0
+        # True Train
+        if isinstance(model, str):
+            return -1.0
+        else:
+            start_time = time.time()
+            try:
+                self.trainer.train(model, str(model).split("(", 1)[0])
+                end_time = time.time()
+            except Exception:
+                end_time = start_time - 1.0
+        return end_time - start_time
 
     def run(self, model) -> (float, list[int], str):
         if isinstance(model, str):
