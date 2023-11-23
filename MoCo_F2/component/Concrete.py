@@ -417,6 +417,10 @@ class TensorFlowPerformer(Performer):
 
     def __init__(self):
         super().__init__()
+        import TFTrainer
+        self.mnist = TFTrainer.get_mnist()
+        self.cifar10 = TFTrainer.get_cifar10()
+        self.imagenet = TFTrainer.get_imagenet()
         return
 
     def get_library_name(self) -> str:
@@ -429,7 +433,14 @@ class TensorFlowPerformer(Performer):
         model_name_list = list(abstract_model.keys())
         main_model_name = model_name_list[0]
         for model in abstract_model:
-            body += self.__dict_to_model_class(abstract_model[model], model, model_name_list)
+            model_body = self.__dict_to_model_class(abstract_model[model], model, model_name_list)
+            if model in ["alexnet", "vgg16", "vgg19", "googlenet", "squeezenet", "mobilenet", "resnet18", "lstm", "pointnet"]:
+                model_body = model_body.replace('    output_tensor = x',
+                                                "    output_tensor = tf.keras.layers.Flatten()(tf.keras.layers.Dense(units=1000, activation='softmax')(x))")
+            elif model in ["LeNet"]:
+                model_body = model_body.replace('    output_tensor = x',
+                                                "    output_tensor = tf.keras.layers.Flatten()(tf.keras.layers.Dense(units=10, activation='softmax')(x))")
+            body += model_body
 
         go = f'def go():\n' \
              f'    model = {main_model_name}(input_shape={self.__get_shape().__str__()})\n' \
@@ -454,7 +465,32 @@ class TensorFlowPerformer(Performer):
         return model
 
     def train(self, model) -> float:
-        return 1.0
+        import tensorflow as tf
+        model_name = self.model_name
+        if model_name == "LeNet":
+            x_train, y_train, x_test, y_test = self.mnist
+        elif model_name in ["alexnet", "vgg16", "vgg19"]:
+            x_train, y_train, x_test, y_test = self.cifar10
+        elif model_name in ["pointnet", "lstm"]:
+            return 1.0
+        else:
+            x_train, y_train, x_test, y_test = self.imagenet
+        start_time = time.time()
+        try:
+            model.compile(optimizer=tf.keras.optimizers.legacy.SGD(learning_rate=0.3),
+                          loss="sparse_categorical_crossentropy",
+                          metrics=["accuracy"])
+            model.fit(x_train, y_train, batch_size=2, epochs=1, verbose=0)
+            model.evaluate(x_test, y_test, verbose=0)
+            end_time = time.time()
+        except Exception:
+            train_errors = self.get_library_name() + "  " + self.model_name + "\n"
+            train_errors += traceback.format_exc() + "\n============\n"
+            with open("../report/train_errors.txt", "a", encoding="utf-8") as fre:
+                fre.write(train_errors)
+            end_time = start_time - 1.0
+        cost = end_time - start_time
+        return cost
 
     def run(self, model) -> (float, list[int], str):
         if isinstance(model, str):
@@ -655,7 +691,10 @@ class Concrete:
                 train_time_cost = -1
                 run_time_cost = -1
             else:
-                train_time_cost = performer.train(model)
+                if gen <= 3:
+                    train_time_cost = 1.0
+                else:
+                    train_time_cost = performer.train(model)
                 train_test = False if train_time_cost < 0 else True
             result_dict = {"run test": run_test, "train test": train_test,
                            "train time cost": train_time_cost, "run time cost": run_time_cost,
@@ -687,16 +726,17 @@ class Concrete:
 
 concrete = Concrete()
 if __name__ == "__main__":
-    net_list = ["alexnet", "LeNet", "mobilenet", "squeezenet", "vgg16",
-                "vgg19", "googlenet", "resnet18", "pointnet", "lstm"]
-
-
-    def test(net: str):
-        time.sleep(1.0)
-        concrete.new_experiment()
-        seed = database.get_seed(net)
-        concrete.set_model_name("test_" + net)
-        result = concrete.perform(seed, 0, 1)
-        if not result[0]["run test"]:
-            print(net + " has some questions")
-        return result[0]
+    performer = TensorFlowPerformer()
+    # net_list = ["alexnet", "LeNet", "mobilenet", "squeezenet", "vgg16",
+    #             "vgg19", "googlenet", "resnet18", "pointnet", "lstm"]
+    #
+    #
+    # def test(net: str):
+    #     time.sleep(1.0)
+    #     concrete.new_experiment()
+    #     seed = database.get_seed(net)
+    #     concrete.set_model_name("test_" + net)
+    #     result = concrete.perform(seed, 0, 1)
+    #     if not result[0]["run test"]:
+    #         print(net + " has some questions")
+    #     return result[0]

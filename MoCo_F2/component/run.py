@@ -47,7 +47,8 @@ def go(net_name):
 
 
 if __name__ == "__main__":
-    model_name = ["LeNet", "alexnet", "googlenet", "mobilenet", "squeezenet", "vgg16", "vgg19", "resnet18",
-                  "pointnet", "lstm"]
-    for model in model_name:
-        go(model)
+    # model_name = ["LeNet", "alexnet", "googlenet", "mobilenet", "squeezenet", "vgg16", "vgg19", "resnet18",
+    #               "pointnet", "lstm"]
+    # for model in model_name:
+    #     go(model)
+    go("alexnet")
