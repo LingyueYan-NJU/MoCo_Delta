@@ -51,4 +51,4 @@ if __name__ == "__main__":
     #               "pointnet", "lstm"]
     # for model in model_name:
     #     go(model)
-    go("alexnet")
+    go("pointnet")

@@ -332,6 +332,11 @@ class JittorPerformer(Performer):
                 end_time = time.time()
             except Exception:
                 end_time = start_time - 1.0
+                report = "=====================\n"
+                report += traceback.format_exc()
+                report += "=====================\n"
+                with open("../report/train_error.txt", "a", encoding="utf-8") as fr:
+                    fr.write(report)
         return end_time - start_time
 
     def run(self, model) -> (float, list[int], str):
@@ -694,7 +699,15 @@ class Concrete:
                 if gen <= 3:
                     train_time_cost = 1.0
                 else:
-                    train_time_cost = performer.train(model)
+                    try:
+                        train_time_cost = performer.train(model)
+                    except Exception:
+                        train_time_cost = -1
+                        report = "=====================\n" + "from: " + file_name + "\n"
+                        report += traceback.format_exc()
+                        report + "=====================\n"
+                        with open("../report/train_error.txt", "a", encoding="utf-8") as fr:
+                            fr.write(report)
                 train_test = False if train_time_cost < 0 else True
             result_dict = {"run test": run_test, "train test": train_test,
                            "train time cost": train_time_cost, "run time cost": run_time_cost,

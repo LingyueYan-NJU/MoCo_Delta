@@ -246,3 +246,4 @@ def goFuzzing(net: str = "LeNet") -> None:
 
 # if __name__ == "__main__":
 #     go("LeNet")
+goFuzzing("resnet18")

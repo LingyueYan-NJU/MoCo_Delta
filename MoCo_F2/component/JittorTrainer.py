@@ -219,7 +219,7 @@ class Trainer:
                 outputs = net(reshaped_inputs)  # 前向传播
                 outputs = reshape_tensor(outputs, (BATCH_SIZE, 10))
                 loss = criterion(outputs, labels)  # 计算损失
-                loss.backward()  # 反向传播
+                optimizer.backward(loss)  # 反向传播
                 optimizer.step()  # 更新参数
             return
         # pointnet

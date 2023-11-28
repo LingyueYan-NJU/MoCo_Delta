@@ -497,7 +497,7 @@ class TensorFlowMutator(Mutator):
             abstract_layer_name = layer_dict["layer"]
         else:
             abstract_layer_name = list(layer_dict.keys())[0]
-        if abstract_layer_name == "cat":
+        if abstract_layer_name == "cat" or abstract_layer_name == "add":
             return layer_dict, "dont mutate this one"
         if not database.is_abstract_api_name_valid(abstract_layer_name):
             return self.child_model_mutate(layer_dict)
@@ -574,7 +574,12 @@ class TensorFlowMutator(Mutator):
         child_model_layer_list = child_model_layer_list[1:]
         for layer in child_model_layer_list:
             if random.choice(list(range(10))) > 3:
-                new_layer_list.append(layer)
+                if layer["layer"] == "add" or layer["layer"] == "cat":
+                    new_layer = copy.deepcopy(layer)
+                else:
+                    new_layer = {"in": layer["in"], "out": layer["out"], "layer": layer["layer"],
+                                 "params": self.__convert_to_tf(layer["layer"], layer["params"])}
+                new_layer_list.append(new_layer)
                 continue
             new_layer, _ = self.mutate(layer)
             new_layer_list.append(new_layer)
