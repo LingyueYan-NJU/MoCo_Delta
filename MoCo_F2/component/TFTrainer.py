@@ -41,3 +41,11 @@ def get_imagenet():
     y_test = imagenet["y_test"][:50]
 
     return x_train, y_train, x_test, y_test
+
+def get_pointset():
+    x_train = np.random.rand(100, 5, 3)
+    y_train = np.random.rand(100,)
+    x_test = np.random.rand(50, 5, 3)
+    y_test = np.random.rand(50,)
+
+    return x_train, y_train, x_test, y_test

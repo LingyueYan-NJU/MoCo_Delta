@@ -282,7 +282,7 @@ class JittorPerformer(Performer):
             return self.lstm_test_code
         else:
             return None
-
+    
     def __get_test_tensor(self, model_name: str):
         if model_name == "LeNet":
             return self.LeNet_test_tensor
@@ -426,6 +426,7 @@ class TensorFlowPerformer(Performer):
         self.mnist = TFTrainer.get_mnist()
         self.cifar10 = TFTrainer.get_cifar10()
         self.imagenet = TFTrainer.get_imagenet()
+        self.pointset = TFTrainer.get_pointset()
         return
 
     def get_library_name(self) -> str:
@@ -439,10 +440,10 @@ class TensorFlowPerformer(Performer):
         main_model_name = model_name_list[0]
         for model in abstract_model:
             model_body = self.__dict_to_model_class(abstract_model[model], model, model_name_list)
-            if model in ["alexnet", "vgg16", "vgg19", "googlenet", "squeezenet", "mobilenet", "resnet18", "lstm", "pointnet"]:
+            if model in ["alexnet", "vgg16", "vgg19", "googlenet", "squeezenet", "mobilenet", "resnet18", "lstm"]:
                 model_body = model_body.replace('    output_tensor = x',
                                                 "    output_tensor = tf.keras.layers.Flatten()(tf.keras.layers.Dense(units=1000, activation='softmax')(x))")
-            elif model in ["LeNet"]:
+            elif model in ["LeNet", "pointnet"]:
                 model_body = model_body.replace('    output_tensor = x',
                                                 "    output_tensor = tf.keras.layers.Flatten()(tf.keras.layers.Dense(units=10, activation='softmax')(x))")
             body += model_body
@@ -476,7 +477,9 @@ class TensorFlowPerformer(Performer):
             x_train, y_train, x_test, y_test = self.mnist
         elif model_name in ["alexnet", "vgg16", "vgg19"]:
             x_train, y_train, x_test, y_test = self.cifar10
-        elif model_name in ["pointnet", "lstm"]:
+        elif model_name == "pointnet":
+            x_train, y_train, x_test, y_test = self.pointset
+        elif model_name in ["lstm"]:
             return 1.0
         else:
             x_train, y_train, x_test, y_test = self.imagenet
@@ -615,12 +618,16 @@ class TensorFlowPerformer(Performer):
     def __get_shape(self) -> tuple:
         if self.model_name == "LeNet":
             return 28, 28, 1
+        elif self.model_name == "pointnet":
+            return 5, 3
         else:
             return 224, 224, 3
 
     def __get_test_tensor(self):
         if self.model_name == "LeNet":
             return np.random.rand(3, 28, 28, 1)
+        elif self.model_name == "pointnet":
+            return np.random.rand(3, 5, 3)
         else:
             return np.random.rand(3, 224, 224, 3)
 
