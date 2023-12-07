@@ -440,10 +440,10 @@ class TensorFlowPerformer(Performer):
         main_model_name = model_name_list[0]
         for model in abstract_model:
             model_body = self.__dict_to_model_class(abstract_model[model], model, model_name_list)
-            if model in ["alexnet", "vgg16", "vgg19", "googlenet", "squeezenet", "mobilenet", "resnet18", "lstm"]:
+            if model in ["alexnet", "vgg16", "vgg19", "googlenet", "squeezenet", "mobilenet", "resnet18"]:
                 model_body = model_body.replace('    output_tensor = x',
                                                 "    output_tensor = tf.keras.layers.Flatten()(tf.keras.layers.Dense(units=1000, activation='softmax')(x))")
-            elif model in ["LeNet", "pointnet"]:
+            elif model in ["LeNet", "pointnet", "lstm"]:
                 model_body = model_body.replace('    output_tensor = x',
                                                 "    output_tensor = tf.keras.layers.Flatten()(tf.keras.layers.Dense(units=10, activation='softmax')(x))")
             body += model_body
@@ -620,6 +620,8 @@ class TensorFlowPerformer(Performer):
             return 28, 28, 1
         elif self.model_name == "pointnet":
             return 5, 3
+        elif self.model_name == "lstm":
+            return (1, )
         else:
             return 224, 224, 3
 
@@ -628,6 +630,8 @@ class TensorFlowPerformer(Performer):
             return np.random.rand(3, 28, 28, 1)
         elif self.model_name == "pointnet":
             return np.random.rand(3, 5, 3)
+        elif self.model_name == "lstm":
+            return np.random.rand(5, 1)
         else:
             return np.random.rand(3, 224, 224, 3)
 

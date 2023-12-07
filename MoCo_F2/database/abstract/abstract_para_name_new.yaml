@@ -670,6 +670,10 @@ elu:
     tensorflow: None
     torch: inplace
 embedding:
+  input_length:
+    jittor: None
+    tensorflow: input_length
+    torch: None
   dtype:
     jittor: dtype
     tensorflow: None

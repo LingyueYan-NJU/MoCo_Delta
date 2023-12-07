@@ -1,0 +1,46 @@
+lstm:
+  - layer: embedding
+    params:
+      num_embeddings: 100
+      embedding_dim: 10
+      input_length: 8
+    in: x
+    out: x
+  - layer: lstm
+    params:
+      hidden_size: 16
+      bias: True
+    in: x
+    out: x
+  - layer: lstm
+    params:
+      hidden_size: 16
+      bias: True
+    in: x
+    out: x
+  - layer: lstm
+    params:
+      hidden_size: 16
+      bias: True
+    in: x
+    out: x
+  - layer: lstm
+    params:
+      hidden_size: 16
+      bias: True
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: dropout
+    params:
+      p: 0.5
+    in: x
+    out: x
+  - layer: linear
+    params:
+      out_features: 1
+    in: x
+    out: x
