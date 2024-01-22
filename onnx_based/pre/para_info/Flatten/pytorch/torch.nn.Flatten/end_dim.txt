@@ -1,0 +1,1 @@
+type: int. last dim to flatten (default = -1). 

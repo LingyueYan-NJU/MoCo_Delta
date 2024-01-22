@@ -1,0 +1,1 @@
+If True, synchronizes the global batch statistics (mean and variance) for the layer across all devices at each training step in a distributed training strategy. If False, each replica uses its own local batch statistics. Only relevant when used inside a tf.distribute strategy.

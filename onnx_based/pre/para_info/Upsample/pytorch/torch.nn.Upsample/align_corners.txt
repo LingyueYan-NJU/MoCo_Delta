@@ -1,0 +1,1 @@
+type: bool. if True, the corner pixels of the input and output tensors are aligned, and thus preserving the values at those pixels. This only has effect when mode is 'linear', 'bilinear', 'bicubic', or 'trilinear'. Default: False

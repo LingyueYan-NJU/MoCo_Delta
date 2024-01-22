@@ -1,0 +1,1 @@
+type: T. Optional 1D bias to be added to the convolution, has size of M.

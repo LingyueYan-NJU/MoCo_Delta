@@ -1,0 +1,1 @@
+type: bool. If True, gradient w.r.t. input will be a sparse tensor.

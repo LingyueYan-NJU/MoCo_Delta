@@ -1,0 +1,1 @@
+type: Optional[int]. if specified, it will be used as divisor, otherwise kernel_size will be used 

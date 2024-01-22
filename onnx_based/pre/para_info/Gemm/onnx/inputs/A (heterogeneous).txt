@@ -1,0 +1,1 @@
+type: T. Input tensor A. The shape of A should be (M, K) if transA is 0, or(K, M) if transA is non-zero.

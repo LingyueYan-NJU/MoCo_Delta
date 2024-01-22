@@ -1,0 +1,1 @@
+type: FLOAT. Coefficient of ELU.

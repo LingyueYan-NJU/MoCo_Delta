@@ -1,0 +1,1 @@
+type: int. the β\betaβ value for the Softplus formulation. Default: 1

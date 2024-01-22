@@ -1,0 +1,1 @@
+type: bool. a boolean value that when set to True, this module has learnable per-element affine parameters initialized to ones (for weights) and zeros (for biases). Default: True.

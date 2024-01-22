@@ -1,0 +1,1 @@
+type: float. multiplicative factor. Default: 0.0001

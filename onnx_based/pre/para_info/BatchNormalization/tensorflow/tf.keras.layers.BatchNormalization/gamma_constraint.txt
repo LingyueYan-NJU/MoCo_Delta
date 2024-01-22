@@ -1,0 +1,1 @@
+Optional constraint for the gamma weight.

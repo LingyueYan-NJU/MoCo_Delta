@@ -1,0 +1,1 @@
+type: int or tuple. Spacing between kernel elements. Default: 1 

@@ -1,0 +1,1 @@
+Integer, tuple of 2 integers, or None. Strides values. If None, it will default to pool_size.

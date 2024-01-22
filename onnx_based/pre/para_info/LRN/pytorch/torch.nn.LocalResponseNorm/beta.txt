@@ -1,0 +1,1 @@
+type: float. exponent. Default: 0.75

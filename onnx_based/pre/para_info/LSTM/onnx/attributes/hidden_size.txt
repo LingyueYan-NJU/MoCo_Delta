@@ -1,0 +1,1 @@
+type: INT. Number of neurons in the hidden layer

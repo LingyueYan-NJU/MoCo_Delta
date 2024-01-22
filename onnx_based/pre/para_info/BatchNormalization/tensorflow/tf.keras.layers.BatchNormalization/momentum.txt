@@ -1,0 +1,1 @@
+Momentum for the moving average.

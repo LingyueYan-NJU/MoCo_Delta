@@ -1,0 +1,1 @@
+type: int or tuple of ints. the dimension or dimensions to reduce. If None, all dimensions are reduced.

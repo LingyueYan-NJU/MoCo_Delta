@@ -1,0 +1,1 @@
+type: SPARSE_TENSOR. The value for the elements of the output tensor in sparse format.

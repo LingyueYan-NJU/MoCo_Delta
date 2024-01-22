@@ -1,0 +1,2 @@
+type: FLOAT. The value for the sole element for the scalar, float32, output
+tensor.

@@ -1,0 +1,2 @@
+tf.keras.layers.RNN
+cell: A RNN cell instance or a list of RNN cell instances. A RNN cell is a class that has:

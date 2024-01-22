@@ -1,0 +1,1 @@
+type: T. The weight tensor for the gates. Concatenation of W[iofc] andWB[iofc] (if bidirectional) along dimension 0. The tensor hasshape [num_directions, 4*hidden_size, input_size].

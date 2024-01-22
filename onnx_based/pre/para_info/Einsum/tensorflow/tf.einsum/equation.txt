@@ -1,0 +1,1 @@
+a str describing the contraction, in the same format as numpy.einsum.

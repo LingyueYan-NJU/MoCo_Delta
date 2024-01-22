@@ -1,0 +1,1 @@
+A list of Tensor objects or a single Tensor.

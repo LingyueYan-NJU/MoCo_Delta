@@ -1,0 +1,5 @@
+tf.keras.activations.relu
+x: Input tensor or variable.
+alpha: A float that governs the slope for values lower than the threshold.
+max_value: A float that sets the saturation threshold (the largest value the function will return).
+threshold: A float giving the threshold value of the activation function below which values will be damped or set to zero.

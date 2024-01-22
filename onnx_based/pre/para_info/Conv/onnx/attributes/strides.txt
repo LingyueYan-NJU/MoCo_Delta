@@ -1,0 +1,2 @@
+type: INTS. Stride along each spatial axis. If not present, the stride defaults
+is 1 along each spatial axis.

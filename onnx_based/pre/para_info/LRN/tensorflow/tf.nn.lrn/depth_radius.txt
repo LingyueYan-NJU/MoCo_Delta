@@ -1,0 +1,1 @@
+An optional int. Defaults to 5. 0-D. Half-width of the 1-D normalization window.

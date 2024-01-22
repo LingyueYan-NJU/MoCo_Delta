@@ -1,0 +1,3 @@
+type: INT. The storage order of the tensor. 0 is row major, and 1 is column
+major. This attribute is used only to convert an n-tuple index value
+into a single integer value for producing the second output.

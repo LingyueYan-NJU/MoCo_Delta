@@ -1,0 +1,1 @@
+type: int. the axis along which to index

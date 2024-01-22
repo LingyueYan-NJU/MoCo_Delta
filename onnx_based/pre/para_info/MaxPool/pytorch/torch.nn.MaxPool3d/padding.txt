@@ -1,0 +1,1 @@
+type: Union[int, Tuple[int, int, int]]. Implicit negative infinity padding to be added on all three sides

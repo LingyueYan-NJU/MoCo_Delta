@@ -1,0 +1,1 @@
+type: int. number of aaa to learn. Although it takes an int as input, there is only two values are legitimate: 1, or the number of channels at input. Default: 1

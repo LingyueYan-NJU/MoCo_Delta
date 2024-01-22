@@ -1,0 +1,1 @@
+type: FLOAT. Scalar multiplier for the product of input tensors A * B.

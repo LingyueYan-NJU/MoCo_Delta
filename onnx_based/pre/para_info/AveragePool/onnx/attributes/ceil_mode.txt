@@ -1,0 +1,1 @@
+type: INT. Whether to use ceil or floor (default) to compute the output shape.

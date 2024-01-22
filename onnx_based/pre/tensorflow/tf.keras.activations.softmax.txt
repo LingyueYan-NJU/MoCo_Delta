@@ -1,0 +1,3 @@
+tf.keras.activations.softmax
+x: Input tensor.
+axis: Integer, axis along which the softmax normalization is applied.

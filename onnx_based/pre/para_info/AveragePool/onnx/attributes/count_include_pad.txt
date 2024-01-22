@@ -1,0 +1,2 @@
+type: INT. Whether include pad pixels when calculating values for the edges.
+Default is 0, doesn’t count include pad.

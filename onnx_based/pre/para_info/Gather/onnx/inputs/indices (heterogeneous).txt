@@ -1,0 +1,1 @@
+type: Tind. Tensor of int32/int64 indices, of any rank q. All index values areexpected to be within bounds [-s, s-1] along axis of size s. It isan error if any of the index values are out of bounds.

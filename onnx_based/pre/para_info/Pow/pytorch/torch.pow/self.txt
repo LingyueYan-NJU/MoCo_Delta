@@ -1,0 +1,1 @@
+type: float. the scalar base value for the power operation

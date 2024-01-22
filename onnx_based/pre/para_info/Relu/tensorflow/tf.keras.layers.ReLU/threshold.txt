@@ -1,0 +1,1 @@
+Float >= 0. Threshold value for thresholded activation. Defaults to 0..

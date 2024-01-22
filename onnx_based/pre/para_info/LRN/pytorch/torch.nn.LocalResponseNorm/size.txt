@@ -1,0 +1,1 @@
+type: int. amount of neighbouring channels used for normalization

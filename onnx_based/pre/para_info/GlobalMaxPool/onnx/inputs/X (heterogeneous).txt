@@ -1,0 +1,1 @@
+type: T. Input data tensor from the previous operator; dimensions for imagecase are (N x C x H x W), where N is the batch size, C is the numberof channels, and H and W are the height and the width of the data.For non image case, the dimensions are in the form of (N x C x D1 xD2 … Dn), where N is the batch size.

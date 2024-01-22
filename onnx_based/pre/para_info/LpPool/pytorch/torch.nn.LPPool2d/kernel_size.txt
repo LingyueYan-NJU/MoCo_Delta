@@ -1,0 +1,1 @@
+type: Union[int, Tuple[int, int]]. the size of the window

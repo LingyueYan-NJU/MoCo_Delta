@@ -1,0 +1,1 @@
+type: bool. If True, will use ceil instead of floor to compute the output shape. This ensures that every element in the input tensor is covered by a sliding window. 

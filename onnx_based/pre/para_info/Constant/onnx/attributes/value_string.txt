@@ -1,0 +1,2 @@
+type: STRING. The value for the sole element for the scalar, UTF-8 string, output
+tensor.

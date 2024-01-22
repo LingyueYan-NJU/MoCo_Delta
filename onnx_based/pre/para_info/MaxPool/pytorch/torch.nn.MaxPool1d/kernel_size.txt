@@ -1,0 +1,1 @@
+type: Union[int, Tuple[int]]. The size of the sliding window, must be > 0.

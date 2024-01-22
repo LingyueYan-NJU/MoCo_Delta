@@ -1,0 +1,1 @@
+type: bool. when True, will include the zero-padding in the averaging calculation

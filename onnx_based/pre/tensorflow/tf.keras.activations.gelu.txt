@@ -1,0 +1,3 @@
+tf.keras.activations.gelu
+x: Input tensor.
+approximate: A bool, whether to enable approximation.

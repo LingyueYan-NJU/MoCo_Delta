@@ -1,0 +1,1 @@
+type: int or Tuple[int] or Tuple[int, int] or Tuple[int, int, int]. output spatial sizes

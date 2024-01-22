@@ -1,0 +1,4 @@
+tf.nn.softmax
+logits: A non-empty Tensor. Must be one of the following types: half, float32, float64.
+axis: The dimension softmax would be performed on. The default is -1 which indicates the last dimension.
+name: A name for the operation (optional).

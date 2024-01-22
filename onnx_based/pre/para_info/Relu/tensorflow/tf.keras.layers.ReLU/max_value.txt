@@ -1,0 +1,1 @@
+Float >= 0. Maximum activation value. None means unlimited. Defaults to None.

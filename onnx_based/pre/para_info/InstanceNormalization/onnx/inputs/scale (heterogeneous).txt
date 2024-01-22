@@ -1,0 +1,1 @@
+type: T. The input 1-dimensional scale tensor of size C.

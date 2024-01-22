@@ -1,0 +1,1 @@
+type: int or tuple. Stride of the convolution. Default: 1

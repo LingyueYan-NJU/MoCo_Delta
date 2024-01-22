@@ -1,0 +1,2 @@
+type: INT. Type of Mean and InvStdDev. This also specifies stage one’s
+computation precision.

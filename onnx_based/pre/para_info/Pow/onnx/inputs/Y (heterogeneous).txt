@@ -1,0 +1,1 @@
+type: T1. Second operand, power of the exponent.

@@ -1,0 +1,1 @@
+A Tensor. Must have the same type as x.

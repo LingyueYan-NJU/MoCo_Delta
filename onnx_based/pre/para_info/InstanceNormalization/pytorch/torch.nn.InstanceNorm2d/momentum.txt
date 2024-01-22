@@ -1,0 +1,1 @@
+type: float. the value used for the running_mean and running_var computation. Default: 0.1

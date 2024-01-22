@@ -1,0 +1,1 @@
+type: INT. The value for the sole element for the scalar, int64, output tensor.

@@ -1,0 +1,1 @@
+An optional float. Defaults to 1. A scale factor, usually positive.

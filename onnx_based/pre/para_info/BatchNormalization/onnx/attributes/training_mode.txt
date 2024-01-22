@@ -1,0 +1,2 @@
+type: INT. If set to true, it indicates BatchNormalization is being used for
+training, and outputs 1, 2, 3, and 4 would be populated.

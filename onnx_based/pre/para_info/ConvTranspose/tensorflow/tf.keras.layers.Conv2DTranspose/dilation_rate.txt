@@ -1,0 +1,1 @@
+an integer, specifying the dilation rate for all spatial dimensions for dilated convolution. Specifying different dilation rates for different dimensions is not supported. Currently, specifying any dilation_rate value != 1 is incompatible with specifying any stride value != 1.

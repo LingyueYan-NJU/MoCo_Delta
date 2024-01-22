@@ -1,0 +1,1 @@
+type: T. A tensor of rank >= axis.

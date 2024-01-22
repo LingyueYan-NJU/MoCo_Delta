@@ -1,0 +1,1 @@
+type: bool. If True, will return the argmax along with the max values. Useful for torch.nn.MaxUnpool1d later

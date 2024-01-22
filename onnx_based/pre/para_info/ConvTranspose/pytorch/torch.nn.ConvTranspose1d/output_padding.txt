@@ -1,0 +1,1 @@
+type: int or tuple. Additional size added to one side of the output shape. Default: 0

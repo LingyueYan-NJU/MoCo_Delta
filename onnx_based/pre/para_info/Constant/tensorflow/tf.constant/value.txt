@@ -1,0 +1,1 @@
+A constant value (or list) of output type dtype.

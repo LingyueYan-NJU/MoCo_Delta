@@ -1,0 +1,1 @@
+Int, how many dropout mask will be generated. It is useful for cell that has internal weights fused together.

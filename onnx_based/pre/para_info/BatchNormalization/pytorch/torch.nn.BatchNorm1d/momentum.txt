@@ -1,0 +1,1 @@
+type: float. the value used for the running_mean and running_var computation. Can be set to None for cumulative moving average (i.e. simple average). Default: 0.1

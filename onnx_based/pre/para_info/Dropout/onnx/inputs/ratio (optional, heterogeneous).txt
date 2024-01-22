@@ -1,0 +1,1 @@
+type: T1. The ratio of random dropout, with value in [0, 1). If this input wasnot set, or if it was set to 0, the output would be a simple copy ofthe input. If it’s non-zero, output will be a random dropout of thescaled input, which is typically the case during training. It is anoptional value, if not specified it will default to 0.5.

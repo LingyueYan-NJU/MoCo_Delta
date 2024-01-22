@@ -1,0 +1,1 @@
+type: int. CCC from an expected input of size (N,C,H,W)(N, C, H, W)(N,C,H,W) or (C,H,W)(C, H, W)(C,H,W)

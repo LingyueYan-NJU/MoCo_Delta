@@ -1,0 +1,1 @@
+type: int. values above this revert to a linear function. Default: 20 

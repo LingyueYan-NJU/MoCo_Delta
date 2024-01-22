@@ -1,0 +1,3 @@
+tf.nn.softsign
+features: A Tensor. Must be one of the following types: half, bfloat16, float32, float64.
+name: A name for the operation (optional).

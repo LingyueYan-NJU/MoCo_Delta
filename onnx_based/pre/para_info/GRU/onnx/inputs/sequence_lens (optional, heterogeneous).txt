@@ -1,0 +1,1 @@
+type: T1. Optional tensor specifying lengths of the sequences in a batch. Ifnot specified - assumed all sequences in the batch to have lengthseq_length. It has shape [batch_size].

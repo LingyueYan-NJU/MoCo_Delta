@@ -1,0 +1,1 @@
+type: T. The weight tensor for peepholes. Concatenation of P[iof] andPB[iof] (if bidirectional) along dimension 0. It has shape[num_directions, 3*hidde_size]. Optional: If not specified -assumed to be 0.

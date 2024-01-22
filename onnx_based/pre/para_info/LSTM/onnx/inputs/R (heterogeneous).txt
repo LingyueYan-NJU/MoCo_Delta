@@ -1,0 +1,1 @@
+type: T. The recurrence weight tensor. Concatenation of R[iofc] andRB[iofc] (if bidirectional) along dimension 0. This tensor hasshape [num_directions, 4*hidden_size, hidden_size].

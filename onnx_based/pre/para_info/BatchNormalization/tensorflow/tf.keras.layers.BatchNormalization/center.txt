@@ -1,0 +1,1 @@
+If True, add offset of beta to normalized tensor. If False, beta is ignored.

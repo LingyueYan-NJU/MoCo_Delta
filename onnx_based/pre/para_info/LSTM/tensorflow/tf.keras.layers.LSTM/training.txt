@@ -1,0 +1,1 @@
+Boolean tensor, whether its in training mode, dropout will be ignored in non-training mode.

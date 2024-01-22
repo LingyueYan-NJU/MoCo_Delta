@@ -1,0 +1,1 @@
+type: int or tuple. Size of the max pooling window.

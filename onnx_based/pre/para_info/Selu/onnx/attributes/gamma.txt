@@ -1,0 +1,2 @@
+type: FLOAT. Coefficient of SELU default to 1.05070102214813232421875 (i.e.,
+float32 approximation of 1.0507009873554804934193349852946).

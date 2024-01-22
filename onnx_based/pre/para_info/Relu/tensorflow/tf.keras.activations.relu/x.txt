@@ -1,0 +1,1 @@
+Input tensor or variable.

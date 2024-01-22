@@ -1,0 +1,3 @@
+type: STRINGS. One (or two if bidirectional) activation function for input gate.
+The activation function must be one of the activation functions
+specified above. Optional: Default Tanh if not specified.

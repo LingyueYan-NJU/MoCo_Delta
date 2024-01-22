@@ -1,0 +1,1 @@
+type: int. number of features or channels CCC of the input

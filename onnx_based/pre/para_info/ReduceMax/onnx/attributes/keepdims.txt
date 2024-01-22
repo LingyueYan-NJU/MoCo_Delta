@@ -1,0 +1,2 @@
+type: INT. Keep the reduced dimension or not, default 1 means keep reduced
+dimension.

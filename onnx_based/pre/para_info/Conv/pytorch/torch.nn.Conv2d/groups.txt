@@ -1,0 +1,1 @@
+type: int. Number of blocked connections from input channels to output channels. Default: 1

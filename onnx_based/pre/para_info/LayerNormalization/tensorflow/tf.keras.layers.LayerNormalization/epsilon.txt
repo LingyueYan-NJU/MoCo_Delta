@@ -1,0 +1,1 @@
+Small float added to variance to avoid dividing by zero. Defaults to 1e-3

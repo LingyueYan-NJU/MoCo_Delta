@@ -1,0 +1,4 @@
+tf.shape
+input: A Tensor or SparseTensor.
+out_type: (Optional) The specified output type of the operation (int32 or int64). Defaults to tf.int32. (Note: there is an experimental flag, tf_shape_default_int64 that changes the default to tf.int64. This is an unsupported, experimental setting that causes known breakages.)
+name: A name for the operation (optional).

@@ -1,0 +1,1 @@
+Integer, or list of Integers, axis along which the softmax normalization is applied.

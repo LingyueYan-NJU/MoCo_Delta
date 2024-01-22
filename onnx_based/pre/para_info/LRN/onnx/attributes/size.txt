@@ -1,0 +1,1 @@
+type: INT. The number of channels to sum over

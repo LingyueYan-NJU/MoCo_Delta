@@ -1,0 +1,1 @@
+Integer, or None. Factor by which to downscale. E.g. 2 will halve the input. If None, it will default to pool_size.

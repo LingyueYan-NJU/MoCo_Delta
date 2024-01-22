@@ -1,0 +1,2 @@
+type: INT. Whether the operator should behave like fmod (default=0 meaning it
+will do integer mods); Set this to 1 to force fmod treatment

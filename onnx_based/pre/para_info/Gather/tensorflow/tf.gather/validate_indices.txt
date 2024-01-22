@@ -1,0 +1,1 @@
+Deprecated, does nothing. Indices are always validated on CPU, never validated on GPU.

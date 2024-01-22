@@ -1,0 +1,3 @@
+type: INT. (Optional) Ending axis for slicing the shape. Negative value means
+counting dimensions from the back. If omitted, sizes of all axes
+upto (including) the last one will be included.

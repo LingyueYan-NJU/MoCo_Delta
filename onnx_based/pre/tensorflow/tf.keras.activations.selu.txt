@@ -1,0 +1,2 @@
+tf.keras.activations.selu
+x: A tensor or variable to compute the activation function for.

@@ -1,0 +1,1 @@
+type: bool. when True, will use ceil instead of floor to compute the output shape

@@ -1,0 +1,1 @@
+Target shape. Tuple of integers, does not include the samples dimension (batch size).

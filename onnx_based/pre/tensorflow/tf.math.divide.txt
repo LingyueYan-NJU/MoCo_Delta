@@ -1,0 +1,4 @@
+tf.math.divide
+x: A Tensor
+y: A Tensor
+name: A name for the operation (optional).

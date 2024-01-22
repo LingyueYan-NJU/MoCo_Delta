@@ -1,0 +1,2 @@
+type: STRING. Gelu approximation algorithm: "tanh", "none"(default)."none":
+do not use approximation."tanh": use tanh approximation.

@@ -1,0 +1,1 @@
+type: int or tuple. dilation * (kernel_size - 1) - padding zero-padding will be added to both sides of each dimension in the input. Default: 0

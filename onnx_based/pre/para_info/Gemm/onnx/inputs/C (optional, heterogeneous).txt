@@ -1,0 +1,1 @@
+type: T. Optional input tensor C. If not specified, the computation is doneas if C is a scalar 0. The shape of C should be unidirectionalbroadcastable to (M, N).

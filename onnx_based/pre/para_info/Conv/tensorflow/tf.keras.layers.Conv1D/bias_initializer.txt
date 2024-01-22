@@ -1,0 +1,1 @@
+Initializer for the bias vector (see keras.initializers). Defaults to 'zeros'.

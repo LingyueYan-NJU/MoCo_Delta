@@ -1,0 +1,1 @@
+A float giving the threshold value of the activation function below which values will be damped or set to zero.

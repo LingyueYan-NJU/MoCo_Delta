@@ -1,0 +1,1 @@
+A float that sets the saturation threshold (the largest value the function will return).

@@ -1,0 +1,1 @@
+An optional float. Defaults to 1. An offset (usually positive to avoid dividing by 0).

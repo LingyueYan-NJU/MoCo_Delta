@@ -1,0 +1,3 @@
+type: INT. The first normalization dimension. If rank(X) is r, axis’ allowed
+range is [-r, r). Negative value means counting dimensions from the
+back.

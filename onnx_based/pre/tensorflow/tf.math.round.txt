@@ -1,0 +1,3 @@
+tf.math.round
+x: A Tensor of type float16, float32, float64, int32, or int64.
+name: A name for the operation (optional).

@@ -1,0 +1,5 @@
+tf.keras.layers.AveragePooling3D
+pool_size: tuple of 3 integers, factors by which to downscale (dim1, dim2, dim3). (2, 2, 2) will halve the size of the 3D input in each dimension.
+strides: tuple of 3 integers, or None. Strides values.
+padding: One of "valid" or "same" (case-insensitive). "valid" means no padding. "same" results in padding evenly to the left/right or up/down of the input such that output has the same height/width dimension as the input.
+data_format: A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch, spatial_dim1, spatial_dim2, spatial_dim3, channels) while channels_first corresponds to inputs with shape (batch, channels, spatial_dim1, spatial_dim2, spatial_dim3). When unspecified, uses image_data_format value found in your Keras config file at ~/.keras/keras.json (if exists) else 'channels_last'. Defaults to 'channels_last'.

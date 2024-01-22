@@ -1,0 +1,1 @@
+type: T. Input data tensor from previous layer; has size (N x C x H x W),where N is the batch size, C is the number of channels, and H and Ware the height and width. Note that this is for the 2D image.Otherwise the size is (N x C x D1 x D2 … x Dn)

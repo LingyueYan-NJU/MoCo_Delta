@@ -1,0 +1,1 @@
+type: Union[int, Tuple[int]]. The stride of the sliding window, must be > 0. Default value is kernel_size.

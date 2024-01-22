@@ -1,0 +1,1 @@
+type: T. The input 1-dimensional bias tensor of size C.

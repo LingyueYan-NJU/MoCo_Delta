@@ -1,0 +1,4 @@
+tf.gather
+params: The Tensor from which to gather values. Must be at least rank axis + 1.
+indices: The index Tensor. Must be one of the following types: int32, int64. The values must be in range [0, params.shape[axis]).
+validate_indices: Deprecated, does nothing. Indices are always validated on CPU, never validated on GPU.

@@ -1,0 +1,1 @@
+type: FLOATS. The values for the elements for the 1D, float32, output tensor.

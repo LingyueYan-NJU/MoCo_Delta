@@ -1,0 +1,1 @@
+type: T2. The shape of the output can be explicitly set which will cause padsvalues to be auto generated. If ‘output_shape’ is specified, ‘pads’values are ignored.

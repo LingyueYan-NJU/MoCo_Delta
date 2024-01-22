@@ -1,0 +1,1 @@
+Regularizer function applied to the kernel weights matrix (see keras.regularizers).

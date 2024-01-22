@@ -1,0 +1,1 @@
+Scale for the negative factor.

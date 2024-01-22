@@ -1,0 +1,3 @@
+tf.keras.activations.elu
+x: Input tensor.
+alpha: A scalar, slope of negative section. alpha controls the value to which an ELU saturates for negative net inputs.

@@ -1,0 +1,1 @@
+type: bool. a boolean value that when set to True, this module has learnable affine parameters. Default: True

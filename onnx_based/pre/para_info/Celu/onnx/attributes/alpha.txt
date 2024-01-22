@@ -1,0 +1,2 @@
+type: FLOAT. The Alpha value in Celu formula which control the shape of the unit.
+The default value is 1.0.

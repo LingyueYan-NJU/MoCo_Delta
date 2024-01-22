@@ -1,0 +1,1 @@
+type: float or Tuple[float] or Tuple[float, float] or Tuple[float, float, float]. multiplier for spatial size. Has to match input size if it is a tuple.

@@ -1,0 +1,4 @@
+tf.concat
+values: A list of Tensor objects or a single Tensor.
+axis: 0-D int32 Tensor. Dimension along which to concatenate. Must be in the range [-rank(values), rank(values)). As in Python, indexing for axis is 0-based. Positive axis in the rage of [0, rank(values)) refers to axis-th dimension. And negative axis refers to axis + rank(values)-th dimension.
+name: A name for the operation (optional).

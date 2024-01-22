@@ -1,0 +1,1 @@
+Integer, or None. Specifies how much the pooling window moves for each pooling step. If None, it will default to pool_size.

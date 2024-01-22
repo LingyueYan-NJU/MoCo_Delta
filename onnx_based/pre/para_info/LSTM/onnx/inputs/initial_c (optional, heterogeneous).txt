@@ -1,0 +1,1 @@
+type: T. Optional initial value of the cell. If not specified - assumed to be0. It has shape [num_directions, batch_size, hidden_size].

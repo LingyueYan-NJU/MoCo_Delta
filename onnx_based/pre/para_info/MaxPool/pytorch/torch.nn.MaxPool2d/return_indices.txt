@@ -1,0 +1,1 @@
+type: bool. if True, will return the max indices along with the outputs. Useful for torch.nn.MaxUnpool2d later

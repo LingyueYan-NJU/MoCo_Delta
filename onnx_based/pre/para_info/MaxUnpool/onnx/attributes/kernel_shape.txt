@@ -1,0 +1,1 @@
+type: INTS. The size of the kernel along each axis.

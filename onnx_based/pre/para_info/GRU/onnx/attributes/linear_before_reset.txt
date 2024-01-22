@@ -1,0 +1,2 @@
+type: INT. When computing the output of the hidden gate, apply the linear
+transformation before multiplying by the output of the reset gate.

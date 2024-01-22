@@ -1,0 +1,2 @@
+tf.keras.layers.Flatten
+data_format: A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch, ..., channels) while channels_first corresponds to inputs with shape (batch, channels, ...). When unspecified, uses image_data_format value found in your Keras config file at ~/.keras/keras.json (if exists) else 'channels_last'. Defaults to 'channels_last'.

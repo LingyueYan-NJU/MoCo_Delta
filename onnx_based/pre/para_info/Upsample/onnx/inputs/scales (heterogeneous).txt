@@ -1,0 +1,1 @@
+type: tensor. The scale array along each dimension. It takes value greater than orequal to 1. The number of elements of ‘scales’ should be the same asthe rank of input ‘X’.

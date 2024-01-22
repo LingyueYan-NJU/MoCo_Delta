@@ -1,0 +1,1 @@
+Constraint function applied to the bias vector (see keras.constraints).

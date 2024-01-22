@@ -1,0 +1,1 @@
+Integer, the dimensionality of the output space (i.e. the number of output filters in the convolution).

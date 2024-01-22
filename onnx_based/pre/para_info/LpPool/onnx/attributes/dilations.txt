@@ -1,0 +1,2 @@
+type: INTS. dilation value along each spatial axis of the filter. If not
+present, the dilation defaults is 1 along each spatial axis.

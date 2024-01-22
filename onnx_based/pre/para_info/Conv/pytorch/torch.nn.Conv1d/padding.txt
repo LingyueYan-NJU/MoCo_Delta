@@ -1,0 +1,1 @@
+type: int, tuple or str. Padding added to both sides of the input. Default: 0

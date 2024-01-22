@@ -1,0 +1,1 @@
+type: T. The bias tensor for input gate. Concatenation of [Wbi, Rbi] and[WBbi, RBbi] (if bidirectional). The tensor has shape[num_directions, 2*hidden_size]. Optional: If not specified -assumed to be 0.

@@ -1,0 +1,2 @@
+type: INT. (Optional) Starting axis for slicing the shape. Default value is
+0.Negative value means counting dimensions from the back.

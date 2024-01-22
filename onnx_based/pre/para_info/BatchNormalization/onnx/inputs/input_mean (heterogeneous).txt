@@ -1,0 +1,1 @@
+type: T2. running (training) or estimated (testing) mean tensor of shape ©.

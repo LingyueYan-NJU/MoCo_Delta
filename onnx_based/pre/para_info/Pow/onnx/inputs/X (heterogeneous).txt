@@ -1,0 +1,1 @@
+type: T. First operand, base of the exponent.

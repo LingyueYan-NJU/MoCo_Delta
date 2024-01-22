@@ -1,0 +1,1 @@
+Integer, size of the max pooling window.

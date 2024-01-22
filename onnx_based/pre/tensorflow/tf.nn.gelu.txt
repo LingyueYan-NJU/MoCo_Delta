@@ -1,0 +1,4 @@
+tf.nn.gelu
+features: A float Tensor representing preactivation values.
+approximate: An optional bool. Defaults to False. Whether to enable approximation.
+name: A name for the operation (optional).

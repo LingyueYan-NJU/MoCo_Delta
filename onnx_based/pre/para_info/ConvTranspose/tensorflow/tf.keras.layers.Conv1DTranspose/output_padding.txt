@@ -1,0 +1,1 @@
+An integer specifying the amount of padding along the time dimension of the output tensor. The amount of output padding must be lower than the stride. If set to None (default), the output shape is inferred.

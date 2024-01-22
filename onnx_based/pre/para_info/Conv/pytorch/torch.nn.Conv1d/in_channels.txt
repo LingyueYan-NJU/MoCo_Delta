@@ -1,0 +1,1 @@
+type: int. Number of channels in the input image

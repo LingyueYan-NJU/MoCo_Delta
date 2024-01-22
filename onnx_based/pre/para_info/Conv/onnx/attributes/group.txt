@@ -1,0 +1,2 @@
+type: INT. number of groups input channels and output channels are divided
+into.

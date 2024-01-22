@@ -1,0 +1,2 @@
+type: INTS. The shape of the convolution kernel. If not present, should be
+inferred from input W.

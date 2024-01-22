@@ -1,0 +1,1 @@
+type: TENSOR. The value for the elements of the output tensor.

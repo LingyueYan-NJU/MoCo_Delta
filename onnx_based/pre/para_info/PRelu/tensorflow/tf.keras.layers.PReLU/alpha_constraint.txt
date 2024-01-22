@@ -1,0 +1,1 @@
+Constraint for the weights.

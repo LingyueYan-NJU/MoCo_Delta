@@ -1,0 +1,1 @@
+tuple of 3 integers, or None. Strides values.

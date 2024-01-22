@@ -1,0 +1,6 @@
+type: INTS. The shape of the output can be explicitly set which will cause pads
+values to be auto generated. If output_shape is specified pads
+values are ignored. See doc for details for equations to generate
+pads. Note that the output_shape attribute value should not include
+dimensions for batch size and channels, which are automatically
+inferred.

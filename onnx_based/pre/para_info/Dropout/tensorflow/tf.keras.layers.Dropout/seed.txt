@@ -1,0 +1,1 @@
+A Python integer to use as random seed.

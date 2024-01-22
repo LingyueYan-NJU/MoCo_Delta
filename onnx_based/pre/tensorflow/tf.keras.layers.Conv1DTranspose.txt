@@ -1,0 +1,17 @@
+tf.keras.layers.Conv1DTranspose
+filters: Integer, the dimensionality of the output space (i.e. the number of output filters in the convolution).
+kernel_size: An integer length of the 1D convolution window.
+strides: An integer specifying the stride of the convolution along the time dimension. Specifying a stride value != 1 is incompatible with specifying a dilation_rate value != 1. Defaults to 1.
+padding: one of "valid" or "same" (case-insensitive). "valid" means no padding. "same" results in padding with zeros evenly to the left/right or up/down of the input such that output has the same height/width dimension as the input.
+output_padding: An integer specifying the amount of padding along the time dimension of the output tensor. The amount of output padding must be lower than the stride. If set to None (default), the output shape is inferred.
+data_format: A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch_size, length, channels) while channels_first corresponds to inputs with shape (batch_size, channels, length).
+dilation_rate: an integer, specifying the dilation rate to use for dilated convolution. Currently, specifying a dilation_rate value != 1 is incompatible with specifying a stride value != 1. Also dilation rate larger than 1 is not currently supported.
+activation: Activation function to use. If you don't specify anything, no activation is applied (see keras.activations).
+use_bias: Boolean, whether the layer uses a bias vector.
+kernel_initializer: Initializer for the kernel weights matrix (see keras.initializers). Defaults to 'glorot_uniform'.
+bias_initializer: Initializer for the bias vector (see keras.initializers). Defaults to 'zeros'.
+kernel_regularizer: Regularizer function applied to the kernel weights matrix (see keras.regularizers).
+bias_regularizer: Regularizer function applied to the bias vector (see keras.regularizers).
+activity_regularizer: Regularizer function applied to the output of the layer (its "activation") (see keras.regularizers).
+kernel_constraint: Constraint function applied to the kernel matrix (see keras.constraints).
+bias_constraint: Constraint function applied to the bias vector (see keras.constraints).

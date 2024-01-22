@@ -1,0 +1,1 @@
+Initializer for the kernel weights matrix (see keras.initializers). Defaults to 'glorot_uniform'.

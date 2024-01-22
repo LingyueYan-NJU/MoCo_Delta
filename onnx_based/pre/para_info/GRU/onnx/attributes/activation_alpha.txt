@@ -1,0 +1,5 @@
+type: FLOATS. Optional scaling values used by some activation functions. The
+values are consumed in the order of activation functions, for
+example (f, g, h) in LSTM. Default values are the same as of
+corresponding ONNX operators.For example with LeakyRelu, the default
+alpha is 0.01.

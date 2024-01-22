@@ -1,0 +1,1 @@
+type: Union[int, Tuple[int]]. Implicit negative infinity padding to be added on both sides, must be >= 0 and <= kernel_size / 2.

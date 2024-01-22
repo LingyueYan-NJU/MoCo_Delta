@@ -1,0 +1,1 @@
+type: float. Controls the angle of the negative slope (which is used for negative input values). Default: 1e-2

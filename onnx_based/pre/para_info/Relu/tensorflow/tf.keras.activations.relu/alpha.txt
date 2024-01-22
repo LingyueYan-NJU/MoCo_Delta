@@ -1,0 +1,1 @@
+A float that governs the slope for values lower than the threshold.

@@ -1,0 +1,1 @@
+type: T. An input tensor.

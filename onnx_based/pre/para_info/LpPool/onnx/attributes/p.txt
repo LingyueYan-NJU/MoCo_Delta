@@ -1,0 +1,1 @@
+type: INT. p value of the Lp norm used to pool over the input data.

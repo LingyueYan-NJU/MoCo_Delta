@@ -1,0 +1,1 @@
+If true, retains reduced dimensions with length 1.

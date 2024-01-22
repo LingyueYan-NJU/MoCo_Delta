@@ -1,0 +1,1 @@
+type: int or tuple. Stride of the max pooling window. It is set to kernel_size by default.

@@ -1,0 +1,1 @@
+type: T2. If set to true then it indicates dropout is being used for training.It is an optional value hence unless specified explicitly, it isfalse. If it is false, ratio is ignored and the operation mimicsinference mode where nothing will be dropped from the input data andif mask is requested as output it will contain all ones.

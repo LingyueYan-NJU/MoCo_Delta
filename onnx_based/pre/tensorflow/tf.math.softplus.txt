@@ -1,0 +1,3 @@
+tf.math.softplus
+features: Tensor
+name: Optional: name to associate with this operation.
