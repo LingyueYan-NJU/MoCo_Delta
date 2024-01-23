@@ -1,0 +1,1 @@
+type: int. A dimension along which Softmax will be computed (so every slice along dim will sum to 1).

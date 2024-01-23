@@ -1,0 +1,1 @@
+type: bool. If set to False, the layer will not learn an additive bias. Default: True

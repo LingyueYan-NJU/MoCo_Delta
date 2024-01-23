@@ -1,0 +1,1 @@
+type: str. The non-linearity to use. Can be either 'tanh' or 'relu'. Default: 'tanh'

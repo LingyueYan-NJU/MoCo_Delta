@@ -1,0 +1,1 @@
+type: str. the gelu approximation algorithm to use: 'none' | 'tanh'. Default: 'none'

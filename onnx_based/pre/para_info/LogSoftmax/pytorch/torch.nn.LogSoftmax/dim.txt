@@ -1,0 +1,1 @@
+type: int.  dimension along which LogSoftmax will be computed.

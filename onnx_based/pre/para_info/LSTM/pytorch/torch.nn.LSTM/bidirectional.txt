@@ -1,0 +1,1 @@
+type: bool. If True, becomes a bidirectional LSTM. Default: False

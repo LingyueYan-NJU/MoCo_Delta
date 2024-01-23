@@ -1,0 +1,1 @@
+type: bool. apply dropout if is True. Default: True
