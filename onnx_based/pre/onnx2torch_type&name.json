@@ -1,0 +1,1106 @@
+{
+    "Reshape": {
+        "torch.reshape": {
+            "allowzero": ""
+        }
+    },
+    "LRN": {
+        "torch.nn.LocalResponseNorm": {
+            "alpha": {
+                "alpha": {
+                    "type": "float",
+                    "def": "multiplicative factor"
+                },
+                "name_sim": 1.0
+            },
+            "bias": "",
+            "size": {
+                "size": {
+                    "type": "int",
+                    "def": "amount of neighbouring channels used for normalization"
+                },
+                "name_sim": 1.0
+            },
+            "beta": {
+                "beta": {
+                    "type": "float",
+                    "def": "exponent"
+                },
+                "name_sim": 1.0
+            }
+        }
+    },
+    "Gelu": {
+        "torch.nn.GELU": {
+            "approximate": ""
+        }
+    },
+    "Ceil": {
+        "torch.ceil": {
+            "consumed_inputs": ""
+        }
+    },
+    "HardSigmoid": {
+        "torch.nn.Hardsigmoid": {
+            "alpha": "",
+            "beta": ""
+        }
+    },
+    "Concat": {
+        "torch.cat": {
+            "axis": ""
+        }
+    },
+    "Upsample": {
+        "torch.nn.Upsample": {
+            "mode": ""
+        }
+    },
+    "BatchNormalization": {
+        "torch.nn.BatchNorm1d": {
+            "training_mode": "",
+            "momentum": {
+                "momentum": {
+                    "type": "float",
+                    "def": "the value used for the running_mean and running_var computation"
+                },
+                "name_sim": 1.0
+            },
+            "epsilon": {
+                "eps": {
+                    "type": "float",
+                    "def": "a value added to the denominator for numerical stability"
+                },
+                "name_sim": 0.4285714285714286
+            }
+        },
+        "torch.nn.BatchNorm2d": {
+            "training_mode": "",
+            "momentum": {
+                "momentum": {
+                    "type": "float",
+                    "def": "the value used for the running_mean and running_var computation"
+                },
+                "name_sim": 1.0
+            },
+            "epsilon": {
+                "eps": {
+                    "type": "float",
+                    "def": "a value added to the denominator for numerical stability"
+                },
+                "name_sim": 0.4285714285714286
+            }
+        },
+        "torch.nn.BatchNorm3d": {
+            "training_mode": "",
+            "momentum": {
+                "momentum": {
+                    "type": "float",
+                    "def": "the value used for the running_mean and running_var computation"
+                },
+                "name_sim": 1.0
+            },
+            "epsilon": {
+                "eps": {
+                    "type": "float",
+                    "def": "a value added to the denominator for numerical stability"
+                },
+                "name_sim": 0.4285714285714286
+            }
+        }
+    },
+    "Gather": {
+        "torch.gather": {
+            "axis": ""
+        }
+    },
+    "Pow": {
+        "torch.pow": {
+            "broadcast": "",
+            "axis": ""
+        }
+    },
+    "Shape": {},
+    "PRelu": {
+        "torch.nn.PReLU": {
+            "consumed_inputs": ""
+        }
+    },
+    "Celu": {
+        "torch.nn.CELU": {
+            "alpha": {
+                "alpha": {
+                    "type": "float",
+                    "def": "the \u03b1\\alpha\u03b1 value for the CELU formulation"
+                },
+                "name_sim": 1.0
+            }
+        }
+    },
+    "Softsign": {
+        "torch.nn.Softsign": {}
+    },
+    ".DS_Store": {
+        "torch.nn.Softsign": {}
+    },
+    "MaxUnpool": {
+        "torch.nn.MaxUnpool3d": {
+            "kernel_shape": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "Size of the max pooling window."
+                },
+                "name_sim": 0.75
+            },
+            "pads": {
+                "padding": {
+                    "type": "int ints",
+                    "def": "Padding that was added to the input"
+                },
+                "name_sim": 0.4285714285714286
+            },
+            "strides": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "Stride of the max pooling window"
+                },
+                "name_sim": 0.8571428571428572
+            }
+        },
+        "torch.nn.MaxUnpool2d": {
+            "kernel_shape": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "Size of the max pooling window."
+                },
+                "name_sim": 0.75
+            },
+            "pads": {
+                "padding": {
+                    "type": "int ints",
+                    "def": "Padding that was added to the input"
+                },
+                "name_sim": 0.4285714285714286
+            },
+            "strides": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "Stride of the max pooling window"
+                },
+                "name_sim": 0.8571428571428572
+            }
+        },
+        "torch.nn.MaxUnpool1d": {
+            "kernel_shape": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "Size of the max pooling window."
+                },
+                "name_sim": 0.75
+            },
+            "pads": {
+                "padding": {
+                    "type": "int ints",
+                    "def": "Padding that was added to the input"
+                },
+                "name_sim": 0.4285714285714286
+            },
+            "strides": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "Stride of the max pooling window"
+                },
+                "name_sim": 0.8571428571428572
+            }
+        }
+    },
+    "Div": {},
+    "InstanceNormalization": {
+        "torch.nn.InstanceNorm3d": {
+            "epsilon": {
+                "eps": {
+                    "type": "float",
+                    "def": "a value added to the denominator for numerical stability"
+                },
+                "name_sim": 0.4285714285714286
+            }
+        },
+        "torch.nn.InstanceNorm1d": {
+            "epsilon": {
+                "eps": {
+                    "type": "float",
+                    "def": "a value added to the denominator for numerical stability"
+                },
+                "name_sim": 0.4285714285714286
+            }
+        },
+        "torch.nn.InstanceNorm2d": {
+            "epsilon": {
+                "eps": {
+                    "type": "float",
+                    "def": "a value added to the denominator for numerical stability"
+                },
+                "name_sim": 0.4285714285714286
+            }
+        }
+    },
+    "Mul": {},
+    "ConvTranspose": {
+        "torch.nn.ConvTranspose3d": {
+            "kernel_shape": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "Size of the convolving kernel"
+                },
+                "name_sim": 0.75
+            },
+            "group": {
+                "groups": {
+                    "type": "int",
+                    "def": "Number of blocked connections from input channels to output channels"
+                },
+                "name_sim": 0.8333333333333334
+            },
+            "pads": {
+                "padding": {
+                    "type": "int ints",
+                    "def": "dilation * (kernel_size - 1) - padding zero-padding will be added to both sides of each dimension in the input"
+                },
+                "name_sim": 0.4285714285714286
+            },
+            "auto_pad": "",
+            "strides": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "Stride of the convolution"
+                },
+                "name_sim": 0.8571428571428572
+            },
+            "output_shape": {
+                "output_padding": {
+                    "type": "int ints",
+                    "def": "Additional size added to one side of each dimension in the output shape"
+                },
+                "name_sim": 0.5
+            },
+            "output_padding": {
+                "output_padding": {
+                    "type": "int ints",
+                    "def": "Additional size added to one side of each dimension in the output shape"
+                },
+                "name_sim": 1.0
+            },
+            "dilations": {
+                "dilation": {
+                    "type": "int ints",
+                    "def": "Spacing between kernel elements"
+                },
+                "name_sim": 0.8888888888888888
+            }
+        },
+        "torch.nn.ConvTranspose1d": {
+            "kernel_shape": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "Size of the convolving kernel"
+                },
+                "name_sim": 0.75
+            },
+            "group": {
+                "groups": {
+                    "type": "int",
+                    "def": "Number of blocked connections from input channels to output channels"
+                },
+                "name_sim": 0.8333333333333334
+            },
+            "pads": {
+                "padding": {
+                    "type": "int ints",
+                    "def": "dilation * (kernel_size - 1) - padding zero-padding will be added to both sides of the input"
+                },
+                "name_sim": 0.4285714285714286
+            },
+            "auto_pad": "",
+            "strides": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "Stride of the convolution"
+                },
+                "name_sim": 0.8571428571428572
+            },
+            "output_shape": {
+                "output_padding": {
+                    "type": "int ints",
+                    "def": "Additional size added to one side of the output shape"
+                },
+                "name_sim": 0.5
+            },
+            "output_padding": {
+                "output_padding": {
+                    "type": "int ints",
+                    "def": "Additional size added to one side of the output shape"
+                },
+                "name_sim": 1.0
+            },
+            "dilations": {
+                "dilation": {
+                    "type": "int ints",
+                    "def": "Spacing between kernel elements"
+                },
+                "name_sim": 0.8888888888888888
+            }
+        },
+        "torch.nn.ConvTranspose2d": {
+            "kernel_shape": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "Size of the convolving kernel"
+                },
+                "name_sim": 0.75
+            },
+            "group": {
+                "groups": {
+                    "type": "int",
+                    "def": "Number of blocked connections from input channels to output channels"
+                },
+                "name_sim": 0.8333333333333334
+            },
+            "pads": {
+                "padding": {
+                    "type": "int ints",
+                    "def": "dilation * (kernel_size - 1) - padding zero-padding will be added to both sides of each dimension in the input"
+                },
+                "name_sim": 0.4285714285714286
+            },
+            "auto_pad": "",
+            "strides": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "Stride of the convolution"
+                },
+                "name_sim": 0.8571428571428572
+            },
+            "output_shape": {
+                "output_padding": {
+                    "type": "int ints",
+                    "def": "Additional size added to one side of each dimension in the output shape"
+                },
+                "name_sim": 0.5
+            },
+            "output_padding": {
+                "output_padding": {
+                    "type": "int ints",
+                    "def": "Additional size added to one side of each dimension in the output shape"
+                },
+                "name_sim": 1.0
+            },
+            "dilations": {
+                "dilation": {
+                    "type": "int ints",
+                    "def": "Spacing between kernel elements"
+                },
+                "name_sim": 0.8888888888888888
+            }
+        }
+    },
+    "LayerNormalization": {
+        "torch.nn.LayerNorm": {
+            "stash_type": "",
+            "axis": "",
+            "epsilon": {
+                "eps": {
+                    "type": "float",
+                    "def": "a value added to the denominator for numerical stability"
+                },
+                "name_sim": 0.4285714285714286
+            }
+        }
+    },
+    "Neg": {},
+    "Softplus": {
+        "torch.nn.Softplus": {}
+    },
+    "MaxPool": {
+        "torch.nn.MaxPool3d": {
+            "kernel_shape": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "the size of the window to take a max over"
+                },
+                "name_sim": 0.75
+            },
+            "storage_order": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "the stride of the window"
+                },
+                "name_sim": 0.3846153846153846
+            },
+            "pads": {
+                "padding": {
+                    "type": "int ints",
+                    "def": "Implicit negative infinity padding to be added on all three sides"
+                },
+                "name_sim": 0.4285714285714286
+            },
+            "ceil_mode": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "the size of the window to take a max over"
+                },
+                "name_sim": 0.36363636363636365
+            },
+            "auto_pad": "",
+            "strides": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "the stride of the window"
+                },
+                "name_sim": 0.8571428571428572
+            },
+            "dilations": {
+                "dilation": {
+                    "type": "int ints",
+                    "def": "a parameter that controls the stride of elements in the window"
+                },
+                "name_sim": 0.8888888888888888
+            }
+        },
+        "torch.nn.MaxPool2d": {
+            "kernel_shape": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "the size of the window to take a max over"
+                },
+                "name_sim": 0.75
+            },
+            "storage_order": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "the stride of the window"
+                },
+                "name_sim": 0.3846153846153846
+            },
+            "pads": {
+                "padding": {
+                    "type": "int ints",
+                    "def": "Implicit negative infinity padding to be added on both sides"
+                },
+                "name_sim": 0.4285714285714286
+            },
+            "ceil_mode": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "the size of the window to take a max over"
+                },
+                "name_sim": 0.36363636363636365
+            },
+            "auto_pad": "",
+            "strides": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "the stride of the window"
+                },
+                "name_sim": 0.8571428571428572
+            },
+            "dilations": {
+                "dilation": {
+                    "type": "int ints",
+                    "def": "a parameter that controls the stride of elements in the window"
+                },
+                "name_sim": 0.8888888888888888
+            }
+        },
+        "torch.nn.MaxPool1d": {
+            "kernel_shape": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "The size of the sliding window, must be > 0."
+                },
+                "name_sim": 0.75
+            },
+            "storage_order": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "The stride of the sliding window, must be > 0"
+                },
+                "name_sim": 0.3846153846153846
+            },
+            "pads": {
+                "padding": {
+                    "type": "int ints",
+                    "def": "Implicit negative infinity padding to be added on both sides, must be >= 0 and <= kernel_size / 2."
+                },
+                "name_sim": 0.4285714285714286
+            },
+            "ceil_mode": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "The size of the sliding window, must be > 0."
+                },
+                "name_sim": 0.36363636363636365
+            },
+            "auto_pad": "",
+            "strides": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "The stride of the sliding window, must be > 0"
+                },
+                "name_sim": 0.8571428571428572
+            },
+            "dilations": {
+                "dilation": {
+                    "type": "int ints",
+                    "def": "The stride between elements within a sliding window, must be > 0."
+                },
+                "name_sim": 0.8888888888888888
+            }
+        }
+    },
+    "Reciprocal": {
+        "torch.reciprocal": {
+            "consumed_inputs": ""
+        }
+    },
+    "LeakyRelu": {
+        "torch.nn.LeakyReLU": {
+            "alpha": ""
+        }
+    },
+    "Erf": {
+        "torch.erf": {}
+    },
+    "ReduceProd": {
+        "torch.prod": {
+            "keepdims": {
+                "dim": {
+                    "type": "int",
+                    "def": "the dimension to reduce."
+                },
+                "name_sim": 0.375
+            },
+            "noop_with_empty_axes": ""
+        }
+    },
+    "Conv": {
+        "torch.nn.Conv2d": {
+            "kernel_shape": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "Size of the convolving kernel"
+                },
+                "name_sim": 0.75
+            },
+            "group": {
+                "groups": {
+                    "type": "int",
+                    "def": "Number of blocked connections from input channels to output channels"
+                },
+                "name_sim": 0.8333333333333334
+            },
+            "pads": {
+                "padding": {
+                    "type": "int str ints",
+                    "def": "Padding added to all four sides of the input"
+                },
+                "name_sim": 0.4285714285714286
+            },
+            "auto_pad": "",
+            "strides": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "Stride of the convolution"
+                },
+                "name_sim": 0.8571428571428572
+            },
+            "dilations": {
+                "dilation": {
+                    "type": "int ints",
+                    "def": "Spacing between kernel elements"
+                },
+                "name_sim": 0.8888888888888888
+            }
+        },
+        "torch.nn.Conv1d": {
+            "kernel_shape": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "Size of the convolving kernel"
+                },
+                "name_sim": 0.75
+            },
+            "group": {
+                "groups": {
+                    "type": "int",
+                    "def": "Number of blocked connections from input channels to output channels"
+                },
+                "name_sim": 0.8333333333333334
+            },
+            "pads": {
+                "padding": {
+                    "type": "int str ints",
+                    "def": "Padding added to both sides of the input"
+                },
+                "name_sim": 0.4285714285714286
+            },
+            "auto_pad": "",
+            "strides": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "Stride of the convolution"
+                },
+                "name_sim": 0.8571428571428572
+            },
+            "dilations": {
+                "dilation": {
+                    "type": "int ints",
+                    "def": "Spacing between kernel elements"
+                },
+                "name_sim": 0.8888888888888888
+            }
+        },
+        "torch.nn.Conv3d": {
+            "kernel_shape": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "Size of the convolving kernel"
+                },
+                "name_sim": 0.75
+            },
+            "group": {
+                "groups": {
+                    "type": "int",
+                    "def": "Number of blocked connections from input channels to output channels"
+                },
+                "name_sim": 0.8333333333333334
+            },
+            "pads": {
+                "padding": {
+                    "type": "int str ints",
+                    "def": "Padding added to all six sides of the input"
+                },
+                "name_sim": 0.4285714285714286
+            },
+            "auto_pad": "",
+            "strides": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "Stride of the convolution"
+                },
+                "name_sim": 0.8571428571428572
+            },
+            "dilations": {
+                "dilation": {
+                    "type": "int ints",
+                    "def": "Spacing between kernel elements"
+                },
+                "name_sim": 0.8888888888888888
+            }
+        }
+    },
+    "ReduceMean": {
+        "torch.mean": {
+            "keepdims": {
+                "dim": {
+                    "type": "int ints",
+                    "def": "the dimension or dimensions to reduce."
+                },
+                "name_sim": 0.375
+            },
+            "noop_with_empty_axes": ""
+        }
+    },
+    "Gemm": {
+        "torch.nn.Linear": {
+            "alpha": "",
+            "transA": "",
+            "transB": "",
+            "beta": ""
+        }
+    },
+    "Max": {
+        "torch.amax": {
+            "consumed_inputs": ""
+        }
+    },
+    "AveragePool": {
+        "torch.nn.AvgPool3d": {
+            "kernel_shape": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "the size of the window"
+                },
+                "name_sim": 0.75
+            },
+            "pads": {
+                "padding": {
+                    "type": "int ints",
+                    "def": "implicit zero padding to be added on all three sides"
+                },
+                "name_sim": 0.4285714285714286
+            },
+            "ceil_mode": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "the size of the window"
+                },
+                "name_sim": 0.36363636363636365
+            },
+            "count_include_pad": "",
+            "auto_pad": "",
+            "strides": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "the stride of the window"
+                },
+                "name_sim": 0.8571428571428572
+            },
+            "dilations": ""
+        },
+        "torch.nn.AvgPool1d": {
+            "kernel_shape": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "the size of the window"
+                },
+                "name_sim": 0.75
+            },
+            "pads": {
+                "padding": {
+                    "type": "int ints",
+                    "def": "implicit zero padding to be added on both sides"
+                },
+                "name_sim": 0.4285714285714286
+            },
+            "ceil_mode": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "the size of the window"
+                },
+                "name_sim": 0.36363636363636365
+            },
+            "count_include_pad": "",
+            "auto_pad": "",
+            "strides": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "the stride of the window"
+                },
+                "name_sim": 0.8571428571428572
+            },
+            "dilations": ""
+        },
+        "torch.nn.AvgPool2d": {
+            "kernel_shape": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "the size of the window"
+                },
+                "name_sim": 0.75
+            },
+            "pads": {
+                "padding": {
+                    "type": "int ints",
+                    "def": "implicit zero padding to be added on both sides"
+                },
+                "name_sim": 0.4285714285714286
+            },
+            "ceil_mode": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "the size of the window"
+                },
+                "name_sim": 0.36363636363636365
+            },
+            "count_include_pad": "",
+            "auto_pad": "",
+            "strides": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "the stride of the window"
+                },
+                "name_sim": 0.8571428571428572
+            },
+            "dilations": ""
+        }
+    },
+    "Selu": {
+        "torch.nn.SELU": {
+            "alpha": "",
+            "gamma": ""
+        }
+    },
+    "Sub": {},
+    "Mish": {
+        "torch.nn.Mish": {}
+    },
+    "Flatten": {
+        "torch.nn.Flatten": {
+            "axis": ""
+        }
+    },
+    "Tanh": {
+        "torch.nn.Tanh": {
+            "consumed_inputs": ""
+        }
+    },
+    "ThresholdedRelu": {},
+    "Add": {
+        "torch.add": {
+            "broadcast": "",
+            "axis": ""
+        }
+    },
+    "Constant": {},
+    "LpPool": {
+        "torch.nn.LPPool1d": {
+            "kernel_shape": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "a single int, the size of the window"
+                },
+                "name_sim": 0.75
+            },
+            "pads": "",
+            "ceil_mode": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "a single int, the size of the window"
+                },
+                "name_sim": 0.36363636363636365
+            },
+            "p": "",
+            "auto_pad": "",
+            "strides": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "a single int, the stride of the window"
+                },
+                "name_sim": 0.8571428571428572
+            },
+            "dilations": ""
+        },
+        "torch.nn.LPPool2d": {
+            "kernel_shape": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "the size of the window"
+                },
+                "name_sim": 0.75
+            },
+            "pads": "",
+            "ceil_mode": {
+                "kernel_size": {
+                    "type": "int ints",
+                    "def": "the size of the window"
+                },
+                "name_sim": 0.36363636363636365
+            },
+            "p": "",
+            "auto_pad": "",
+            "strides": {
+                "stride": {
+                    "type": "int ints",
+                    "def": "the stride of the window"
+                },
+                "name_sim": 0.8571428571428572
+            },
+            "dilations": ""
+        }
+    },
+    "Dropout": {
+        "torch.nn.Dropout": {
+            "seed": ""
+        },
+        "torch.nn.Dropout1d": {
+            "seed": ""
+        },
+        "torch.nn.Dropout2d": {
+            "seed": ""
+        },
+        "torch.nn.Dropout3d": {
+            "seed": ""
+        },
+        "torch.nn.functional.dropout": {
+            "seed": ""
+        }
+    },
+    "Softmax": {
+        "torch.nn.Softmax": {
+            "axis": ""
+        },
+        "torch.nn.Softmax2d": {
+            "axis": ""
+        }
+    },
+    "LogSoftmax": {
+        "torch.nn.LogSoftmax": {
+            "axis": ""
+        }
+    },
+    "Relu": {
+        "torch.nn.ReLU": {
+            "consumed_inputs": ""
+        },
+        "torch.nn.functional.relu": {
+            "consumed_inputs": ""
+        }
+    },
+    "Sigmoid": {
+        "torch.nn.Sigmoid": {
+            "consumed_inputs": ""
+        }
+    },
+    "ReduceMin": {
+        "torch.min": {
+            "keepdims": {
+                "dim": {
+                    "type": "int",
+                    "def": "the dimension to reduce."
+                },
+                "name_sim": 0.375
+            },
+            "noop_with_empty_axes": ""
+        }
+    },
+    "GRU": {
+        "torch.nn.GRU": {
+            "activation_beta": "",
+            "clip": "",
+            "direction": "",
+            "activations": "",
+            "linear_before_reset": "",
+            "hidden_size": {
+                "hidden_size": {
+                    "type": "int",
+                    "def": "The number of features in the hidden state h"
+                },
+                "name_sim": 1.0
+            },
+            "activation_alpha": "",
+            "layout": {
+                "num_layers": {
+                    "type": "int",
+                    "def": "Number of recurrent layers"
+                },
+                "name_sim": 0.30000000000000004
+            }
+        }
+    },
+    "GlobalAveragePool": {},
+    "Floor": {
+        "torch.floor": {
+            "consumed_inputs": ""
+        }
+    },
+    "ReduceSum": {
+        "torch.sum": {
+            "keepdims": {
+                "dim": {
+                    "type": "int ints",
+                    "def": "the dimension or dimensions to reduce"
+                },
+                "name_sim": 0.375
+            },
+            "noop_with_empty_axes": ""
+        }
+    },
+    "ReduceMax": {
+        "torch.max": {
+            "keepdims": {
+                "dim": {
+                    "type": "int",
+                    "def": "the dimension to reduce."
+                },
+                "name_sim": 0.375
+            },
+            "noop_with_empty_axes": ""
+        }
+    },
+    "GlobalMaxPool": {},
+    "Min": {
+        "torch.amin": {
+            "consumed_inputs": ""
+        }
+    },
+    "Elu": {
+        "torch.nn.ELU": {
+            "alpha": {
+                "alpha": {
+                    "type": "float",
+                    "def": "the \u03b1\\alpha\u03b1 value for the ELU formulation"
+                },
+                "name_sim": 1.0
+            }
+        }
+    },
+    "HardSwish": {
+        "torch.nn.Hardswish": {}
+    },
+    "Round": {
+        "torch.round": {}
+    },
+    "Mod": {
+        "torch.fmod": {
+            "fmod": ""
+        }
+    },
+    "RNN": {
+        "torch.nn.RNN": {
+            "activation_beta": "",
+            "clip": "",
+            "direction": "",
+            "activations": "",
+            "hidden_size": {
+                "hidden_size": {
+                    "type": "int",
+                    "def": "The number of features in the hidden state h"
+                },
+                "name_sim": 1.0
+            },
+            "activation_alpha": "",
+            "layout": {
+                "num_layers": {
+                    "type": "int",
+                    "def": "Number of recurrent layers"
+                },
+                "name_sim": 0.30000000000000004
+            }
+        }
+    },
+    "LSTM": {
+        "torch.nn.LSTM": {
+            "activation_beta": "",
+            "input_forget": {
+                "input_size": {
+                    "type": "int",
+                    "def": "The number of expected features in the input x"
+                },
+                "name_sim": 0.5833333333333333
+            },
+            "clip": "",
+            "direction": "",
+            "activations": "",
+            "hidden_size": {
+                "hidden_size": {
+                    "type": "int",
+                    "def": "The number of features in the hidden state h"
+                },
+                "name_sim": 1.0
+            },
+            "activation_alpha": "",
+            "layout": {
+                "num_layers": {
+                    "type": "int",
+                    "def": "Number of recurrent layers"
+                },
+                "name_sim": 0.30000000000000004
+            }
+        }
+    },
+    "Einsum": {
+        "torch.einsum": {
+            "equation": ""
+        }
+    }
+}

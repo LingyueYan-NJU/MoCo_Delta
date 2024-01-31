@@ -1,0 +1,32 @@
+{
+    "INPUTS": [
+        "scale"
+    ],
+    "ATTRIBUTES": [
+        ["epsilon", 1e-5]
+    ],
+    "TOTORCH": {
+        "_IN_CLASS_FROM_SPATIAL_RANK": {
+            "num_features": {
+                "mode": "EXPRESSION",
+                "expression": "scale.size()[0]"
+            },
+            "eps": {
+                "mode": "DIRECTLY",
+                "expression": "epsilon"
+            },
+            "momentum": {
+                "mode": "DIRECTLY",
+                "expression": "0.1"
+            },
+            "affine": {
+                "mode": "DIRECTLY",
+                "expression": "True"
+            },
+            "track_running_stats": {
+                "mode": "DIRECTLY",
+                "expression": "False"
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [
+        ["start", 0],
+        ["end", "None"]
+    ],
+    "TOTORCH": {
+        "torch.tensor": {
+            "data": {
+                "mode": "EXPRESSION",
+                "expression": "input_tensor.shape[start : end]"
+            }
+        }
+    }
+}

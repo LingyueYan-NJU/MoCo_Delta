@@ -1,0 +1,49 @@
+{
+    "INPUTS": [
+        "weights",
+        "bias"
+    ],
+    "ATTRIBUTES": [
+        ["kernel_shape", "weights.shape[2:]"],
+        ["strides", 1],
+        ["dilations", 1],
+        ["group", 1],
+        "padding"
+    ],
+    "TOTORCH": {
+        "_CONV_CLASS_FROM_SPATIAL_RANK": {
+            "in_channels": {
+                "mode": "EXPRESSION",
+                "expression": "weights.shape[1] * groups]"
+            },
+            "out_channels": {
+                "mode": "EXPRESSION",
+                "expression": "weights.shape[0]"
+            },
+            "kernel_size": {
+                "mode": "DIRECTLY",
+                "expression": "kernel_shape"
+            },
+            "stride": {
+                "mode": "DIRECTLY",
+                "expression": "strides"
+            },
+            "dilations": {
+                "mode": "DIRECTLY",
+                "expression": "dilations"
+            },
+            "groups": {
+                "mode": "DIRECTLY",
+                "expression": "group"
+            },
+            "padding": {
+                "mode": "DIRECTLY",
+                "expression": "padding"
+            },
+            "bias": {
+                "mode": "EXPRESSION",
+                "expression": "bias is not None"
+            }
+        }
+    }
+}

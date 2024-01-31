@@ -1,1 +1,1 @@
-type: Tensor. the exponent tensor   Keyword Arguments
+type: Tensor. the exponent tensor. 

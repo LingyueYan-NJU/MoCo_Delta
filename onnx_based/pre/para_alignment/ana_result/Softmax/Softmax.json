@@ -1,0 +1,14 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [
+        ["axis", 1]
+    ],
+    "TOTORCH": {
+        "torch.softmax": {
+            "dim": {
+                "mode": "DIRECTLY",
+                "expression": "axis"
+            }
+        }
+    }
+}

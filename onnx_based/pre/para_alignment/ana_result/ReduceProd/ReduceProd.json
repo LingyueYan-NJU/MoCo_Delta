@@ -1,0 +1,19 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [
+        ["axes", "None"],
+        ["keepdims", 1]
+    ],
+    "TOTORCH": {
+        "torch.prod": {
+            "dim": {
+                "mode": "DIRECTLY",
+                "expression": "axes"
+            },
+            "keepdim": {
+                "mode": "DIRECTLY",
+                "expression": "keepdims"
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [
+        ["alpha", 1.0]
+    ],
+    "TOTORCH": {
+        "nn.LeakyReLU": {
+            "negative_slope": {
+                "mode": "DIRECTLY",
+                "expression": "alpha"
+            }
+        }
+    }
+}

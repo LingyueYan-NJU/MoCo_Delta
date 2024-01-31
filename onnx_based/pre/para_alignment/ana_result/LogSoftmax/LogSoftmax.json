@@ -1,0 +1,14 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [
+        ["axis", -1]
+    ],
+    "TOTORCH": {
+        "nn.LogSoftmax": {
+            "dim": {
+                "mode": "DIRECTLY",
+                "expression": "axis"
+            }
+        }
+    }
+}

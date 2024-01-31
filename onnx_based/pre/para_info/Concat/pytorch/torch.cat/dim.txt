@@ -1,1 +1,1 @@
-type: int. the dimension over which the tensors are concatenated   Keyword Arguments
+type: int. the dimension over which the tensors are concatenated. 

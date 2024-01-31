@@ -1,0 +1,1839 @@
+{
+  "Add": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.add"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor+, *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.Add"
+      ],
+      "hard_template": true,
+      "pattern": [
+        "api(*args)([tensor+])"
+      ]
+    }
+  },
+  "AveragePool": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.AvgPool3d",
+        "mindspore.nn.AvgPool2d",
+        "mindspore.nn.AvgPool1d"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.AvgPool2D",
+        "paddle.nn.AvgPool3D",
+        "paddle.nn.AvgPool1D"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.AvgPool1d",
+        "torch.nn.AvgPool2d",
+        "torch.nn.AvgPool3d"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)",
+        "api(*args)(tensor)",
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.AveragePooling2D",
+        "tf.keras.layers.AveragePooling3D",
+        "tf.keras.layers.AveragePooling1D"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)",
+        "api(*args)(tensor)",
+        "api(*args)(tensor)"
+      ]
+    }
+  },
+  "BatchNormalization": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.BatchNorm3d",
+        "mindspore.nn.BatchNorm1d",
+        "mindspore.nn.BatchNorm2d"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.BatchNorm1D",
+        "paddle.nn.BatchNorm3D",
+        "paddle.nn.BatchNorm",
+        "paddle.nn.BatchNorm2D"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.BatchNorm1d",
+        "torch.nn.BatchNorm2d",
+        "torch.nn.BatchNorm3d"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)",
+        "api(*args)(tensor)",
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.BatchNormalization"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    }
+  },
+  "Ceil": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.ceil"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.math.ceil"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "Celu": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.CELU"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.CELU"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.CELU"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [],
+      "hard_template": true,
+      "pattern": []
+    }
+  },
+  "Concat": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.cat"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api([tensor+], *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.concat",
+        "tf.keras.layers.Concatenate"
+      ],
+      "hard_template": true,
+      "pattern": [
+        "api([tensor+], *args)",
+        "api(*args)([tensor+])"
+      ]
+    }
+  },
+  "Conv": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.Conv3d",
+        "mindspore.nn.Conv1d",
+        "mindspore.nn.Conv2d"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.Conv1D",
+        "paddle.nn.Conv2D",
+        "paddle.nn.Conv3D"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.Conv3d",
+        "torch.nn.Conv1d",
+        "torch.nn.Conv2d"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)",
+        "api(*args)(tensor)",
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.Conv2D",
+        "tf.keras.layers.Conv3D",
+        "tf.keras.layers.Conv1D"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)",
+        "api(*args)(tensor)",
+        "api(*args)(tensor)"
+      ]
+    }
+  },
+  "ConvTranspose": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.Conv3dTranspose",
+        "mindspore.nn.Conv1dTranspose",
+        "mindspore.nn.Conv2dTranspose"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.Conv3DTranspose",
+        "paddle.nn.Conv1DTranspose",
+        "paddle.nn.Conv2DTranspose"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.ConvTranspose1d",
+        "torch.nn.ConvTranspose2d",
+        "torch.nn.ConvTranspose3d"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)",
+        "api(*args)(tensor)",
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.Conv1DTranspose",
+        "tf.keras.layers.Conv3DTranspose",
+        "tf.keras.layers.Conv2DTranspose"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)",
+        "api(*args)(tensor)",
+        "api(*args)(tensor)"
+      ]
+    }
+  },
+  "Dropout": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.Dropout",
+        "mindspore.nn.Dropout1d",
+        "mindspore.nn.Dropout2d",
+        "mindspore.nn.Dropout3d"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.Dropout",
+        "paddle.nn.Dropout3D",
+        "paddle.nn.Dropout2D"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "F.dropout",
+        "torch.nn.Dropout",
+        "torch.nn.Dropout2d",
+        "torch.nn.Dropout1d",
+        "torch.nn.Dropout3d"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)",
+        "api(*args)(tensor)",
+        "api(*args)(tensor)",
+        "api(*args)(tensor)",
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.Dropout"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    }
+  },
+  "Elu": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.ELU"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.ELU"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.ELU"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.activations.elu",
+        "tf.keras.layers.ELU",
+        "tf.nn.elu"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)",
+        "api(*args)(tensor)",
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "Erf": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.erf"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.math.erf"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "Flatten": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.Flatten"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.Flatten"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.Flatten"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.Flatten"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    }
+  },
+  "Floor": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.floor"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.math.floor"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "GRU": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.GRU"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.GRU"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.GRU"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.GRU"
+      ],
+      "hard_template": true,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    }
+  },
+  "Gelu": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.GELU"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.GELU"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.GELU"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.activations.gelu",
+        "tf.nn.gelu"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)",
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "Gemm": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.Linear"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    }
+  },
+  "GlobalAveragePool": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.GlobalAveragePooling2D",
+        "tf.keras.layers.GlobalAveragePooling3D",
+        "tf.keras.layers.GlobalAveragePooling1D"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)",
+        "api(*args)(tensor)",
+        "api(*args)(tensor)"
+      ]
+    }
+  },
+  "GlobalMaxPool": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.GlobalMaxPooling3D",
+        "tf.keras.layers.GlobalMaxPooling1D",
+        "tf.keras.layers.GlobalMaxPooling2D"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)",
+        "api(*args)(tensor)",
+        "api(*args)(tensor)"
+      ]
+    }
+  },
+  "HardSigmoid": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.Hardsigmoid"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.Hardsigmoid"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [],
+      "hard_template": true,
+      "pattern": []
+    }
+  },
+  "HardSwish": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.Hardswish"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.Hardswish"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [],
+      "hard_template": true,
+      "pattern": []
+    }
+  },
+  "InstanceNormalization": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.InstanceNorm2d",
+        "torch.nn.InstanceNorm1d",
+        "torch.nn.InstanceNorm3d"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)",
+        "api(*args)(tensor)",
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [],
+      "hard_template": true,
+      "pattern": []
+    }
+  },
+  "LRN": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.LRN"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.LocalResponseNorm"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.raw_ops.LRN"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "LSTM": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": true,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": true,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [],
+      "hard_template": true,
+      "pattern": []
+    },
+    "tensorflow": {
+      "apis": [],
+      "hard_template": true,
+      "pattern": []
+    }
+  },
+  "LayerNormalization": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.LayerNorm"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.LayerNormalization"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    }
+  },
+  "LeakyRelu": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.LeakyReLU"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.LeakyReLU"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.LeakyReLU"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.LeakyReLU"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    }
+  },
+  "LogSoftmax": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.LogSoftmax"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.LogSoftmax"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.LogSoftmax"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [],
+      "hard_template": true,
+      "pattern": []
+    }
+  },
+  "LpPool": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.LPPool1d",
+        "mindspore.nn.LPPool2d"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.LPPool1d",
+        "torch.nn.LPPool2d"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)",
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [],
+      "hard_template": true,
+      "pattern": []
+    }
+  },
+  "Max": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.amax"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor+, *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.math.maximum",
+        "tf.keras.layers.maximum"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor+, *args)",
+        "api(tensor+, *args)"
+      ]
+    }
+  },
+  "MaxPool": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.MaxPool1d",
+        "mindspore.nn.MaxPool3d",
+        "mindspore.nn.MaxPool2d"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.MaxPool1D",
+        "paddle.nn.MaxPool2D",
+        "paddle.nn.MaxPool3D"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.MaxPool2d",
+        "torch.nn.MaxPool1d",
+        "torch.nn.MaxPool3d"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)",
+        "api(*args)(tensor)",
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.MaxPooling3D",
+        "tf.keras.layers.MaxPooling2D",
+        "tf.keras.layers.MaxPooling1D"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)",
+        "api(*args)(tensor)",
+        "api(*args)(tensor)"
+      ]
+    }
+  },
+  "MaxUnpool": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.MaxUnpool1d",
+        "mindspore.nn.MaxUnpool2d",
+        "mindspore.nn.MaxUnpool3d"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.MaxUnPool3D",
+        "paddle.nn.MaxUnPool2D",
+        "paddle.nn.MaxUnPool1D"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.MaxUnpool3d",
+        "torch.nn.MaxUnpool2d",
+        "torch.nn.MaxUnpool1d"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)",
+        "api(*args)(tensor)",
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [],
+      "hard_template": true,
+      "pattern": []
+    }
+  },
+  "Min": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.amin"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor+, *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.minimum"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor+, *args)"
+      ]
+    }
+  },
+  "Mish": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.Mish"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.Mish"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.Mish"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.activations.mish"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "Mod": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.fmod"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor+, *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.math.floormod"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor+, *args)"
+      ]
+    }
+  },
+  "Mul": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.math.multiply"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor+, *args)"
+      ]
+    }
+  },
+  "Neg": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "tensorflow": {
+      "apis": [],
+      "hard_template": true,
+      "pattern": []
+    }
+  },
+  "PRelu": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.PReLU"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.PReLU"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.PReLU"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.PReLU"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    }
+  },
+  "Pow": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.pow"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor+, *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.math.pow"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor+, *args)"
+      ]
+    }
+  },
+  "RNN": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": true,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": true,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [],
+      "hard_template": true,
+      "pattern": []
+    },
+    "tensorflow": {
+      "apis": [],
+      "hard_template": true,
+      "pattern": []
+    }
+  },
+  "Reciprocal": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.reciprocal"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.math.reciprocal"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "ReduceMax": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.max"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.reduce_max"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "ReduceMean": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.mean"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.reduce_mean"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "ReduceMin": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.min"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.reduce_min"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "ReduceProd": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.prod"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.reduce_prod"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "ReduceSum": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.sum"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.reduce_sum"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "Relu": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.ReLU"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.ReLU"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "F.relu",
+        "torch.nn.ReLU",
+        "tf.keras.layers.ReLU"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)",
+        "api(tensor, *args)",
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.ReLU",
+        "tf.nn.relu",
+        "tf.keras.activations.relu"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)",
+        "api(tensor, *args)",
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "Reshape": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.reshape"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.Reshape"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    }
+  },
+  "Round": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.round"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.math.round"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "Selu": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.SeLU"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.SELU"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.SELU"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.activations.selu",
+        "tf.nn.selu"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)",
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "Sigmoid": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.Sigmoid"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.Sigmoid"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.Sigmoid"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.activations.sigmoid",
+        "tf.math.sigmoid"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)",
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "Softmax": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.Softmax2d",
+        "mindspore.nn.Softmax"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.Softmax",
+        "paddle.nn.Softmax2D"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.Softmax2d",
+        "torch.nn.Softmax"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)",
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.Softmax",
+        "tf.keras.activations.softmax",
+        "tf.nn.softmax"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)",
+        "api(tensor, *args)",
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "Softplus": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.Softplus"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.Softplus"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.activations.softplus",
+        "tf.math.softplus"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)",
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "Softsign": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.Softsign"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.Softsign"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.Softsign"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.activations.softsign",
+        "tf.nn.softsign"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)",
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "Sub": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.sub"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor+, *args)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.math.subtract"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor+, *args)"
+      ]
+    }
+  },
+  "Tanh": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.Tanh"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.Tanh"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.Tanh"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.activations.tanh",
+        "tf.math.tanh"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(tensor, *args)",
+        "api(tensor, *args)"
+      ]
+    }
+  },
+  "ThresholdedRelu": {
+    "mindspore": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.ThresholdedReLU"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [],
+      "hard_template": false,
+      "pattern": []
+    },
+    "tensorflow": {
+      "apis": [
+        "tf.keras.layers.ThresholdedReLU"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    }
+  },
+  "Upsample": {
+    "mindspore": {
+      "apis": [
+        "mindspore.nn.Upsample"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "paddlepaddle": {
+      "apis": [
+        "paddle.nn.Upsample"
+      ],
+      "hard_template": false,
+      "pattern": []
+    },
+    "pytorch": {
+      "apis": [
+        "torch.nn.Upsample"
+      ],
+      "hard_template": false,
+      "pattern": [
+        "api(*args)(tensor)"
+      ]
+    },
+    "tensorflow": {
+      "apis": [],
+      "hard_template": true,
+      "pattern": []
+    }
+  }
+}

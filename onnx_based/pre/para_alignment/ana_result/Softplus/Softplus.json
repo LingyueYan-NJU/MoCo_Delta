@@ -1,0 +1,19 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [
+        ["beta", 1.0],
+        ["threshold", 20.0]
+    ],
+    "TOTORCH": {
+        "torch.softplus": {
+            "beta": {
+                "mode": "DIRECTLY",
+                "expression": "beta"
+            },
+            "threshold": {
+                "mode": "DIRECTLY",
+                "expression": "threshold"
+            }
+        }
+    }
+}

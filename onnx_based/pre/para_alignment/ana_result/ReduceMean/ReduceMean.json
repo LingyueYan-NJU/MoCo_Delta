@@ -1,0 +1,19 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [
+        ["axes", "None"],
+        ["keepdims", 1]
+    ],
+    "TOTORCH": {
+        "torch.mean": {
+            "dim": {
+                "mode": "EXPRESSION",
+                "expression": "axis if self.keepdims else axis - passed_dims"
+            },
+            "keepdim": {
+                "mode": "DIRECTLY",
+                "expression": "keepdims"
+            }
+        }
+    }
+}

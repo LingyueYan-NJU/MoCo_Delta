@@ -1,0 +1,14 @@
+{
+    "INPUTS": [
+        "slope"
+    ],
+    "ATTRIBUTES": [],
+    "TOTORCH": {
+        "nn.functional.prelu": {
+            "weight": {
+                "mode": "EXPRESSION",
+                "expression": "slope.view(-1)"
+            }
+        }
+    }
+}

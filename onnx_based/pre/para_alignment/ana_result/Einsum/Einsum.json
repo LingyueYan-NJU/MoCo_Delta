@@ -1,0 +1,14 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [
+        "equation"
+    ],
+    "TOTORCH": {
+        "torch.einsum": {
+            "equation": {
+                "mode": "DIRECTLY",
+                "expression": "equation"
+            }
+        }
+    }
+}

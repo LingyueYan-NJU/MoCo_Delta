@@ -1,1 +1,1 @@
-type: Tensor or Scalar. the divisor   Keyword Arguments
+type: Tensor or Scalar. the divisor 

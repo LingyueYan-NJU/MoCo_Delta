@@ -1,0 +1,14 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [
+        ["alpha", 1.0]
+    ],
+    "TOTORCH": {
+        "nn.ELU": {
+            "alpha": {
+                "mode": "DIRECTLY",
+                "expression": "alpha"
+            }
+        }
+    }
+}

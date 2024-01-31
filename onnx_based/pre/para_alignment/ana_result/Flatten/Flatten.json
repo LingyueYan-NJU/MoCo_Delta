@@ -1,0 +1,14 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [
+        ["axis", 1]
+    ],
+    "TOTORCH": {
+        "nn.Flatten": {
+            "start_dim": {
+                "mode": "DIRECTLY",
+                "expression": "axis"
+            }
+        }
+    }
+}

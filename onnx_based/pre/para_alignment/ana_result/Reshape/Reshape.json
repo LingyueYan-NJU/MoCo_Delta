@@ -1,0 +1,14 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [
+        ["allowzero", 0]
+    ],
+    "TOTORCH": {
+        "torch.reshape": {
+            "shape": {
+                "mode": "EXPRESSION",
+                "expression": "[input_tensor.shape[i] if dim_size == 0 else dim_size for i, dim_size in enumerate(shape)]"
+            }
+        }
+    }
+}

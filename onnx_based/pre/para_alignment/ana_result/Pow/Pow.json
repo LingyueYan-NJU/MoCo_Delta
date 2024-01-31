@@ -1,0 +1,19 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [
+        ["broadcast", "None"],
+        ["axis", "None"]
+    ],
+    "TOTORCH": {
+        "torch.pow": {
+            "input_tensor": {
+                "mode": "DIRECTLY",
+                "expression": "x"
+            },
+            "exponent": {
+                "mode": "EXPRESSION",
+                "expression": "old_style_broadcast(input_tensor, exponent, self.axis)"
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "INPUTS": [
+        "input_values"
+    ],
+    "ATTRIBUTES": [
+        ["axes", "None"],
+        ["keepdims", 1],
+        ["noop_with_empty_axes", 0]
+    ],
+    "TOTORCH": {
+        "torch.sum": {
+            "dim": {
+                "mode": "DIRECTLY",
+                "expression": "axes"
+            },
+            "keepdim": {
+                "mode": "DIRECTLY",
+                "expression": "keepdims"
+            }
+        }
+    }
+}

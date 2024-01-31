@@ -1,0 +1,29 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [
+        "size",
+        ["alpha", 0.0001],
+        ["beta", 0.75],
+        ["bias", 1]
+    ],
+    "TOTORCH": {
+        "nn.LocalResponseNorm": {
+            "size": {
+                "mode": "DIRECTLY",
+                "expression": "size"
+            },
+            "alpha": {
+                "mode": "DIRECTLY",
+                "expression": "alpha"
+            },
+            "beta": {
+                "mode": "DIRECTLY",
+                "expression": "beta"
+            },
+            "k": {
+                "mode": "DIRECTLY",
+                "expression": "bias"
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [],
+    "TOTORCH": {
+        "nn.Sigmoid": {}
+    }
+}

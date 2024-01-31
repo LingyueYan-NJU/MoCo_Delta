@@ -1,1 +1,1 @@
-type: List[Tensor]. The tensors to compute the Einstein summation of.   Return type Tensor
+type: List[Tensor]. The tensors to compute the Einstein summation of. 

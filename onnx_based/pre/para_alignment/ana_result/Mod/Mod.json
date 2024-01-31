@@ -1,0 +1,10 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [
+        ["fmod", 0]
+    ],
+    "TOTORCH": {
+        "torch.fmod": {},
+        "torch.remainder": {}
+    }
+}

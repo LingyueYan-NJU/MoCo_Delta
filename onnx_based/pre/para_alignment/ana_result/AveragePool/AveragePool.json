@@ -1,0 +1,37 @@
+{
+    "INPUTS": [
+        "input_shape"
+    ],
+    "ATTRIBUTES": [
+        "kernel_shape",
+        ["ceil_mode", 0],
+        ["strides", 1],
+        ["count_include_pad", 0],
+        ["pads", "[0] * spatial_rank * 2"],
+        ["auto_pad", "NOTSET"]
+    ],
+    "TOTORCH": {
+        "_AVGPOOL_CLASS_FROM_SPATIAL_RANK": {
+            "kernel_size": {
+                "mode": "DIRECTLY",
+                "expression": "kernel_shape"
+            },
+            "stride": {
+                "mode": "DIRECTLY",
+                "expression": "strides"
+            },
+            "padding": {
+                "mode": "DIRECTLY",
+                "expression": "padding"
+            },
+            "count_include_pad": {
+                "mode": "EXPRESSION",
+                "expression": "count_include_pad == 1"
+            },
+            "ceil_mode": {
+                "mode": "EXPRESSION",
+                "expression": "ceil_mode == 1"
+            }
+        }
+    }
+}

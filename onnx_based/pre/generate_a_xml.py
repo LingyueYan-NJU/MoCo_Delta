@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import json
 
 
 base_path = "./para_info"
@@ -74,3 +75,6 @@ def handle(lib):
         expend_the_dict_for_a_triple_info_list(get_all_para_name_and_api_name_and_para_des_from_a_folder(
             target_path, lib))
     write_dict_to_excel(total_para_name_to_api_name_and_para_des_dict, f"./{lib}.xlsx")
+    f = open(f"./{lib}_para.json", "w", encoding="utf-8")
+    json.dump(total_para_name_to_api_name_and_para_des_dict, f)
+    f.close()

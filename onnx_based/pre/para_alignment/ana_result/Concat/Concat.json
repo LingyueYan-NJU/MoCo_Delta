@@ -1,0 +1,14 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [
+        ["axis", 0]
+    ],
+    "TOTORCH": {
+        "torch.cat": {
+            "axis": {
+                "mode": "DIRECTLY",
+                "expression": "axis"
+            }
+        }
+    }
+}

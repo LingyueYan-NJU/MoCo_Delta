@@ -1,0 +1,25 @@
+{
+    "INPUTS": [
+        "input_shape"
+    ],
+    "ATTRIBUTES": [
+        ["axis", -1],
+        ["epsilon", 1e-5]
+    ],
+    "TOTORCH": {
+        "nn.LayerNorm": {
+            "normalized_shape": {
+                "mode": "EXPRESSION",
+                "expression": "input_shape[axis:]"
+            },
+            "eps": {
+                "mode": "DIRECTLY",
+                "expression": "epsilon"
+            },
+            "elementwise_affine": {
+                "mode": "DIRECTLY",
+                "expression": "True"
+            }
+        }
+    }
+}

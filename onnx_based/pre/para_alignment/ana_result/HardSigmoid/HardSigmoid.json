@@ -1,0 +1,23 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [
+        ["alpha", 0.2],
+        ["beta", 0.5]
+    ],
+    "TOTORCH": {
+        "torch.clip": {
+            "input": {
+                "mode": "EXPRESSION",
+                "expression": "x * alpha + beta"
+            },
+            "min": {
+                "mode": "DIRECTLY",
+                "expression": "0.0"
+            },
+            "max": {
+                "mode": "DIRECTLY",
+                "expression": "1.0"
+            }
+        }
+    }
+}

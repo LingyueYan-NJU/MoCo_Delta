@@ -1,0 +1,14 @@
+{
+    "INPUTS": [],
+    "ATTRIBUTES": [
+        "seed"
+    ],
+    "TOTORCH": {
+        "F.dropout": {
+            "p": {
+                "mode": "DIRECTLY",
+                "expression": "0.5"
+            }
+        }
+    }
+}

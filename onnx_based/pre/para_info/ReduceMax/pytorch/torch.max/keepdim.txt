@@ -1,1 +1,1 @@
-type: bool. whether the output tensor has dim retained or not. Default: False.   Keyword Arguments
+type: bool. whether the output tensor has dim retained or not. Default: False. 

@@ -1,1 +1,1 @@
-type: Tensor or Number. the tensor or number to add to input.   Keyword Arguments 
+type: Tensor or Number. the tensor or number to add to input. 

@@ -1,0 +1,38 @@
+{
+    "INPUTS": [
+        "input_shape"
+    ],
+    "ATTRIBUTES": [
+        "kernel_shape",
+        ["ceil_mode", 0],
+        ["dilations", 1],
+        ["strides", 1],
+        ["storage_order", 0],
+        ["pads", "[0] * spatial_rank * 2"],
+        ["auto_pad", "NOTSET"]
+    ],
+    "TOTORCH": {
+        "_MAXPOOL_CLASS_FROM_SPATIAL_RANK": {
+            "kernel_size": {
+                "mode": "DIRECTLY",
+                "expression": "kernel_shape"
+            },
+            "stride": {
+                "mode": "DIRECTLY",
+                "expression": "strides"
+            },
+            "padding": {
+                "mode": "DIRECTLY",
+                "expression": "padding"
+            },
+            "dilation": {
+                "mode": "DIRECTLY",
+                "expression": "dilations"
+            },
+            "ceil_mode": {
+                "mode": "EXPRESSION",
+                "expression": "ceil_mode == 1"
+            }
+        }
+    }
+}
