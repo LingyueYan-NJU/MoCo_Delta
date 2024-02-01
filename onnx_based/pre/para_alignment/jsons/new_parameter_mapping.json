@@ -1,0 +1,881 @@
+{
+    "Add": {
+        "tensorflow": {
+            "tf.keras.layers.Add": {
+                "axis": null,
+                "broadcast": null
+            }
+        },
+        "pytorch": {
+            "torch.add": {
+                "axis": null,
+                "broadcast": null
+            }
+        }
+    },
+    "AveragePool": {
+        "tensorflow": {
+            "tf.keras.layers.AveragePooling1D": {
+                "auto_pad": "padding",
+                "ceil_mode": null,
+                "count_include_pad": null,
+                "dilations": null,
+                "kernel_shape": "pool_size",
+                "pads": null,
+                "strides": "strides"
+            },
+            "tf.keras.layers.AveragePooling2D": {
+                "auto_pad": "padding",
+                "ceil_mode": null,
+                "count_include_pad": null,
+                "dilations": null,
+                "kernel_shape": "pool_size",
+                "pads": null,
+                "strides": "strides"
+            },
+            "tf.keras.layers.AveragePooling3D": {
+                "auto_pad": "padding",
+                "ceil_mode": null,
+                "count_include_pad": null,
+                "dilations": null,
+                "kernel_shape": "pool_size",
+                "pads": null,
+                "strides": "strides"
+            }
+        },
+        "pytorch": {
+            "torch.nn.AvgPool1d": {
+                "auto_pad": null,
+                "ceil_mode": null,
+                "count_include_pad": null,
+                "dilations": null,
+                "kernel_shape": "kernel_size",
+                "pads": null,
+                "strides": "stride"
+            },
+            "torch.nn.AvgPool2d": {
+                "auto_pad": null,
+                "ceil_mode": null,
+                "count_include_pad": null,
+                "dilations": null,
+                "kernel_shape": "kernel_size",
+                "pads": null,
+                "strides": "stride"
+            },
+            "torch.nn.AvgPool3d": {
+                "auto_pad": null,
+                "ceil_mode": null,
+                "count_include_pad": null,
+                "dilations": null,
+                "kernel_shape": "kernel_size",
+                "pads": null,
+                "strides": "stride"
+            }
+        }
+    },
+    "BatchNormalization": {
+        "tensorflow": {
+            "tf.keras.layers.BatchNormalization": {
+                "epsilon": "epsilon",
+                "momentum": "momentum",
+                "training_mode": null
+            }
+        },
+        "pytorch": {
+            "torch.nn.BatchNorm1d": {
+                "epsilon": "eps",
+                "momentum": null,
+                "training_mode": null
+            },
+            "torch.nn.BatchNorm2d": {
+                "epsilon": "eps",
+                "momentum": null,
+                "training_mode": null
+            },
+            "torch.nn.BatchNorm3d": {
+                "epsilon": "eps",
+                "momentum": null,
+                "training_mode": null
+            }
+        }
+    },
+    "Ceil": {
+        "tensorflow": {
+            "tf.math.ceil": {
+                "consumed_inputs": null
+            }
+        },
+        "pytorch": {
+            "torch.ceil": {
+                "consumed_inputs": null
+            }
+        }
+    },
+    "Celu": {
+        "tensorflow": {},
+        "pytorch": {
+            "torch.nn.CELU": {
+                "alpha": "alpha"
+            }
+        }
+    },
+    "Concat": {
+        "tensorflow": {
+            "tf.concat": {
+                "axis": "axis"
+            },
+            "tf.keras.layers.Concatenate": {
+                "axis": "axis"
+            }
+        },
+        "pytorch": {
+            "torch.cat": {
+                "axis": "axis"
+            }
+        }
+    },
+    "Conv": {
+        "tensorflow": {
+            "tf.keras.layers.Conv1D": {
+                "auto_pad": null,
+                "dilations": "dilation_rate",
+                "group": "groups",
+                "kernel_shape": "kernel_size",
+                "pads": "padding",
+                "strides": "strides"
+            },
+            "tf.keras.layers.Conv2D": {
+                "auto_pad": null,
+                "dilations": "dilation_rate",
+                "group": "groups",
+                "kernel_shape": "kernel_size",
+                "pads": "padding",
+                "strides": "strides"
+            },
+            "tf.keras.layers.Conv3D": {
+                "auto_pad": null,
+                "dilations": "dilation_rate",
+                "group": "groups",
+                "kernel_shape": "kernel_size",
+                "pads": "padding",
+                "strides": "strides"
+            }
+        },
+        "pytorch": {
+            "torch.nn.Conv3d": {
+                "auto_pad": null,
+                "dilations": "dilation",
+                "group": "groups",
+                "kernel_shape": "kernel_size",
+                "pads": null,
+                "strides": "stride"
+            },
+            "torch.nn.Conv1d": {
+                "auto_pad": null,
+                "dilations": "dilation",
+                "group": "groups",
+                "kernel_shape": "kernel_size",
+                "pads": null,
+                "strides": "stride"
+            },
+            "torch.nn.Conv2d": {
+                "auto_pad": null,
+                "dilations": "dilation",
+                "group": "groups",
+                "kernel_shape": "kernel_size",
+                "pads": null,
+                "strides": "stride"
+            }
+        }
+    },
+    "ConvTranspose": {
+        "tensorflow": {
+            "tf.keras.layers.Conv1DTranspose": {
+                "auto_pad": "padding",
+                "dilations": "dilation_rate",
+                "group": null,
+                "kernel_shape": "kernel_size",
+                "output_padding": "output_padding",
+                "output_shape": null,
+                "pads": null,
+                "strides": "strides"
+            },
+            "tf.keras.layers.Conv2DTranspose": {
+                "auto_pad": "padding",
+                "dilations": "dilation_rate",
+                "group": null,
+                "kernel_shape": "kernel_size",
+                "output_padding": "output_padding",
+                "output_shape": null,
+                "pads": null,
+                "strides": "strides"
+            },
+            "tf.keras.layers.Conv3DTranspose": {
+                "auto_pad": "padding",
+                "dilations": "dilation_rate",
+                "group": null,
+                "kernel_shape": "kernel_size",
+                "output_padding": "output_padding",
+                "output_shape": null,
+                "pads": null,
+                "strides": "strides"
+            }
+        },
+        "pytorch": {
+            "torch.nn.ConvTranspose1d": {
+                "auto_pad": null,
+                "dilations": "dilation",
+                "group": "groups",
+                "kernel_shape": "kernel_size",
+                "output_padding": "output_padding",
+                "output_shape": null,
+                "pads": null,
+                "strides": "stride"
+            },
+            "torch.nn.ConvTranspose2d": {
+                "auto_pad": null,
+                "dilations": "dilation",
+                "group": "groups",
+                "kernel_shape": "kernel_size",
+                "output_padding": "output_padding",
+                "output_shape": null,
+                "pads": null,
+                "strides": "stride"
+            },
+            "torch.nn.ConvTranspose3d": {
+                "auto_pad": null,
+                "dilations": "dilation",
+                "group": "groups",
+                "kernel_shape": "kernel_size",
+                "output_padding": "output_padding",
+                "output_shape": null,
+                "pads": null,
+                "strides": "stride"
+            }
+        }
+    },
+    "Dropout": {
+        "tensorflow": {
+            "tf.keras.layers.Dropout": {
+                "seed": "seed"
+            }
+        },
+        "pytorch": {
+            "F.dropout": {
+                "seed": null
+            },
+            "torch.nn.Dropout": {
+                "seed": null
+            },
+            "torch.nn.Dropout2d": {
+                "seed": null
+            },
+            "torch.nn.Dropout1d": {
+                "seed": null
+            },
+            "torch.nn.Dropout3d": {
+                "seed": null
+            }
+        }
+    },
+    "Elu": {
+        "tensorflow": {
+            "tf.keras.activations.elu": {
+                "alpha": "alpha"
+            },
+            "tf.keras.layers.ELU": {
+                "alpha": "alpha"
+            },
+            "tf.nn.elu": {
+                "alpha": null
+            }
+        },
+        "pytorch": {
+            "torch.nn.ELU": {
+                "alpha": "alpha"
+            }
+        }
+    },
+    "Erf": {
+        "tensorflow": {
+            "tf.math.erf": {}
+        },
+        "pytorch": {
+            "torch.erf": {}
+        }
+    },
+    "Flatten": {
+        "tensorflow": {
+            "tf.keras.layers.Flatten": {
+                "axis": null
+            }
+        },
+        "pytorch": {
+            "torch.nn.Flatten": {
+                "axis": "axis"
+            }
+        }
+    },
+    "Floor": {
+        "tensorflow": {
+            "tf.math.floor": {
+                "consumed_inputs": null
+            }
+        },
+        "pytorch": {
+            "torch.floor": {
+                "consumed_inputs": null
+            }
+        }
+    },
+    "Gelu": {
+        "tensorflow": {
+            "tf.keras.activations.gelu": {
+                "approximate": "approximate"
+            },
+            "tf.nn.gelu": {
+                "approximate": "approximate"
+            }
+        },
+        "pytorch": {
+            "torch.nn.GELU": {
+                "approximate": "approximate"
+            }
+        }
+    },
+    "Gemm": {
+        "tensorflow": {},
+        "pytorch": {
+            "torch.nn.Linear": {
+                "alpha": null,
+                "beta": null,
+                "transA": null,
+                "transB": null
+            }
+        }
+    },
+    "GlobalAveragePool": {
+        "tensorflow": {
+            "tf.keras.layers.GlobalAveragePooling1D": {},
+            "tf.keras.layers.GlobalAveragePooling2D": {},
+            "tf.keras.layers.GlobalAveragePooling3D": {}
+        },
+        "pytorch": {}
+    },
+    "GlobalMaxPool": {
+        "tensorflow": {
+            "tf.keras.layers.GlobalMaxPooling1D": {},
+            "tf.keras.layers.GlobalMaxPooling2D": {},
+            "tf.keras.layers.GlobalMaxPooling3D": {}
+        },
+        "pytorch": {}
+    },
+    "HardSigmoid": {
+        "tensorflow": {},
+        "pytorch": {
+            "torch.nn.Hardsigmoid": {
+                "alpha": null,
+                "beta": null
+            }
+        }
+    },
+    "HardSwish": {
+        "tensorflow": {},
+        "pytorch": {
+            "torch.nn.Hardswish": {}
+        }
+    },
+    "InstanceNormalization": {
+        "tensorflow": {},
+        "pytorch": {
+            "torch.nn.InstanceNorm2d": {
+                "epsilon": "eps"
+            },
+            "torch.nn.InstanceNorm1d": {
+                "epsilon": "eps"
+            },
+            "torch.nn.InstanceNorm3d": {
+                "epsilon": "eps"
+            }
+        }
+    },
+    "LRN": {
+        "tensorflow": {
+            "tf.raw_ops.LRN": {
+                "alpha": "alpha",
+                "beta": "beta",
+                "bias": "bias",
+                "size": "depth_radius"
+            }
+        },
+        "pytorch": {
+            "torch.nn.LocalResponseNorm": {
+                "alpha": "alpha",
+                "beta": "beta",
+                "bias": "k",
+                "size": "size"
+            }
+        }
+    },
+    "LayerNormalization": {
+        "tensorflow": {
+            "tf.keras.layers.LayerNormalization": {
+                "axis": "axis",
+                "epsilon": "epsilon",
+                "stash_type": null
+            }
+        },
+        "pytorch": {
+            "torch.nn.LayerNorm": {
+                "axis": null,
+                "epsilon": "eps",
+                "stash_type": null
+            }
+        }
+    },
+    "LeakyRelu": {
+        "tensorflow": {
+            "tf.keras.layers.LeakyReLU": {
+                "alpha": "alpha"
+            }
+        },
+        "pytorch": {
+            "torch.nn.LeakyReLU": {
+                "alpha": "negative_slope"
+            }
+        }
+    },
+    "LogSoftmax": {
+        "tensorflow": {},
+        "pytorch": {
+            "torch.nn.LogSoftmax": {
+                "axis": "dim"
+            }
+        }
+    },
+    "LpPool": {
+        "tensorflow": {},
+        "pytorch": {
+            "torch.nn.LPPool1d": {
+                "auto_pad": null,
+                "ceil_mode": null,
+                "dilations": null,
+                "kernel_shape": "kernel_size",
+                "p": null,
+                "pads": null,
+                "strides": "stride"
+            },
+            "torch.nn.LPPool2d": {
+                "auto_pad": null,
+                "ceil_mode": null,
+                "dilations": null,
+                "kernel_shape": "kernel_size",
+                "p": null,
+                "pads": null,
+                "strides": "stride"
+            }
+        }
+    },
+    "Max": {
+        "tensorflow": {
+            "tf.keras.layers.maximum": {
+                "consumed_inputs": null
+            },
+            "tf.math.maximum": {
+                "consumed_inputs": null
+            }
+        },
+        "pytorch": {
+            "torch.amax": {
+                "consumed_inputs": null
+            }
+        }
+    },
+    "MaxPool": {
+        "tensorflow": {
+            "tf.keras.layers.MaxPooling1D": {
+                "auto_pad": null,
+                "ceil_mode": null,
+                "dilations": null,
+                "kernel_shape": "pool_size",
+                "pads": "padding",
+                "storage_order": null,
+                "strides": "strides"
+            },
+            "tf.keras.layers.MaxPooling2D": {
+                "auto_pad": null,
+                "ceil_mode": null,
+                "dilations": null,
+                "kernel_shape": "pool_size",
+                "pads": "padding",
+                "storage_order": null,
+                "strides": "strides"
+            },
+            "tf.keras.layers.MaxPooling3D": {
+                "auto_pad": null,
+                "ceil_mode": null,
+                "dilations": null,
+                "kernel_shape": "pool_size",
+                "pads": "padding",
+                "storage_order": null,
+                "strides": "strides"
+            }
+        },
+        "pytorch": {
+            "torch.nn.MaxPool2d": {
+                "auto_pad": null,
+                "ceil_mode": null,
+                "dilations": "dilation",
+                "kernel_shape": "kernel_size",
+                "pads": null,
+                "storage_order": null,
+                "strides": "stride"
+            },
+            "torch.nn.MaxPool1d": {
+                "auto_pad": null,
+                "ceil_mode": null,
+                "dilations": "dilation",
+                "kernel_shape": "kernel_size",
+                "pads": null,
+                "storage_order": null,
+                "strides": "stride"
+            },
+            "torch.nn.MaxPool3d": {
+                "auto_pad": null,
+                "ceil_mode": null,
+                "dilations": "dilation",
+                "kernel_shape": "kernel_size",
+                "pads": null,
+                "storage_order": null,
+                "strides": "stride"
+            }
+        }
+    },
+    "MaxUnpool": {
+        "tensorflow": {},
+        "pytorch": {
+            "torch.nn.MaxUnpool3d": {
+                "kernel_shape": "kernel_size",
+                "pads": "padding",
+                "strides": "stride"
+            },
+            "torch.nn.MaxUnpool2d": {
+                "kernel_shape": "kernel_size",
+                "pads": "padding",
+                "strides": "stride"
+            },
+            "torch.nn.MaxUnpool1d": {
+                "kernel_shape": "kernel_size",
+                "pads": "padding",
+                "strides": "stride"
+            }
+        }
+    },
+    "Min": {
+        "tensorflow": {
+            "tf.minimum": {
+                "consumed_inputs": null
+            }
+        },
+        "pytorch": {
+            "torch.amin": {
+                "consumed_inputs": null
+            }
+        }
+    },
+    "Mish": {
+        "tensorflow": {
+            "tf.keras.activations.mish": {}
+        },
+        "pytorch": {
+            "torch.nn.Mish": {}
+        }
+    },
+    "Mod": {
+        "tensorflow": {
+            "tf.math.floormod": {
+                "fmod": null
+            }
+        },
+        "pytorch": {}
+    },
+    "Mul": {
+        "tensorflow": {
+            "tf.math.multiply": {
+                "axis": null,
+                "broadcast": null
+            }
+        },
+        "pytorch": {}
+    },
+    "Neg": {
+        "tensorflow": {},
+        "pytorch": {}
+    },
+    "PRelu": {
+        "tensorflow": {
+            "tf.keras.layers.PReLU": {
+                "consumed_inputs": null
+            }
+        },
+        "pytorch": {
+            "torch.nn.PReLU": {
+                "consumed_inputs": null
+            }
+        }
+    },
+    "Pow": {
+        "tensorflow": {
+            "tf.math.pow": {
+                "axis": null,
+                "broadcast": null
+            }
+        },
+        "pytorch": {
+            "torch.pow": {
+                "axis": null,
+                "broadcast": null
+            }
+        }
+    },
+    "Reciprocal": {
+        "tensorflow": {
+            "tf.math.reciprocal": {
+                "consumed_inputs": null
+            }
+        },
+        "pytorch": {
+            "torch.reciprocal": {
+                "consumed_inputs": null
+            }
+        }
+    },
+    "ReduceMax": {
+        "tensorflow": {
+            "tf.reduce_max": {
+                "keepdims": "keepdims",
+                "noop_with_empty_axes": null
+            }
+        },
+        "pytorch": {
+            "torch.max": {
+                "keepdims": "keepdim",
+                "noop_with_empty_axes": null
+            }
+        }
+    },
+    "ReduceMean": {
+        "tensorflow": {
+            "tf.reduce_mean": {
+                "keepdims": "keepdims",
+                "noop_with_empty_axes": null
+            }
+        },
+        "pytorch": {
+            "torch.mean": {
+                "keepdims": "keepdim",
+                "noop_with_empty_axes": null
+            }
+        }
+    },
+    "ReduceMin": {
+        "tensorflow": {
+            "tf.reduce_min": {
+                "keepdims": "keepdims",
+                "noop_with_empty_axes": null
+            }
+        },
+        "pytorch": {
+            "torch.min": {
+                "keepdims": "keepdim",
+                "noop_with_empty_axes": null
+            }
+        }
+    },
+    "ReduceProd": {
+        "tensorflow": {
+            "tf.reduce_prod": {
+                "keepdims": "keepdims",
+                "noop_with_empty_axes": null
+            }
+        },
+        "pytorch": {
+            "torch.prod": {
+                "keepdims": "keepdim",
+                "noop_with_empty_axes": null
+            }
+        }
+    },
+    "ReduceSum": {
+        "tensorflow": {
+            "tf.reduce_sum": {
+                "keepdims": "keepdims",
+                "noop_with_empty_axes": null
+            }
+        },
+        "pytorch": {
+            "torch.sum": {
+                "keepdims": "keepdim",
+                "noop_with_empty_axes": null
+            }
+        }
+    },
+    "Relu": {
+        "tensorflow": {
+            "tf.keras.activations.relu": {
+                "consumed_inputs": null
+            },
+            "tf.keras.layers.ReLU": {
+                "consumed_inputs": null
+            },
+            "tf.nn.relu": {
+                "consumed_inputs": null
+            }
+        },
+        "pytorch": {
+            "F.relu": {
+                "consumed_inputs": null
+            },
+            "torch.nn.ReLU": {
+                "consumed_inputs": null
+            }
+        }
+    },
+    "Reshape": {
+        "tensorflow": {
+            "tf.keras.layers.Reshape": {
+                "allowzero": null
+            }
+        },
+        "pytorch": {
+            "torch.reshape": {
+                "allowzero": null
+            }
+        }
+    },
+    "Round": {
+        "tensorflow": {
+            "tf.math.round": {}
+        },
+        "pytorch": {
+            "torch.round": {}
+        }
+    },
+    "Selu": {
+        "tensorflow": {
+            "tf.keras.activations.selu": {
+                "alpha": null,
+                "gamma": null
+            },
+            "tf.nn.selu": {
+                "alpha": null,
+                "gamma": null
+            }
+        },
+        "pytorch": {
+            "torch.nn.SELU": {
+                "alpha": null,
+                "gamma": null
+            }
+        }
+    },
+    "Sigmoid": {
+        "tensorflow": {
+            "tf.keras.activations.sigmoid": {
+                "consumed_inputs": null
+            },
+            "tf.math.sigmoid": {
+                "consumed_inputs": null
+            }
+        },
+        "pytorch": {
+            "torch.nn.Sigmoid": {
+                "consumed_inputs": null
+            }
+        }
+    },
+    "Softmax": {
+        "tensorflow": {
+            "tf.keras.activations.softmax": {
+                "axis": "axis"
+            },
+            "tf.keras.layers.Softmax": {
+                "axis": "axis"
+            },
+            "tf.nn.softmax": {
+                "axis": "axis"
+            }
+        },
+        "pytorch": {
+            "torch.nn.Softmax2d": {
+                "axis": "dim"
+            },
+            "torch.nn.Softmax": {
+                "axis": "dim"
+            }
+        }
+    },
+    "Softplus": {
+        "tensorflow": {
+            "tf.keras.activations.softplus": {},
+            "tf.math.softplus": {}
+        },
+        "pytorch": {
+            "torch.nn.Softplus": {}
+        }
+    },
+    "Softsign": {
+        "tensorflow": {
+            "tf.keras.activations.softsign": {},
+            "tf.nn.softsign": {}
+        },
+        "pytorch": {
+            "torch.nn.Softsign": {}
+        }
+    },
+    "Sub": {
+        "tensorflow": {
+            "tf.math.subtract": {
+                "axis": null,
+                "broadcast": null
+            }
+        },
+        "pytorch": {
+            "torch.sub": {
+                "axis": null,
+                "broadcast": null
+            }
+        }
+    },
+    "Tanh": {
+        "tensorflow": {
+            "tf.keras.activations.tanh": {
+                "consumed_inputs": null
+            },
+            "tf.math.tanh": {
+                "consumed_inputs": null
+            }
+        },
+        "pytorch": {
+            "torch.nn.Tanh": {
+                "consumed_inputs": null
+            }
+        }
+    },
+    "ThresholdedRelu": {
+        "tensorflow": {
+            "tf.keras.layers.ThresholdedReLU": {
+                "alpha": "theta"
+            }
+        },
+        "pytorch": {}
+    },
+    "Upsample": {
+        "tensorflow": {},
+        "pytorch": {
+            "torch.nn.Upsample": {
+                "mode": null
+            }
+        }
+    }
+}

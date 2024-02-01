@@ -1,0 +1,3546 @@
+{
+    "Add": {
+        "onnx": {
+            "axis": {
+                "def": "If set, defines the broadcast dimensions",
+                "type": "int"
+            },
+            "broadcast": {
+                "def": "Pass 1 to enable broadcasting",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.add": {
+                "alpha": {
+                    "def": "the multiplier for other.",
+                    "type": "number",
+                    "isRequired": false
+                },
+                "input": {
+                    "def": "the input tensor.",
+                    "type": "tensor",
+                    "isRequired": true
+                },
+                "other": {
+                    "def": "the tensor or number to add to input.",
+                    "type": "tensor or number",
+                    "isRequired": true
+                },
+                "out": {
+                    "def": "the output tensor.",
+                    "type": "tensor",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.layers.Add": {}
+        }
+    },
+    "AveragePool": {
+        "onnx": {
+            "auto_pad": {
+                "def": "auto_pad must be either NOTSET, SAME_UPPER, SAME_LOWER or VALID.Where default value is NOTSET, which means explicit padding is used.SAME_UPPER or SAME_LOWER mean pad the input so that output_shape[i] = ceil(input_shape[i] / strides[i]) for each axis i",
+                "type": "string"
+            },
+            "ceil_mode": {
+                "def": "Whether to use ceil or floor (default) to compute the output shape.",
+                "type": "int"
+            },
+            "count_include_pad": {
+                "def": "Whether include pad pixels when calculating values for the edges.Default is 0, doesn\u2019t count include pad.",
+                "type": "int"
+            },
+            "dilations": {
+                "def": "Dilation value along each spatial axis of filter",
+                "type": "ints"
+            },
+            "kernel_shape": {
+                "def": "The size of the kernel along each axis.",
+                "type": "ints"
+            },
+            "pads": {
+                "def": "Padding for the beginning and ending along each spatial axis, it cantake any value greater than or equal to 0",
+                "type": "ints"
+            },
+            "strides": {
+                "def": "Stride along each spatial axis",
+                "type": "ints"
+            }
+        },
+        "pytorch": {
+            "torch.nn.AvgPool1d": {
+                "ceil_mode": {
+                    "def": "when True, will use ceil instead of floor to compute the output shape",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "count_include_pad": {
+                    "def": "when True, will include the zero-padding in the averaging calculation",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "kernel_size": {
+                    "def": "the size of the window",
+                    "type": "unionint tupleint",
+                    "isRequired": true
+                },
+                "padding": {
+                    "def": "implicit zero padding to be added on both sides",
+                    "type": "unionint tupleint",
+                    "isRequired": false
+                },
+                "stride": {
+                    "def": "the stride of the window",
+                    "type": "unionint tupleint",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.AvgPool2d": {
+                "ceil_mode": {
+                    "def": "when True, will use ceil instead of floor to compute the output shape",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "count_include_pad": {
+                    "def": "when True, will include the zero-padding in the averaging calculation",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "divisor_override": {
+                    "def": "if specified, it will be used as divisor, otherwise size of the pooling region will be used.",
+                    "type": "optionalint",
+                    "isRequired": false
+                },
+                "kernel_size": {
+                    "def": "the size of the window",
+                    "type": "unionint tupleint int",
+                    "isRequired": true
+                },
+                "padding": {
+                    "def": "implicit zero padding to be added on both sides",
+                    "type": "unionint tupleint int",
+                    "isRequired": false
+                },
+                "stride": {
+                    "def": "the stride of the window",
+                    "type": "unionint tupleint int",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.AvgPool3d": {
+                "ceil_mode": {
+                    "def": "when True, will use ceil instead of floor to compute the output shape",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "count_include_pad": {
+                    "def": "when True, will include the zero-padding in the averaging calculation",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "divisor_override": {
+                    "def": "if specified, it will be used as divisor, otherwise kernel_size will be used",
+                    "type": "optionalint",
+                    "isRequired": false
+                },
+                "kernel_size": {
+                    "def": "the size of the window",
+                    "type": "unionint tupleint int int",
+                    "isRequired": true
+                },
+                "padding": {
+                    "def": "implicit zero padding to be added on all three sides",
+                    "type": "unionint tupleint int int",
+                    "isRequired": false
+                },
+                "stride": {
+                    "def": "the stride of the window",
+                    "type": "unionint tupleint int int",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.layers.AveragePooling1D": {
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch, steps, features) while channels_first corresponds to inputs with shape (batch, features, steps).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "padding": {
+                    "def": "One of \"valid\" or \"same\" (case-insensitive). \"valid\" means no padding. \"same\" results in padding evenly to the left/right or up/down of the input such that output has the same height/width dimension as the input.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "pool_size": {
+                    "def": "Integer, size of the average pooling windows.",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "strides": {
+                    "def": "Integer, or None. Factor by which to downscale. E.g. 2 will halve the input. If None, it will default to pool_size.",
+                    "isRequired": false,
+                    "type": "int"
+                }
+            },
+            "tf.keras.layers.AveragePooling2D": {
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch, height, width, channels) while channels_first corresponds to inputs with shape (batch, channels, height, width). When unspecified, uses image_data_format value found in your Keras config file at ~/.keras/keras.json (if exists) else 'channels_last'. Defaults to 'channels_last'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "padding": {
+                    "def": "One of \"valid\" or \"same\" (case-insensitive). \"valid\" means no padding. \"same\" results in padding evenly to the left/right or up/down of the input such that output has the same height/width dimension as the input.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "pool_size": {
+                    "def": "integer or tuple of 2 integers, factors by which to downscale (vertical, horizontal). (2, 2) will halve the input in both spatial dimension. If only one integer is specified, the same window length will be used for both dimensions.",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "strides": {
+                    "def": "Integer, tuple of 2 integers, or None. Strides values. If None, it will default to pool_size.",
+                    "isRequired": false,
+                    "type": "int"
+                }
+            },
+            "tf.keras.layers.AveragePooling3D": {
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch, spatial_dim1, spatial_dim2, spatial_dim3, channels) while channels_first corresponds to inputs with shape (batch, channels, spatial_dim1, spatial_dim2, spatial_dim3). When unspecified, uses image_data_format value found in your Keras config file at ~/.keras/keras.json (if exists) else 'channels_last'. Defaults to 'channels_last'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "padding": {
+                    "def": "One of \"valid\" or \"same\" (case-insensitive). \"valid\" means no padding. \"same\" results in padding evenly to the left/right or up/down of the input such that output has the same height/width dimension as the input.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "pool_size": {
+                    "def": "tuple of 3 integers, factors by which to downscale (dim1, dim2, dim3). (2, 2, 2) will halve the size of the 3D input in each dimension.",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "strides": {
+                    "def": "tuple of 3 integers, or None. Strides values.",
+                    "isRequired": false,
+                    "type": "int"
+                }
+            }
+        }
+    },
+    "BatchNormalization": {
+        "onnx": {
+            "epsilon": {
+                "def": "The epsilon value to use to avoid division by zero.",
+                "type": "float"
+            },
+            "momentum": {
+                "def": "Factor used in computing the running mean and variance.e.g.,running_mean = running_mean * momentum + mean * (1 - momentum).",
+                "type": "float"
+            },
+            "training_mode": {
+                "def": "If set to true, it indicates BatchNormalization is being used fortraining, and outputs 1, 2, 3, and 4 would be populated.",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.nn.BatchNorm1d": {
+                "affine": {
+                    "def": "a boolean value that when set to True, this module has learnable affine parameters",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "eps": {
+                    "def": "a value added to the denominator for numerical stability",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "momentum": {
+                    "def": "the value used for the running_mean and running_var computation",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "num_features": {
+                    "def": "number of features or channels CCC of the input",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "track_running_stats": {
+                    "def": "a boolean value that when set to True, this module tracks the running mean and variance, and when set to False, this module does not track such statistics, and initializes statistics buffers running_mean and running_var as None",
+                    "type": "bool",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.BatchNorm2d": {
+                "affine": {
+                    "def": "a boolean value that when set to True, this module has learnable affine parameters",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "eps": {
+                    "def": "a value added to the denominator for numerical stability",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "momentum": {
+                    "def": "the value used for the running_mean and running_var computation",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "num_features": {
+                    "def": "CCC from an expected input of size (N,C,H,W)(N, C, H, W)(N,C,H,W)",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "track_running_stats": {
+                    "def": "a boolean value that when set to True, this module tracks the running mean and variance, and when set to False, this module does not track such statistics, and initializes statistics buffers running_mean and running_var as None",
+                    "type": "bool",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.BatchNorm3d": {
+                "affine": {
+                    "def": "a boolean value that when set to True, this module has learnable affine parameters",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "eps": {
+                    "def": "a value added to the denominator for numerical stability",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "momentum": {
+                    "def": "the value used for the running_mean and running_var computation",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "num_features": {
+                    "def": "CCC from an expected input of size (N,C,D,H,W)(N, C, D, H, W)(N,C,D,H,W)",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "track_running_stats": {
+                    "def": "a boolean value that when set to True, this module tracks the running mean and variance, and when set to False, this module does not track such statistics, and initializes statistics buffers running_mean and running_var as None",
+                    "type": "bool",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.layers.BatchNormalization": {
+                "axis": {
+                    "def": "Integer, the axis that should be normalized (typically the features axis). For instance, after a Conv2D layer with data_format=\"channels_first\", set axis=1 in BatchNormalization.",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "beta_constraint": {
+                    "def": "Optional constraint for the beta weight.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "beta_initializer": {
+                    "def": "Initializer for the beta weight.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "beta_regularizer": {
+                    "def": "Optional regularizer for the beta weight.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "center": {
+                    "def": "If True, add offset of beta to normalized tensor. If False, beta is ignored.",
+                    "isRequired": false,
+                    "type": "bool"
+                },
+                "epsilon": {
+                    "def": "Small float added to variance to avoid dividing by zero.",
+                    "isRequired": false,
+                    "type": "float"
+                },
+                "gamma_constraint": {
+                    "def": "Optional constraint for the gamma weight.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "gamma_initializer": {
+                    "def": "Initializer for the gamma weight.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "gamma_regularizer": {
+                    "def": "Optional regularizer for the gamma weight.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "momentum": {
+                    "def": "Momentum for the moving average.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "moving_mean_initializer": {
+                    "def": "Initializer for the moving mean.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "moving_variance_initializer": {
+                    "def": "Initializer for the moving variance.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "scale": {
+                    "def": "If True, multiply by gamma. If False, gamma is not used. When the next layer is linear (also e.g. nn.relu), this can be disabled since the scaling will be done by the next layer.",
+                    "isRequired": false,
+                    "type": "bool"
+                },
+                "synchronized": {
+                    "def": "If True, synchronizes the global batch statistics (mean and variance) for the layer across all devices at each training step in a distributed training strategy. If False, each replica uses its own local batch statistics. Only relevant when used inside a tf.distribute strategy.",
+                    "isRequired": false,
+                    "type": "bool"
+                }
+            }
+        }
+    },
+    "Ceil": {
+        "onnx": {
+            "consumed_inputs": {
+                "def": "legacy optimization attribute.",
+                "type": "ints"
+            }
+        },
+        "pytorch": {
+            "torch.ceil": {
+                "input": {
+                    "def": "the input tensor",
+                    "type": "tensor",
+                    "isRequired": true
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.math.ceil": {
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "x": {
+                    "def": "A tf.Tensor. Must be one of the following types: bfloat16, half, float32, float64. int32",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            }
+        }
+    },
+    "Celu": {
+        "onnx": {
+            "alpha": {
+                "def": "The Alpha value in Celu formula which control the shape of the unit.The default value is 1.0.",
+                "type": "float"
+            }
+        },
+        "pytorch": {
+            "torch.nn.CELU": {
+                "alpha": {
+                    "def": "the \u03b1\\alpha\u03b1 value for the CELU formulation",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "inplace": {
+                    "def": "can optionally do the operation in-place",
+                    "type": "bool",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {}
+    },
+    "Concat": {
+        "onnx": {
+            "axis": {
+                "def": "Which axis to concat on",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.cat": {
+                "dim": {
+                    "def": "the dimension over which the tensors are concatenated.",
+                    "type": "int",
+                    "isRequired": false
+                },
+                "out": {
+                    "def": "the output tensor.",
+                    "type": "tensor",
+                    "isRequired": false
+                },
+                "tensors": {
+                    "def": "any python sequence of tensors of the same type",
+                    "type": "sequence of tensors",
+                    "isRequired": true
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.concat": {
+                "axis": {
+                    "def": "0-D int32 Tensor. Dimension along which to concatenate. Must be in the range [-rank(values), rank(values)). As in Python, indexing for axis is 0-based. Positive axis in the rage of [0, rank(values)) refers to axis-th dimension. And negative axis refers to axis + rank(values)-th dimension.",
+                    "isRequired": true,
+                    "type": "int"
+                },
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "values": {
+                    "def": "A list of Tensor objects or a single Tensor.",
+                    "isRequired": true,
+                    "type": [
+                        "tensors",
+                        "tensor"
+                    ]
+                }
+            },
+            "tf.keras.layers.Concatenate": {
+                "axis": {
+                    "def": "Axis along which to concatenate.",
+                    "isRequired": false,
+                    "type": "int"
+                }
+            }
+        }
+    },
+    "Conv": {
+        "onnx": {
+            "auto_pad": {
+                "def": "auto_pad must be either NOTSET, SAME_UPPER, SAME_LOWER or VALID.Where default value is NOTSET, which means explicit padding is used.SAME_UPPER or SAME_LOWER mean pad the input so that output_shape[i] = ceil(input_shape[i] / strides[i]) for each axis i",
+                "type": "string"
+            },
+            "dilations": {
+                "def": "dilation value along each spatial axis of the filter",
+                "type": "ints"
+            },
+            "group": {
+                "def": "number of groups input channels and output channels are dividedinto.",
+                "type": "int"
+            },
+            "kernel_shape": {
+                "def": "The shape of the convolution kernel",
+                "type": "ints"
+            },
+            "pads": {
+                "def": "Padding for the beginning and ending along each spatial axis, it cantake any value greater than or equal to 0",
+                "type": "ints"
+            },
+            "strides": {
+                "def": "Stride along each spatial axis",
+                "type": "ints"
+            }
+        },
+        "pytorch": {
+            "torch.nn.Conv1d": {
+                "bias": {
+                    "def": "If True, adds a learnable bias to the output",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "dilation": {
+                    "def": "Spacing between kernel elements",
+                    "type": "int or tuple",
+                    "isRequired": false
+                },
+                "groups": {
+                    "def": "Number of blocked connections from input channels to output channels",
+                    "type": "int",
+                    "isRequired": false
+                },
+                "in_channels": {
+                    "def": "Number of channels in the input image",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "kernel_size": {
+                    "def": "Size of the convolving kernel",
+                    "type": "int or tuple",
+                    "isRequired": true
+                },
+                "out_channels": {
+                    "def": "Number of channels produced by the convolution",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "padding": {
+                    "def": "Padding added to both sides of the input",
+                    "type": "int tuple or str",
+                    "isRequired": false
+                },
+                "padding_mode": {
+                    "def": "'zeros', 'reflect', 'replicate' or 'circular'",
+                    "type": "string",
+                    "isRequired": false
+                },
+                "stride": {
+                    "def": "Stride of the convolution",
+                    "type": "int or tuple",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.Conv2d": {
+                "bias": {
+                    "def": "If True, adds a learnable bias to the output",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "dilation": {
+                    "def": "Spacing between kernel elements",
+                    "type": "int or tuple",
+                    "isRequired": false
+                },
+                "groups": {
+                    "def": "Number of blocked connections from input channels to output channels",
+                    "type": "int",
+                    "isRequired": false
+                },
+                "in_channels": {
+                    "def": "Number of channels in the input image",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "kernel_size": {
+                    "def": "Size of the convolving kernel",
+                    "type": "int or tuple",
+                    "isRequired": true
+                },
+                "out_channels": {
+                    "def": "Number of channels produced by the convolution",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "padding": {
+                    "def": "Padding added to all four sides of the input",
+                    "type": "int tuple or str",
+                    "isRequired": false
+                },
+                "padding_mode": {
+                    "def": "'zeros', 'reflect', 'replicate' or 'circular'",
+                    "type": "string",
+                    "isRequired": false
+                },
+                "stride": {
+                    "def": "Stride of the convolution",
+                    "type": "int or tuple",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.Conv3d": {
+                "bias": {
+                    "def": "If True, adds a learnable bias to the output",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "dilation": {
+                    "def": "Spacing between kernel elements",
+                    "type": "int or tuple",
+                    "isRequired": false
+                },
+                "groups": {
+                    "def": "Number of blocked connections from input channels to output channels",
+                    "type": "int",
+                    "isRequired": false
+                },
+                "in_channels": {
+                    "def": "Number of channels in the input image",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "kernel_size": {
+                    "def": "Size of the convolving kernel",
+                    "type": "int or tuple",
+                    "isRequired": true
+                },
+                "out_channels": {
+                    "def": "Number of channels produced by the convolution",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "padding": {
+                    "def": "Padding added to all six sides of the input",
+                    "type": "int tuple or str",
+                    "isRequired": false
+                },
+                "padding_mode": {
+                    "def": "'zeros', 'reflect', 'replicate' or 'circular'",
+                    "type": "string",
+                    "isRequired": false
+                },
+                "stride": {
+                    "def": "Stride of the convolution",
+                    "type": "int or tuple",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.layers.Conv1D": {
+                "activation": {
+                    "def": "Activation function to use. If you don't specify anything, no activation is applied (see keras.activations).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "activity_regularizer": {
+                    "def": "Regularizer function applied to the output of the layer (its \"activation\") (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_constraint": {
+                    "def": "Constraint function applied to the bias vector (see keras.constraints).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_initializer": {
+                    "def": "Initializer for the bias vector (see keras.initializers). Defaults to 'zeros'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_regularizer": {
+                    "def": "Regularizer function applied to the bias vector (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch_size, width, channels) while channels_first corresponds to inputs with shape (batch_size, channels, width). Note that the channels_first format is currently not supported by TensorFlow on CPU.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "dilation_rate": {
+                    "def": "an integer or tuple/list of a single integer, specifying the dilation rate to use for dilated convolution. Currently, specifying any dilation_rate value != 1 is incompatible with specifying any strides value != 1.",
+                    "isRequired": false,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "filters": {
+                    "def": "Integer, the dimensionality of the output space (i.e. the number of output filters in the convolution).",
+                    "isRequired": true,
+                    "type": "int"
+                },
+                "groups": {
+                    "def": "A positive integer specifying the number of groups in which the input is split along the channel axis. Each group is convolved separately with filters / groups filters. The output is the concatenation of all the groups results along the channel axis. Input channels and filters must both be divisible by groups.",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "kernel_constraint": {
+                    "def": "Constraint function applied to the kernel matrix (see keras.constraints).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_initializer": {
+                    "def": "Initializer for the kernel weights matrix (see keras.initializers). Defaults to 'glorot_uniform'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_regularizer": {
+                    "def": "Regularizer function applied to the kernel weights matrix (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_size": {
+                    "def": "An integer or tuple/list of a single integer, specifying the length of the 1D convolution window.",
+                    "isRequired": true,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "padding": {
+                    "def": "One of \"valid\", \"same\" or \"causal\" (case-insensitive). \"valid\" means no padding. \"same\" results in padding with zeros evenly to the left/right or up/down of the input such that output has the same height/width dimension as the input. \"causal\" results in causal (dilated) convolutions, e.g. output[t] does not depend on input[t+1:]. Useful when modeling temporal data where the model should not violate the temporal order. See WaveNet: A Generative Model for Raw Audio, section  2.1.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "strides": {
+                    "def": "An integer or tuple/list of a single integer, specifying the stride length of the convolution. Specifying any stride value != 1 is incompatible with specifying any dilation_rate value != 1.",
+                    "isRequired": false,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "use_bias": {
+                    "def": "Boolean, whether the layer uses a bias vector.",
+                    "isRequired": false,
+                    "type": "bool"
+                }
+            },
+            "tf.keras.layers.Conv2D": {
+                "activation": {
+                    "def": "Activation function to use. If you don't specify anything, no activation is applied (see keras.activations).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "activity_regularizer": {
+                    "def": "Regularizer function applied to the output of the layer (its \"activation\") (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_constraint": {
+                    "def": "Constraint function applied to the bias vector (see keras.constraints).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_initializer": {
+                    "def": "Initializer for the bias vector (see keras.initializers). Defaults to 'zeros'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_regularizer": {
+                    "def": "Regularizer function applied to the bias vector (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch_size, height, width, channels) while channels_first corresponds to inputs with shape (batch_size, channels, height, width). If left unspecified, it uses the image_data_format value found in your Keras config file at ~/.keras/keras.json (if exists) else 'channels_last'. Note that the channels_first format is currently not supported by TensorFlow on CPU. Defaults to 'channels_last'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "dilation_rate": {
+                    "def": "an integer or tuple/list of 2 integers, specifying the dilation rate to use for dilated convolution. Can be a single integer to specify the same value for all spatial dimensions. Currently, specifying any dilation_rate value != 1 is incompatible with specifying any stride value != 1.",
+                    "isRequired": false,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "filters": {
+                    "def": "Integer, the dimensionality of the output space (i.e. the number of output filters in the convolution).",
+                    "isRequired": true,
+                    "type": "int"
+                },
+                "groups": {
+                    "def": "A positive integer specifying the number of groups in which the input is split along the channel axis. Each group is convolved separately with filters / groups filters. The output is the concatenation of all the groups results along the channel axis. Input channels and filters must both be divisible by groups.",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "kernel_constraint": {
+                    "def": "Constraint function applied to the kernel matrix (see keras.constraints).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_initializer": {
+                    "def": "Initializer for the kernel weights matrix (see keras.initializers). Defaults to 'glorot_uniform'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_regularizer": {
+                    "def": "Regularizer function applied to the kernel weights matrix (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_size": {
+                    "def": "An integer or tuple/list of 2 integers, specifying the height and width of the 2D convolution window. Can be a single integer to specify the same value for all spatial dimensions.",
+                    "isRequired": true,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "padding": {
+                    "def": "one of \"valid\" or \"same\" (case-insensitive). \"valid\" means no padding. \"same\" results in padding with zeros evenly to the left/right or up/down of the input. When padding=\"same\" and strides=1, the output has the same size as the input.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "strides": {
+                    "def": "An integer or tuple/list of 2 integers, specifying the strides of the convolution along the height and width. Can be a single integer to specify the same value for all spatial dimensions. Specifying any stride value != 1 is incompatible with specifying any dilation_rate value != 1.",
+                    "isRequired": false,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "use_bias": {
+                    "def": "Boolean, whether the layer uses a bias vector.",
+                    "isRequired": false,
+                    "type": "bool"
+                }
+            },
+            "tf.keras.layers.Conv3D": {
+                "activation": {
+                    "def": "Activation function to use. If you don't specify anything, no activation is applied (see keras.activations).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "activity_regularizer": {
+                    "def": "Regularizer function applied to the output of the layer (its \"activation\") (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_constraint": {
+                    "def": "Constraint function applied to the bias vector (see keras.constraints).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_initializer": {
+                    "def": "Initializer for the bias vector (see keras.initializers). Defaults to 'zeros'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_regularizer": {
+                    "def": "Regularizer function applied to the bias vector (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape batch_shape + (spatial_dim1, spatial_dim2, spatial_dim3, channels) while channels_first corresponds to inputs with shape batch_shape + (channels, spatial_dim1, spatial_dim2, spatial_dim3). When unspecified, uses image_data_format value found in your Keras config file at ~/.keras/keras.json (if exists) else 'channels_last'. Note that the channels_first format is currently not supported by TensorFlow on CPU. Defaults to 'channels_last'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "dilation_rate": {
+                    "def": "an integer or tuple/list of 3 integers, specifying the dilation rate to use for dilated convolution. Can be a single integer to specify the same value for all spatial dimensions. Currently, specifying any dilation_rate value != 1 is incompatible with specifying any stride value != 1.",
+                    "isRequired": false,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "filters": {
+                    "def": "Integer, the dimensionality of the output space (i.e. the number of output filters in the convolution).",
+                    "isRequired": true,
+                    "type": "int"
+                },
+                "groups": {
+                    "def": "A positive integer specifying the number of groups in which the input is split along the channel axis. Each group is convolved separately with filters / groups filters. The output is the concatenation of all the groups results along the channel axis. Input channels and filters must both be divisible by groups.",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "kernel_constraint": {
+                    "def": "Constraint function applied to the kernel matrix (see keras.constraints).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_initializer": {
+                    "def": "Initializer for the kernel weights matrix (see keras.initializers). Defaults to 'glorot_uniform'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_regularizer": {
+                    "def": "Regularizer function applied to the kernel weights matrix (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_size": {
+                    "def": "An integer or tuple/list of 3 integers, specifying the depth, height and width of the 3D convolution window. Can be a single integer to specify the same value for all spatial dimensions.",
+                    "isRequired": true,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "padding": {
+                    "def": "one of \"valid\" or \"same\" (case-insensitive). \"valid\" means no padding. \"same\" results in padding with zeros evenly to the left/right or up/down of the input such that output has the same height/width dimension as the input.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "strides": {
+                    "def": "An integer or tuple/list of 3 integers, specifying the strides of the convolution along each spatial dimension. Can be a single integer to specify the same value for all spatial dimensions. Specifying any stride value != 1 is incompatible with specifying any dilation_rate value != 1.",
+                    "isRequired": false,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "use_bias": {
+                    "def": "Boolean, whether the layer uses a bias vector.",
+                    "isRequired": false,
+                    "type": "bool"
+                }
+            }
+        }
+    },
+    "ConvTranspose": {
+        "onnx": {
+            "auto_pad": {
+                "def": "auto_pad must be either NOTSET, SAME_UPPER, SAME_LOWER or VALID.Where default value is NOTSET, which means explicit padding is used.SAME_UPPER or SAME_LOWER mean pad the input so that output_shape[i] = input_shape[i] * strides[i] for each axis i",
+                "type": "string"
+            },
+            "dilations": {
+                "def": "dilation value along each spatial axis of the filter",
+                "type": "ints"
+            },
+            "group": {
+                "def": "number of groups input channels and output channels are dividedinto.",
+                "type": "int"
+            },
+            "kernel_shape": {
+                "def": "The shape of the convolution kernel",
+                "type": "ints"
+            },
+            "output_padding": {
+                "def": "Additional elements added to the side with higher coordinate indicesin the output",
+                "type": "ints"
+            },
+            "output_shape": {
+                "def": "The shape of the output can be explicitly set which will cause padsvalues to be auto generated",
+                "type": "ints"
+            },
+            "pads": {
+                "def": "Padding for the beginning and ending along each spatial axis, it cantake any value greater than or equal to 0",
+                "type": "ints"
+            },
+            "strides": {
+                "def": "Stride along each spatial axis",
+                "type": "ints"
+            }
+        },
+        "pytorch": {
+            "torch.nn.ConvTranspose1d": {
+                "bias": {
+                    "def": "If True, adds a learnable bias to the output",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "dilation": {
+                    "def": "Spacing between kernel elements",
+                    "type": "int or tuple",
+                    "isRequired": false
+                },
+                "groups": {
+                    "def": "Number of blocked connections from input channels to output channels",
+                    "type": "int",
+                    "isRequired": false
+                },
+                "in_channels": {
+                    "def": "Number of channels in the input image",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "kernel_size": {
+                    "def": "Size of the convolving kernel",
+                    "type": "int or tuple",
+                    "isRequired": true
+                },
+                "out_channels": {
+                    "def": "Number of channels produced by the convolution",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "output_padding": {
+                    "def": "Additional size added to one side of the output shape",
+                    "type": "int or tuple",
+                    "isRequired": false
+                },
+                "padding": {
+                    "def": "dilation * (kernel_size - 1) - padding zero-padding will be added to both sides of the input",
+                    "type": "int or tuple",
+                    "isRequired": false
+                },
+                "stride": {
+                    "def": "Stride of the convolution",
+                    "type": "int or tuple",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.ConvTranspose2d": {
+                "bias": {
+                    "def": "If True, adds a learnable bias to the output",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "dilation": {
+                    "def": "Spacing between kernel elements",
+                    "type": "int or tuple",
+                    "isRequired": false
+                },
+                "groups": {
+                    "def": "Number of blocked connections from input channels to output channels",
+                    "type": "int",
+                    "isRequired": false
+                },
+                "in_channels": {
+                    "def": "Number of channels in the input image",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "kernel_size": {
+                    "def": "Size of the convolving kernel",
+                    "type": "int or tuple",
+                    "isRequired": true
+                },
+                "out_channels": {
+                    "def": "Number of channels produced by the convolution",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "output_padding": {
+                    "def": "Additional size added to one side of each dimension in the output shape",
+                    "type": "int or tuple",
+                    "isRequired": false
+                },
+                "padding": {
+                    "def": "dilation * (kernel_size - 1) - padding zero-padding will be added to both sides of each dimension in the input",
+                    "type": "int or tuple",
+                    "isRequired": false
+                },
+                "stride": {
+                    "def": "Stride of the convolution",
+                    "type": "int or tuple",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.ConvTranspose3d": {
+                "bias": {
+                    "def": "If True, adds a learnable bias to the output",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "dilation": {
+                    "def": "Spacing between kernel elements",
+                    "type": "int or tuple",
+                    "isRequired": false
+                },
+                "groups": {
+                    "def": "Number of blocked connections from input channels to output channels",
+                    "type": "int",
+                    "isRequired": false
+                },
+                "in_channels": {
+                    "def": "Number of channels in the input image",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "kernel_size": {
+                    "def": "Size of the convolving kernel",
+                    "type": "int or tuple",
+                    "isRequired": true
+                },
+                "out_channels": {
+                    "def": "Number of channels produced by the convolution",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "output_padding": {
+                    "def": "Additional size added to one side of each dimension in the output shape",
+                    "type": "int or tuple",
+                    "isRequired": false
+                },
+                "padding": {
+                    "def": "dilation * (kernel_size - 1) - padding zero-padding will be added to both sides of each dimension in the input",
+                    "type": "int or tuple",
+                    "isRequired": false
+                },
+                "stride": {
+                    "def": "Stride of the convolution",
+                    "type": "int or tuple",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.layers.Conv1DTranspose": {
+                "activation": {
+                    "def": "Activation function to use. If you don't specify anything, no activation is applied (see keras.activations).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "activity_regularizer": {
+                    "def": "Regularizer function applied to the output of the layer (its \"activation\") (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_constraint": {
+                    "def": "Constraint function applied to the bias vector (see keras.constraints).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_initializer": {
+                    "def": "Initializer for the bias vector (see keras.initializers). Defaults to 'zeros'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_regularizer": {
+                    "def": "Regularizer function applied to the bias vector (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch_size, length, channels) while channels_first corresponds to inputs with shape (batch_size, channels, length).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "dilation_rate": {
+                    "def": "an integer, specifying the dilation rate to use for dilated convolution. Currently, specifying a dilation_rate value != 1 is incompatible with specifying a stride value != 1. Also dilation rate larger than 1 is not currently supported.",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "filters": {
+                    "def": "Integer, the dimensionality of the output space (i.e. the number of output filters in the convolution).",
+                    "isRequired": true,
+                    "type": "int"
+                },
+                "kernel_constraint": {
+                    "def": "Constraint function applied to the kernel matrix (see keras.constraints).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_initializer": {
+                    "def": "Initializer for the kernel weights matrix (see keras.initializers). Defaults to 'glorot_uniform'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_regularizer": {
+                    "def": "Regularizer function applied to the kernel weights matrix (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_size": {
+                    "def": "An integer length of the 1D convolution window.",
+                    "isRequired": true,
+                    "type": "int"
+                },
+                "output_padding": {
+                    "def": "An integer specifying the amount of padding along the time dimension of the output tensor. The amount of output padding must be lower than the stride. If set to None (default), the output shape is inferred.",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "padding": {
+                    "def": "one of \"valid\" or \"same\" (case-insensitive). \"valid\" means no padding. \"same\" results in padding with zeros evenly to the left/right or up/down of the input such that output has the same height/width dimension as the input.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "strides": {
+                    "def": "An integer specifying the stride of the convolution along the time dimension. Specifying a stride value != 1 is incompatible with specifying a dilation_rate value != 1. Defaults to 1.",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "use_bias": {
+                    "def": "Boolean, whether the layer uses a bias vector.",
+                    "isRequired": false,
+                    "type": "bool"
+                }
+            },
+            "tf.keras.layers.Conv2DTranspose": {
+                "activation": {
+                    "def": "Activation function to use. If you don't specify anything, no activation is applied (see keras.activations).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "activity_regularizer": {
+                    "def": "Regularizer function applied to the output of the layer (its \"activation\") (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_constraint": {
+                    "def": "Constraint function applied to the bias vector (see keras.constraints).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_initializer": {
+                    "def": "Initializer for the bias vector (see keras.initializers). Defaults to 'zeros'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_regularizer": {
+                    "def": "Regularizer function applied to the bias vector (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch_size, height, width, channels) while channels_first corresponds to inputs with shape (batch_size, channels, height, width). When unspecified, uses image_data_format value found in your Keras config file at ~/.keras/keras.json (if exists) else 'channels_last'. Defaults to \"channels_last\".",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "dilation_rate": {
+                    "def": "an integer, specifying the dilation rate for all spatial dimensions for dilated convolution. Specifying different dilation rates for different dimensions is not supported. Currently, specifying any dilation_rate value != 1 is incompatible with specifying any stride value != 1.",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "filters": {
+                    "def": "Integer, the dimensionality of the output space (i.e. the number of output filters in the convolution).",
+                    "isRequired": true,
+                    "type": "int"
+                },
+                "kernel_constraint": {
+                    "def": "Constraint function applied to the kernel matrix (see keras.constraints).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_initializer": {
+                    "def": "Initializer for the kernel weights matrix (see keras.initializers). Defaults to 'glorot_uniform'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_regularizer": {
+                    "def": "Regularizer function applied to the kernel weights matrix (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_size": {
+                    "def": "An integer or tuple/list of 2 integers, specifying the height and width of the 2D convolution window. Can be a single integer to specify the same value for all spatial dimensions.",
+                    "isRequired": true,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "output_padding": {
+                    "def": "An integer or tuple/list of 2 integers, specifying the amount of padding along the height and width of the output tensor. Can be a single integer to specify the same value for all spatial dimensions. The amount of output padding along a given dimension must be lower than the stride along that same dimension. If set to None (default), the output shape is inferred.",
+                    "isRequired": false,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "padding": {
+                    "def": "one of \"valid\" or \"same\" (case-insensitive). \"valid\" means no padding. \"same\" results in padding with zeros evenly to the left/right or up/down of the input such that output has the same height/width dimension as the input.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "strides": {
+                    "def": "An integer or tuple/list of 2 integers, specifying the strides of the convolution along the height and width. Can be a single integer to specify the same value for all spatial dimensions. Specifying any stride value != 1 is incompatible with specifying any dilation_rate value != 1.",
+                    "isRequired": false,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "use_bias": {
+                    "def": "Boolean, whether the layer uses a bias vector.",
+                    "isRequired": false,
+                    "type": "bool"
+                }
+            },
+            "tf.keras.layers.Conv3DTranspose": {
+                "activation": {
+                    "def": "Activation function to use. If you don't specify anything, no activation is applied (see keras.activations).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "activity_regularizer": {
+                    "def": "Regularizer function applied to the output of the layer (its \"activation\") (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_constraint": {
+                    "def": "Constraint function applied to the bias vector (see keras.constraints).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_initializer": {
+                    "def": "Initializer for the bias vector (see keras.initializers). Defaults to 'zeros'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "bias_regularizer": {
+                    "def": "Regularizer function applied to the bias vector (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch_size, depth, height, width, channels) while channels_first corresponds to inputs with shape (batch_size, channels, depth, height, width). When unspecified, uses image_data_format value found in your Keras config file at ~/.keras/keras.json (if exists) else 'channels_last'. Defaults to 'channels_last'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "dilation_rate": {
+                    "def": "an integer or tuple/list of 3 integers, specifying the dilation rate to use for dilated convolution. Can be a single integer to specify the same value for all spatial dimensions. Currently, specifying any dilation_rate value != 1 is incompatible with specifying any stride value != 1.",
+                    "isRequired": false,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "filters": {
+                    "def": "Integer, the dimensionality of the output space (i.e. the number of output filters in the convolution).",
+                    "isRequired": true,
+                    "type": "int"
+                },
+                "kernel_constraint": {
+                    "def": "Constraint function applied to the kernel matrix (see keras.constraints).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_initializer": {
+                    "def": "Initializer for the kernel weights matrix (see keras.initializers). Defaults to 'glorot_uniform'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_regularizer": {
+                    "def": "Regularizer function applied to the kernel weights matrix (see keras.regularizers).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "kernel_size": {
+                    "def": "An integer or tuple/list of 3 integers, specifying the depth, height and width of the 3D convolution window. Can be a single integer to specify the same value for all spatial dimensions.",
+                    "isRequired": true,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "output_padding": {
+                    "def": "An integer or tuple/list of 3 integers, specifying the amount of padding along the depth, height, and width. Can be a single integer to specify the same value for all spatial dimensions. The amount of output padding along a given dimension must be lower than the stride along that same dimension. If set to None (default), the output shape is inferred.",
+                    "isRequired": false,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "padding": {
+                    "def": "one of \"valid\" or \"same\" (case-insensitive). \"valid\" means no padding. \"same\" results in padding with zeros evenly to the left/right or up/down of the input such that output has the same height/width dimension as the input.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "strides": {
+                    "def": "An integer or tuple/list of 3 integers, specifying the strides of the convolution along the depth, height  and width. Can be a single integer to specify the same value for all spatial dimensions. Specifying any stride value != 1 is incompatible with specifying any dilation_rate value != 1.",
+                    "isRequired": false,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "use_bias": {
+                    "def": "Boolean, whether the layer uses a bias vector.",
+                    "isRequired": false,
+                    "type": "bool"
+                }
+            }
+        }
+    },
+    "Dropout": {
+        "onnx": {
+            "seed": {
+                "def": "(Optional) Seed to the random generator, if not specified we willauto generate one.",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.nn.Dropout": {
+                "inplace": {
+                    "def": "If set to True, will do this operation in-place",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "p": {
+                    "def": "probability of an element to be zeroed",
+                    "type": "float",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.Dropout1d": {
+                "inplace": {
+                    "def": "If set to True, will do this operation in-place",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "p": {
+                    "def": "probability of an element to be zero-ed.",
+                    "type": "float",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.Dropout2d": {
+                "inplace": {
+                    "def": "If set to True, will do this operation in-place",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "p": {
+                    "def": "probability of an element to be zero-ed.",
+                    "type": "float",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.Dropout3d": {
+                "inplace": {
+                    "def": "If set to True, will do this operation in-place",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "p": {
+                    "def": "probability of an element to be zeroed.",
+                    "type": "float",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.functional.dropout": {
+                "inplace": {
+                    "def": "If set to True, will do this operation in-place",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "p": {
+                    "def": "probability of an element to be zeroed",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "training": {
+                    "def": "apply dropout if is True",
+                    "type": "bool",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.layers.Dropout": {
+                "noise_shape": {
+                    "def": "1D integer tensor representing the shape of the binary dropout mask that will be multiplied with the input. For instance, if your inputs have shape (batch_size, timesteps, features) and you want the dropout mask to be the same for all timesteps, you can use noise_shape=(batch_size, 1, features).",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "rate": {
+                    "def": "Float between 0 and 1. Fraction of the input units to drop.",
+                    "isRequired": true,
+                    "type": "float"
+                },
+                "seed": {
+                    "def": "A Python integer to use as random seed.",
+                    "isRequired": false,
+                    "type": "int"
+                }
+            }
+        }
+    },
+    "Elu": {
+        "onnx": {
+            "alpha": {
+                "def": "Coefficient of ELU.",
+                "type": "float"
+            }
+        },
+        "pytorch": {
+            "torch.nn.ELU": {
+                "alpha": {
+                    "def": "the \u03b1\\alpha\u03b1 value for the ELU formulation",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "inplace": {
+                    "def": "can optionally do the operation in-place",
+                    "type": "bool",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.activations.elu": {
+                "alpha": {
+                    "def": "A scalar, slope of negative section. alpha controls the value to which an ELU saturates for negative net inputs.",
+                    "isRequired": false,
+                    "type": "float"
+                },
+                "x": {
+                    "def": "Input tensor.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            },
+            "tf.keras.layers.ELU": {
+                "alpha": {
+                    "def": "Scale for the negative factor.",
+                    "isRequired": false,
+                    "type": "float"
+                }
+            },
+            "tf.nn.elu": {
+                "features": {
+                    "def": "A Tensor. Must be one of the following types: half, bfloat16, float32, float64.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "Erf": {
+        "onnx": {},
+        "pytorch": {
+            "torch.erf": {
+                "input": {
+                    "def": "the input tensor.",
+                    "type": "tensor",
+                    "isRequired": true
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.math.erf": {
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "x": {
+                    "def": "A Tensor. Must be one of the following types: bfloat16, half, float32, float64.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            }
+        }
+    },
+    "Flatten": {
+        "onnx": {
+            "axis": {
+                "def": "Indicate up to which input dimensions (exclusive) should beflattened to the outer dimension of the output",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.nn.Flatten": {
+                "end_dim": {
+                    "def": "last dim to flatten (default = -1).",
+                    "type": "int",
+                    "isRequired": false
+                },
+                "start_dim": {
+                    "def": "first dim to flatten (default = 1).",
+                    "type": "int",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.layers.Flatten": {
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch, ..., channels) while channels_first corresponds to inputs with shape (batch, channels, ...). When unspecified, uses image_data_format value found in your Keras config file at ~/.keras/keras.json (if exists) else 'channels_last'. Defaults to 'channels_last'.",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "Floor": {
+        "onnx": {
+            "consumed_inputs": {
+                "def": "legacy optimization attribute.",
+                "type": "ints"
+            }
+        },
+        "pytorch": {
+            "torch.floor": {
+                "input": {
+                    "def": "the input tensor.",
+                    "type": "tensor",
+                    "isRequired": true
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.math.floor": {
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "x": {
+                    "def": "A Tensor. Must be one of the following types: bfloat16, half, float32, float64.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            }
+        }
+    },
+    "Gelu": {
+        "onnx": {
+            "approximate": {
+                "def": "Gelu approximation algorithm: \"tanh\", \"none\"(default).\"none\":do not use approximation.\"tanh\": use tanh approximation.",
+                "type": "string"
+            }
+        },
+        "pytorch": {
+            "torch.nn.GELU": {
+                "approximate": {
+                    "def": "the gelu approximation algorithm to use: 'none' | 'tanh'",
+                    "type": "string",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.activations.gelu": {
+                "approximate": {
+                    "def": "A bool, whether to enable approximation.",
+                    "isRequired": false,
+                    "type": "bool"
+                },
+                "x": {
+                    "def": "Input tensor.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            },
+            "tf.nn.gelu": {
+                "approximate": {
+                    "def": "An optional bool. Defaults to False. Whether to enable approximation.",
+                    "isRequired": false,
+                    "type": "bool"
+                },
+                "features": {
+                    "def": "A float Tensor representing preactivation values.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "Gemm": {
+        "onnx": {
+            "alpha": {
+                "def": "Scalar multiplier for the product of input tensors A * B.",
+                "type": "float"
+            },
+            "beta": {
+                "def": "Scalar multiplier for input tensor C.",
+                "type": "float"
+            },
+            "transA": {
+                "def": "Whether A should be transposed",
+                "type": "int"
+            },
+            "transB": {
+                "def": "Whether B should be transposed",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.nn.Linear": {
+                "bias": {
+                    "def": "If set to False, the layer will not learn an additive bias",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "in_features": {
+                    "def": " size of each input sample",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "out_features": {
+                    "def": "size of each output sample",
+                    "type": "int",
+                    "isRequired": true
+                }
+            }
+        },
+        "tensorflow": {}
+    },
+    "GlobalAveragePool": {
+        "onnx": {},
+        "pytorch": {},
+        "tensorflow": {
+            "tf.keras.layers.GlobalAveragePooling1D": {
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch, steps, features) while channels_first corresponds to inputs with shape (batch, features, steps).",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            },
+            "tf.keras.layers.GlobalAveragePooling2D": {
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch, height, width, channels) while channels_first corresponds to inputs with shape (batch, channels, height, width). When unspecified, uses image_data_format value found in your Keras config file at ~/.keras/keras.json (if exists) else 'channels_last'. Defaults to 'channels_last'.",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            },
+            "tf.keras.layers.GlobalAveragePooling3D": {
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch, spatial_dim1, spatial_dim2, spatial_dim3, channels) while channels_first corresponds to inputs with shape (batch, channels, spatial_dim1, spatial_dim2, spatial_dim3). When unspecified, uses image_data_format value found in your Keras config file at ~/.keras/keras.json (if exists) else 'channels_last'. Defaults to 'channels_last'.",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "GlobalMaxPool": {
+        "onnx": {},
+        "pytorch": {},
+        "tensorflow": {
+            "tf.keras.layers.GlobalMaxPooling1D": {
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch, steps, features) while channels_first corresponds to inputs with shape (batch, features, steps).",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            },
+            "tf.keras.layers.GlobalMaxPooling2D": {
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch, height, width, channels) while channels_first corresponds to inputs with shape (batch, channels, height, width). When unspecified, uses image_data_format value found in your Keras config file at ~/.keras/keras.json (if exists) else 'channels_last'. Defaults to 'channels_last'.",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            },
+            "tf.keras.layers.GlobalMaxPooling3D": {
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch, spatial_dim1, spatial_dim2, spatial_dim3, channels) while channels_first corresponds to inputs with shape (batch, channels, spatial_dim1, spatial_dim2, spatial_dim3). When unspecified, uses image_data_format value found in your Keras config file at ~/.keras/keras.json (if exists) else 'channels_last'. Defaults to 'channels_last'.",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "HardSigmoid": {
+        "onnx": {
+            "alpha": {
+                "def": "Value of alpha.",
+                "type": "float"
+            },
+            "beta": {
+                "def": "Value of beta.",
+                "type": "float"
+            }
+        },
+        "pytorch": {
+            "torch.nn.Hardsigmoid": {
+                "inplace": {
+                    "def": "can optionally do the operation in-place",
+                    "type": "bool",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {}
+    },
+    "HardSwish": {
+        "onnx": {},
+        "pytorch": {
+            "torch.nn.Hardswish": {
+                "inplace": {
+                    "def": "can optionally do the operation in-place",
+                    "type": "bool",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {}
+    },
+    "InstanceNormalization": {
+        "onnx": {
+            "epsilon": {
+                "def": "The epsilon value to use to avoid division by zero.",
+                "type": "float"
+            }
+        },
+        "pytorch": {
+            "torch.nn.InstanceNorm1d": {
+                "affine": {
+                    "def": "a boolean value that when set to True, this module has learnable affine parameters, initialized the same way as done for batch normalization",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "eps": {
+                    "def": "a value added to the denominator for numerical stability",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "momentum": {
+                    "def": "the value used for the running_mean and running_var computation",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "num_features": {
+                    "def": "number of features or channels CCC of the input",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "track_running_stats": {
+                    "def": "a boolean value that when set to True, this module tracks the running mean and variance, and when set to False, this module does not track such statistics and always uses batch statistics in both training and eval modes",
+                    "type": "bool",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.InstanceNorm2d": {
+                "affine": {
+                    "def": "a boolean value that when set to True, this module has learnable affine parameters, initialized the same way as done for batch normalization",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "eps": {
+                    "def": "a value added to the denominator for numerical stability",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "momentum": {
+                    "def": "the value used for the running_mean and running_var computation",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "num_features": {
+                    "def": "CCC from an expected input of size (N,C,H,W)(N, C, H, W)(N,C,H,W) or (C,H,W)(C, H, W)(C,H,W)",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "track_running_stats": {
+                    "def": "a boolean value that when set to True, this module tracks the running mean and variance, and when set to False, this module does not track such statistics and always uses batch statistics in both training and eval modes",
+                    "type": "bool",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.InstanceNorm3d": {
+                "affine": {
+                    "def": "a boolean value that when set to True, this module has learnable affine parameters, initialized the same way as done for batch normalization",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "eps": {
+                    "def": "a value added to the denominator for numerical stability",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "momentum": {
+                    "def": "the value used for the running_mean and running_var computation",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "num_features": {
+                    "def": "CCC from an expected input of size (N,C,D,H,W)(N, C, D, H, W)(N,C,D,H,W) or (C,D,H,W)(C, D, H, W)(C,D,H,W)",
+                    "type": "int",
+                    "isRequired": true
+                },
+                "track_running_stats": {
+                    "def": "a boolean value that when set to True, this module tracks the running mean and variance, and when set to False, this module does not track such statistics and always uses batch statistics in both training and eval modes",
+                    "type": "bool",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {}
+    },
+    "LRN": {
+        "onnx": {
+            "alpha": {
+                "def": "Scaling parameter.",
+                "type": "float"
+            },
+            "beta": {
+                "def": "The exponent.",
+                "type": "float"
+            },
+            "bias": {
+                "def": "",
+                "type": "float"
+            },
+            "size": {
+                "def": "The number of channels to sum over",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.nn.LocalResponseNorm": {
+                "alpha": {
+                    "def": "multiplicative factor",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "beta": {
+                    "def": "exponent",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "k": {
+                    "def": "additive factor",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "size": {
+                    "def": "amount of neighbouring channels used for normalization",
+                    "type": "int",
+                    "isRequired": true
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.raw_ops.LRN": {
+                "alpha": {
+                    "def": "An optional float. Defaults to 1. A scale factor, usually positive.",
+                    "isRequired": false,
+                    "type": "float"
+                },
+                "beta": {
+                    "def": "An optional float. Defaults to 0.5. An exponent.",
+                    "isRequired": false,
+                    "type": "float"
+                },
+                "bias": {
+                    "def": "An optional float. Defaults to 1. An offset (usually positive to avoid dividing by 0).",
+                    "isRequired": false,
+                    "type": "float"
+                },
+                "depth_radius": {
+                    "def": "An optional int. Defaults to 5. 0-D. Half-width of the 1-D normalization window.",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "input": {
+                    "def": "A Tensor. Must be one of the following types: half, bfloat16, float32. 4-D.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "LayerNormalization": {
+        "onnx": {
+            "axis": {
+                "def": "The first normalization dimension",
+                "type": "int"
+            },
+            "epsilon": {
+                "def": "The epsilon value to use to avoid division by zero.",
+                "type": "float"
+            },
+            "stash_type": {
+                "def": "Type of Mean and InvStdDev",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.nn.LayerNorm": {
+                "bias": {
+                    "def": "If set to False, the layer will not learn an additive bias (only relevant if elementwise_affine is True)",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "elementwise_affine": {
+                    "def": "a boolean value that when set to True, this module has learnable per-element affine parameters initialized to ones (for weights) and zeros (for biases)",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "eps": {
+                    "def": "a value added to the denominator for numerical stability",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "normalized_shape": {
+                    "def": "input shape from an expected input of size",
+                    "type": "int or list or torchsize",
+                    "isRequired": true
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.layers.LayerNormalization": {
+                "axis": {
+                    "def": "Integer or List/Tuple. The axis or axes to normalize across. Typically, this is the features axis/axes. The left-out axes are typically the batch axis/axes. -1 is the last dimension in the input. Defaults to -1.",
+                    "isRequired": false,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "beta_constraint": {
+                    "def": "Optional constraint for the beta weight. None by default.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "beta_initializer": {
+                    "def": "Initializer for the beta weight. Defaults to zeros.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "beta_regularizer": {
+                    "def": "Optional regularizer for the beta weight. None by default.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "center": {
+                    "def": "If True, add offset of beta to normalized tensor. If False, beta is ignored. Defaults to True.",
+                    "isRequired": false,
+                    "type": "bool"
+                },
+                "epsilon": {
+                    "def": "Small float added to variance to avoid dividing by zero. Defaults to 1e-3",
+                    "isRequired": false,
+                    "type": "float"
+                },
+                "gamma_constraint": {
+                    "def": "Optional constraint for the gamma weight. None by default.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "gamma_initializer": {
+                    "def": "Initializer for the gamma weight. Defaults to ones.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "gamma_regularizer": {
+                    "def": "Optional regularizer for the gamma weight. None by default.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "scale": {
+                    "def": "If True, multiply by gamma. If False, gamma is not used. When the next layer is linear (also e.g. nn.relu), this can be disabled since the scaling will be done by the next layer. Defaults to True.",
+                    "isRequired": false,
+                    "type": "bool"
+                }
+            }
+        }
+    },
+    "LeakyRelu": {
+        "onnx": {
+            "alpha": {
+                "def": "Coefficient of leakage.",
+                "type": "float"
+            }
+        },
+        "pytorch": {
+            "torch.nn.LeakyReLU": {
+                "inplace": {
+                    "def": "can optionally do the operation in-place",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "negative_slope": {
+                    "def": "Controls the angle of the negative slope (which is used for negative input values)",
+                    "type": "float",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.layers.LeakyReLU": {
+                "alpha": {
+                    "def": "Float >= 0.. Negative slope coefficient. Defaults to 0.3.",
+                    "isRequired": false,
+                    "type": "float"
+                }
+            }
+        }
+    },
+    "LogSoftmax": {
+        "onnx": {
+            "axis": {
+                "def": " Describes the dimension LogSoftmax will be performed on",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.nn.LogSoftmax": {
+                "dim": {
+                    "def": " dimension along which LogSoftmax will be computed.",
+                    "type": "int",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {}
+    },
+    "LpPool": {
+        "onnx": {
+            "auto_pad": {
+                "def": "auto_pad must be either NOTSET, SAME_UPPER, SAME_LOWER or VALID.Where default value is NOTSET, which means explicit padding is used.SAME_UPPER or SAME_LOWER mean pad the input so that output_shape[i] = ceil(input_shape[i] / strides[i]) for each axis i",
+                "type": "string"
+            },
+            "ceil_mode": {
+                "def": "Whether to use ceil or floor (default) to compute the output shape.",
+                "type": "int"
+            },
+            "dilations": {
+                "def": "dilation value along each spatial axis of the filter",
+                "type": "ints"
+            },
+            "kernel_shape": {
+                "def": "The size of the kernel along each axis.",
+                "type": "ints"
+            },
+            "p": {
+                "def": "p value of the Lp norm used to pool over the input data.",
+                "type": "int"
+            },
+            "pads": {
+                "def": "Padding for the beginning and ending along each spatial axis, it cantake any value greater than or equal to 0",
+                "type": "ints"
+            },
+            "strides": {
+                "def": "Stride along each spatial axis",
+                "type": "ints"
+            }
+        },
+        "pytorch": {
+            "torch.nn.LPPool1d": {
+                "ceil_mode": {
+                    "def": "when True, will use ceil instead of floor to compute the output shape",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "kernel_size": {
+                    "def": "a single int, the size of the window",
+                    "type": "unionint tupleint",
+                    "isRequired": true
+                },
+                "stride": {
+                    "def": "a single int, the stride of the window",
+                    "type": "unionint tupleint",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.LPPool2d": {
+                "ceil_mode": {
+                    "def": "when True, will use ceil instead of floor to compute the output shape",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "kernel_size": {
+                    "def": "the size of the window",
+                    "type": "unionint tupleint int",
+                    "isRequired": true
+                },
+                "stride": {
+                    "def": "the stride of the window",
+                    "type": "unionint tupleint int",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {}
+    },
+    "Max": {
+        "onnx": {
+            "consumed_inputs": {
+                "def": "legacy optimization attribute.",
+                "type": "ints"
+            }
+        },
+        "pytorch": {
+            "torch.amax": {
+                "dim": {
+                    "def": "the dimension or dimensions to reduce.",
+                    "type": "int or tuple of ints",
+                    "isRequired": true
+                },
+                "input": {
+                    "def": "the input tensor.",
+                    "type": "tensor",
+                    "isRequired": true
+                },
+                "keepdim": {
+                    "def": "whether the output tensor has dim retained or not.",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "out": {
+                    "def": "the output tensor.",
+                    "type": "tensor",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.layers.maximum": {
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "inputs": {
+                    "def": "A list of input tensors of same shape.",
+                    "isRequired": true,
+                    "type": "tensors"
+                }
+            },
+            "tf.math.maximum": {
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "x": {
+                    "def": "A Tensor. Must be one of the following types: bfloat16, half, float32, float64, int8, uint8, int16, uint16, int32, uint32, int64, uint64.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "y": {
+                    "def": "A Tensor. Must have the same type as x.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            }
+        }
+    },
+    "MaxPool": {
+        "onnx": {
+            "auto_pad": {
+                "def": "auto_pad must be either NOTSET, SAME_UPPER, SAME_LOWER or VALID.Where default value is NOTSET, which means explicit padding is used.SAME_UPPER or SAME_LOWER mean pad the input so that output_shape[i] = ceil(input_shape[i] / strides[i]) for each axis i",
+                "type": "string"
+            },
+            "ceil_mode": {
+                "def": "Whether to use ceil or floor (default) to compute the output shape.",
+                "type": "int"
+            },
+            "dilations": {
+                "def": "Dilation value along each spatial axis of filter",
+                "type": "ints"
+            },
+            "kernel_shape": {
+                "def": "The size of the kernel along each axis.",
+                "type": "ints"
+            },
+            "pads": {
+                "def": "Padding for the beginning and ending along each spatial axis, it cantake any value greater than or equal to 0",
+                "type": "ints"
+            },
+            "storage_order": {
+                "def": "The storage order of the tensor",
+                "type": "int"
+            },
+            "strides": {
+                "def": "Stride along each spatial axis",
+                "type": "ints"
+            }
+        },
+        "pytorch": {
+            "torch.nn.MaxPool1d": {
+                "ceil_mode": {
+                    "def": "If True, will use ceil instead of floor to compute the output shape",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "dilation": {
+                    "def": "The stride between elements within a sliding window, must be > 0.",
+                    "type": "unionint tupleint",
+                    "isRequired": false
+                },
+                "kernel_size": {
+                    "def": "The size of the sliding window, must be > 0.",
+                    "type": "unionint tupleint",
+                    "isRequired": true
+                },
+                "padding": {
+                    "def": "Implicit negative infinity padding to be added on both sides, must be >= 0 and <= kernel_size / 2.",
+                    "type": "unionint tupleint",
+                    "isRequired": false
+                },
+                "return_indices": {
+                    "def": "If True, will return the argmax along with the max values",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "stride": {
+                    "def": "The stride of the sliding window, must be > 0",
+                    "type": "unionint tupleint",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.MaxPool2d": {
+                "ceil_mode": {
+                    "def": "when True, will use ceil instead of floor to compute the output shape",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "dilation": {
+                    "def": "a parameter that controls the stride of elements in the window",
+                    "type": "unionint tupleint int",
+                    "isRequired": false
+                },
+                "kernel_size": {
+                    "def": "the size of the window to take a max over",
+                    "type": "unionint tupleint int",
+                    "isRequired": true
+                },
+                "padding": {
+                    "def": "Implicit negative infinity padding to be added on both sides",
+                    "type": "unionint tupleint int",
+                    "isRequired": false
+                },
+                "return_indices": {
+                    "def": "if True, will return the max indices along with the outputs",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "stride": {
+                    "def": "the stride of the window",
+                    "type": "unionint tupleint int",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.MaxPool3d": {
+                "ceil_mode": {
+                    "def": "when True, will use ceil instead of floor to compute the output shape",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "dilation": {
+                    "def": "a parameter that controls the stride of elements in the window",
+                    "type": "unionint tupleint int int",
+                    "isRequired": false
+                },
+                "kernel_size": {
+                    "def": "the size of the window to take a max over",
+                    "type": "unionint tupleint int int",
+                    "isRequired": true
+                },
+                "padding": {
+                    "def": "Implicit negative infinity padding to be added on all three sides",
+                    "type": "unionint tupleint int int",
+                    "isRequired": false
+                },
+                "return_indices": {
+                    "def": "if True, will return the max indices along with the outputs",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "stride": {
+                    "def": "the stride of the window",
+                    "type": "unionint tupleint int int",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.layers.MaxPooling1D": {
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch, steps, features) while channels_first corresponds to inputs with shape (batch, features, steps).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "padding": {
+                    "def": "One of \"valid\" or \"same\" (case-insensitive). \"valid\" means no padding. \"same\" results in padding evenly to the left/right or up/down of the input such that output has the same height/width dimension as the input.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "pool_size": {
+                    "def": "Integer, size of the max pooling window.",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "strides": {
+                    "def": "Integer, or None. Specifies how much the pooling window moves for each pooling step. If None, it will default to pool_size.",
+                    "isRequired": false,
+                    "type": "int"
+                }
+            },
+            "tf.keras.layers.MaxPooling2D": {
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch, height, width, channels) while channels_first corresponds to inputs with shape (batch, channels, height, width). When unspecified, uses image_data_format value found in your Keras config file at ~/.keras/keras.json (if exists) else 'channels_last'. Defaults to 'channels_last'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "padding": {
+                    "def": "One of \"valid\" or \"same\" (case-insensitive). \"valid\" means no padding. \"same\" results in padding evenly to the left/right or up/down of the input such that output has the same height/width dimension as the input.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "pool_size": {
+                    "def": "integer or tuple of 2 integers, window size over which to take the maximum. (2, 2) will take the max value over a 2x2 pooling window. If only one integer is specified, the same window length will be used for both dimensions.",
+                    "isRequired": false,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "strides": {
+                    "def": "Integer, tuple of 2 integers, or None. Strides values. Specifies how far the pooling window moves for each pooling step. If None, it will default to pool_size.",
+                    "isRequired": false,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                }
+            },
+            "tf.keras.layers.MaxPooling3D": {
+                "data_format": {
+                    "def": "A string, one of channels_last (default) or channels_first. The ordering of the dimensions in the inputs. channels_last corresponds to inputs with shape (batch, spatial_dim1, spatial_dim2, spatial_dim3, channels) while channels_first corresponds to inputs with shape (batch, channels, spatial_dim1, spatial_dim2, spatial_dim3). When unspecified, uses image_data_format value found in your Keras config file at ~/.keras/keras.json (if exists) else 'channels_last'. Defaults to 'channels_last'.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "padding": {
+                    "def": "One of \"valid\" or \"same\" (case-insensitive). \"valid\" means no padding. \"same\" results in padding evenly to the left/right or up/down of the input such that output has the same height/width dimension as the input.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "pool_size": {
+                    "def": "Tuple of 3 integers, factors by which to downscale (dim1, dim2, dim3). (2, 2, 2) will halve the size of the 3D input in each dimension.",
+                    "isRequired": false,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                },
+                "strides": {
+                    "def": "tuple of 3 integers, or None. Strides values.",
+                    "isRequired": false,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                }
+            }
+        }
+    },
+    "MaxUnpool": {
+        "onnx": {
+            "kernel_shape": {
+                "def": "The size of the kernel along each axis.",
+                "type": "ints"
+            },
+            "pads": {
+                "def": "Padding for the beginning and ending along each spatial axis, it cantake any value greater than or equal to 0",
+                "type": "ints"
+            },
+            "strides": {
+                "def": "Stride along each spatial axis",
+                "type": "ints"
+            }
+        },
+        "pytorch": {
+            "torch.nn.MaxUnpool1d": {
+                "kernel_size": {
+                    "def": "Size of the max pooling window.",
+                    "type": "int or tuple",
+                    "isRequired": true
+                },
+                "padding": {
+                    "def": "Padding that was added to the input",
+                    "type": "int or tuple",
+                    "isRequired": false
+                },
+                "stride": {
+                    "def": "Stride of the max pooling window",
+                    "type": "int or tuple",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.MaxUnpool2d": {
+                "kernel_size": {
+                    "def": "Size of the max pooling window.",
+                    "type": "int or tuple",
+                    "isRequired": true
+                },
+                "padding": {
+                    "def": "Padding that was added to the input",
+                    "type": "int or tuple",
+                    "isRequired": false
+                },
+                "stride": {
+                    "def": "Stride of the max pooling window",
+                    "type": "int or tuple",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.MaxUnpool3d": {
+                "kernel_size": {
+                    "def": "Size of the max pooling window.",
+                    "type": "int or tuple",
+                    "isRequired": true
+                },
+                "padding": {
+                    "def": "Padding that was added to the input",
+                    "type": "int or tuple",
+                    "isRequired": false
+                },
+                "stride": {
+                    "def": "Stride of the max pooling window",
+                    "type": "int or tuple",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {}
+    },
+    "Min": {
+        "onnx": {
+            "consumed_inputs": {
+                "def": "legacy optimization attribute.",
+                "type": "ints"
+            }
+        },
+        "pytorch": {
+            "torch.amin": {
+                "dim": {
+                    "def": "the dimension or dimensions to reduce.",
+                    "type": "int or tuple of ints",
+                    "isRequired": true
+                },
+                "input": {
+                    "def": "the input tensor.",
+                    "type": "tensor",
+                    "isRequired": true
+                },
+                "keepdim": {
+                    "def": "whether the output tensor has dim retained or not.",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "out": {
+                    "def": "the output tensor.",
+                    "type": "tensor",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.minimum": {
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "x": {
+                    "def": "A Tensor. Must be one of the following types: bfloat16, half, float32, float64, int8, uint8, int16, uint16, int32, uint32, int64, uint64.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "y": {
+                    "def": "A Tensor. Must have the same type as x.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            }
+        }
+    },
+    "Mish": {
+        "onnx": {},
+        "pytorch": {
+            "torch.nn.Mish": {}
+        },
+        "tensorflow": {
+            "tf.keras.activations.mish": {
+                "x": {
+                    "def": "Input tensor.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            }
+        }
+    },
+    "Mod": {
+        "onnx": {
+            "fmod": {
+                "def": "Whether the operator should behave like fmod (default=0 meaning itwill do integer mods); Set this to 1 to force fmod treatment",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.fmod": {
+                "input": {
+                    "def": "the dividend",
+                    "type": "tensor",
+                    "isRequired": true
+                },
+                "other": {
+                    "def": "the divisor",
+                    "type": "tensor or scalar",
+                    "isRequired": true
+                },
+                "out": {
+                    "def": "the output tensor.",
+                    "type": "tensor",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.math.floormod": {
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "x": {
+                    "def": "A Tensor. Must be one of the following types: int8, int16, int32, int64, uint8, uint16, uint32, uint64, bfloat16, half, float32, float64.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "y": {
+                    "def": "A Tensor. Must have the same type as x.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            }
+        }
+    },
+    "Mul": {
+        "onnx": {
+            "axis": {
+                "def": "If set, defines the broadcast dimensions",
+                "type": "int"
+            },
+            "broadcast": {
+                "def": "Pass 1 to enable broadcasting",
+                "type": "int"
+            }
+        },
+        "pytorch": {},
+        "tensorflow": {
+            "tf.math.multiply": {
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "x": {
+                    "def": "A Tensor. Must be one of the following types: bfloat16, half, float32, float64, uint8, int8, uint16, int16, int32, int64, complex64, complex128.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "y": {
+                    "def": "A Tensor. Must have the same type as x.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            }
+        }
+    },
+    "Neg": {
+        "onnx": {
+            "consumed_inputs": {
+                "def": "legacy optimization attribute.",
+                "type": "ints"
+            }
+        },
+        "pytorch": {},
+        "tensorflow": {}
+    },
+    "PRelu": {
+        "onnx": {
+            "consumed_inputs": {
+                "def": "legacy optimization attribute.",
+                "type": "ints"
+            }
+        },
+        "pytorch": {
+            "torch.nn.PReLU": {
+                "init": {
+                    "def": "the initial value of aaa",
+                    "type": "float",
+                    "isRequired": false
+                },
+                "num_parameters": {
+                    "def": "number of aaa to learn",
+                    "type": "int",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.layers.PReLU": {
+                "alpha_constraint": {
+                    "def": "Constraint for the weights.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "alpha_initializer": {
+                    "def": "Initializer function for the weights.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "alpha_regularizer": {
+                    "def": "Regularizer for the weights.",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "shared_axes": {
+                    "def": "The axes along which to share learnable parameters for the activation function. For example, if the incoming feature maps are from a 2D convolution with output shape (batch, height, width, channels), and you wish to share parameters across space so that each filter only has one set of parameters, set shared_axes=[1, 2].",
+                    "isRequired": false,
+                    "type": "int"
+                }
+            }
+        }
+    },
+    "Pow": {
+        "onnx": {
+            "axis": {
+                "def": "If set, defines the broadcast dimensions",
+                "type": "int"
+            },
+            "broadcast": {
+                "def": "Pass 1 to enable broadcasting",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.pow": {
+                "exponent": {
+                    "def": "the exponent tensor.",
+                    "type": "tensor",
+                    "isRequired": true
+                },
+                "input": {
+                    "def": "the input tensor.",
+                    "type": "tensor",
+                    "isRequired": true
+                },
+                "out": {
+                    "def": "the output tensor.",
+                    "type": "tensor",
+                    "isRequired": false
+                },
+                "self": {
+                    "def": "the scalar base value for the power operation",
+                    "type": "float",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.math.pow": {
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "x": {
+                    "def": "A Tensor of type float16, float32, float64, int32, int64, complex64, or complex128.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "y": {
+                    "def": "A Tensor of type float16, float32, float64, int32, int64, complex64, or complex128.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            }
+        }
+    },
+    "Reciprocal": {
+        "onnx": {
+            "consumed_inputs": {
+                "def": "legacy optimization attribute.",
+                "type": "ints"
+            }
+        },
+        "pytorch": {
+            "torch.reciprocal": {
+                "input": {
+                    "def": "the input tensor.",
+                    "type": "tensor",
+                    "isRequired": true
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.math.reciprocal": {
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "x": {
+                    "def": "A Tensor. Must be one of the following types: bfloat16, half, float32, float64, int8, int16, int32, int64, complex64, complex128.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            }
+        }
+    },
+    "ReduceMax": {
+        "onnx": {
+            "keepdims": {
+                "def": "Keep the reduced dimension or not, default 1 means keep reduceddimension.",
+                "type": "int"
+            },
+            "noop_with_empty_axes": {
+                "def": "Defines behavior if \u2018axes\u2019 is empty",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.max": {
+                "input": {
+                    "def": "the input tensor.",
+                    "type": "tensor",
+                    "isRequired": true
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.reduce_max": {
+                "axis": {
+                    "def": "The dimensions to reduce. If None (the default), reduces all dimensions. Must be in the range [-rank(input_tensor), rank(input_tensor)).",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "input_tensor": {
+                    "def": "The tensor to reduce. Should have real numeric type.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "keepdims": {
+                    "def": "If true, retains reduced dimensions with length 1.",
+                    "isRequired": false,
+                    "type": "bool"
+                },
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "ReduceMean": {
+        "onnx": {
+            "keepdims": {
+                "def": "Keep the reduced dimension or not, default 1 means keep reduceddimension.",
+                "type": "int"
+            },
+            "noop_with_empty_axes": {
+                "def": "Defines behavior if \u2018axes\u2019 is empty",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.mean": {
+                "dtype": {
+                    "def": "the desired data type of returned tensor",
+                    "type": "torchdtype",
+                    "isRequired": false
+                },
+                "input": {
+                    "def": "the input tensor.",
+                    "type": "tensor",
+                    "isRequired": true
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.reduce_mean": {
+                "axis": {
+                    "def": "The dimensions to reduce. If None (the default), reduces all dimensions. Must be in the range [-rank(input_tensor), rank(input_tensor)).",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "input_tensor": {
+                    "def": "The tensor to reduce. Should have numeric type.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "keepdims": {
+                    "def": "If true, retains reduced dimensions with length 1.",
+                    "isRequired": false,
+                    "type": "bool"
+                },
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "ReduceMin": {
+        "onnx": {
+            "keepdims": {
+                "def": "Keep the reduced dimension or not, default 1 means keep reduceddimension.",
+                "type": "int"
+            },
+            "noop_with_empty_axes": {
+                "def": "Defines behavior if \u2018axes\u2019 is empty",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.min": {
+                "input": {
+                    "def": "the input tensor.",
+                    "type": "tensor",
+                    "isRequired": true
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.reduce_min": {
+                "axis": {
+                    "def": "The dimensions to reduce. If None (the default), reduces all dimensions. Must be in the range [-rank(input_tensor), rank(input_tensor)).",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "input_tensor": {
+                    "def": "The tensor to reduce. Should have real numeric type.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "keepdims": {
+                    "def": "If true, retains reduced dimensions with length 1.",
+                    "isRequired": false,
+                    "type": "bool"
+                },
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "ReduceProd": {
+        "onnx": {
+            "keepdims": {
+                "def": "Keep the reduced dimension or not, default 1 means keep reduceddimension.",
+                "type": "int"
+            },
+            "noop_with_empty_axes": {
+                "def": "Defines behavior if \u2018axes\u2019 is empty",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.prod": {
+                "dtype": {
+                    "def": "the desired data type of returned tensor",
+                    "type": "torchdtype",
+                    "isRequired": false
+                },
+                "input": {
+                    "def": "the input tensor.",
+                    "type": "tensor",
+                    "isRequired": true
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.reduce_prod": {
+                "axis": {
+                    "def": "The dimensions to reduce. If None (the default), reduces all dimensions. Must be in the range [-rank(input_tensor), rank(input_tensor)).",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "input_tensor": {
+                    "def": "The tensor to reduce. Should have numeric type.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "keepdims": {
+                    "def": "If true, retains reduced dimensions with length 1.",
+                    "isRequired": false,
+                    "type": "bool"
+                },
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "ReduceSum": {
+        "onnx": {
+            "keepdims": {
+                "def": "Keep the reduced dimension or not, default 1 means keep reduceddimension.",
+                "type": "int"
+            },
+            "noop_with_empty_axes": {
+                "def": "Defines behavior if \u2018axes\u2019 is empty",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.sum": {
+                "dtype": {
+                    "def": "the desired data type of returned tensor",
+                    "type": "torchdtype",
+                    "isRequired": false
+                },
+                "input": {
+                    "def": "the input tensor.",
+                    "type": "tensor",
+                    "isRequired": true
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.reduce_sum": {
+                "axis": {
+                    "def": "The dimensions to reduce. If None (the default), reduces all dimensions. Must be in the range [-rank(input_tensor), rank(input_tensor)].",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "input_tensor": {
+                    "def": "The tensor to reduce. Should have numeric type.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "keepdims": {
+                    "def": "If true, retains reduced dimensions with length 1.",
+                    "isRequired": false,
+                    "type": "bool"
+                },
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "Relu": {
+        "onnx": {
+            "consumed_inputs": {
+                "def": "legacy optimization attribute.",
+                "type": "ints"
+            }
+        },
+        "pytorch": {
+            "torch.nn.ReLU": {
+                "inplace": {
+                    "def": "can optionally do the operation in-place",
+                    "type": "bool",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.functional.relu": {
+                "inplace": {
+                    "def": "can optionally do the operation in-place",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "input": {
+                    "def": "the input tensor.",
+                    "type": "tensor",
+                    "isRequired": true
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.activations.relu": {
+                "alpha": {
+                    "def": "A float that governs the slope for values lower than the threshold.",
+                    "isRequired": false,
+                    "type": "float"
+                },
+                "max_value": {
+                    "def": "A float that sets the saturation threshold (the largest value the function will return).",
+                    "isRequired": false,
+                    "type": "float"
+                },
+                "threshold": {
+                    "def": "A float giving the threshold value of the activation function below which values will be damped or set to zero.",
+                    "isRequired": false,
+                    "type": "float"
+                },
+                "x": {
+                    "def": "Input tensor or variable.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            },
+            "tf.keras.layers.ReLU": {
+                "max_value": {
+                    "def": "Float >= 0. Maximum activation value. None means unlimited. Defaults to None.",
+                    "isRequired": false,
+                    "type": "float"
+                },
+                "negative_slope": {
+                    "def": "Float >= 0. Negative slope coefficient. Defaults to 0..",
+                    "isRequired": false,
+                    "type": "float"
+                },
+                "threshold": {
+                    "def": "Float >= 0. Threshold value for thresholded activation. Defaults to 0..",
+                    "isRequired": false,
+                    "type": "float"
+                }
+            },
+            "tf.nn.relu": {
+                "features": {
+                    "def": "A Tensor. Must be one of the following types: float32, float64, int32, uint8, int16, int8, int64, bfloat16, uint16, half, uint32, uint64, qint8.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "Reshape": {
+        "onnx": {
+            "allowzero": {
+                "def": "(Optional) By default, when any value in the \u2018shape\u2019 input is equalto zero the corresponding dimension value is copied from the inputtensor dynamically",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.reshape": {
+                "input": {
+                    "def": "the tensor to be reshaped",
+                    "type": "tensor",
+                    "isRequired": true
+                },
+                "shape": {
+                    "def": "the new shape",
+                    "type": "ints",
+                    "isRequired": true
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.layers.Reshape": {
+                "target_shape": {
+                    "def": "Target shape. Tuple of integers, does not include the samples dimension (batch size).",
+                    "isRequired": true,
+                    "type": "ints"
+                }
+            }
+        }
+    },
+    "Round": {
+        "onnx": {},
+        "pytorch": {
+            "torch.round": {
+                "decimals": {
+                    "def": "Number of decimal places to round to (default: 0)",
+                    "type": "int",
+                    "isRequired": false
+                },
+                "input": {
+                    "def": "the input tensor.",
+                    "type": "tensor",
+                    "isRequired": true
+                },
+                "out": {
+                    "def": "the output tensor.",
+                    "type": "tensor",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.math.round": {
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "x": {
+                    "def": "A Tensor of type float16, float32, float64, int32, or int64.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            }
+        }
+    },
+    "Selu": {
+        "onnx": {
+            "alpha": {
+                "def": "Coefficient of SELU default to 1.67326319217681884765625 (i.e.,float32 approximation of 1.6732632423543772848170429916717).",
+                "type": "float"
+            },
+            "gamma": {
+                "def": "Coefficient of SELU default to 1.05070102214813232421875 (i.e.,float32 approximation of 1.0507009873554804934193349852946).",
+                "type": "float"
+            }
+        },
+        "pytorch": {
+            "torch.nn.SELU": {
+                "inplace": {
+                    "def": "can optionally do the operation in-place",
+                    "type": "bool",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.activations.selu": {
+                "x": {
+                    "def": "A tensor or variable to compute the activation function for.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            },
+            "tf.nn.selu": {
+                "features": {
+                    "def": "A Tensor. Must be one of the following types: half, bfloat16, float32, float64.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "Sigmoid": {
+        "onnx": {
+            "consumed_inputs": {
+                "def": "legacy optimization attribute.",
+                "type": "ints"
+            }
+        },
+        "pytorch": {
+            "torch.nn.Sigmoid": {}
+        },
+        "tensorflow": {
+            "tf.keras.activations.sigmoid": {
+                "x": {
+                    "def": "Input tensor.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            },
+            "tf.math.sigmoid": {
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "x": {
+                    "def": "A Tensor with type float16, float32, float64, complex64, or complex128.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            }
+        }
+    },
+    "Softmax": {
+        "onnx": {
+            "axis": {
+                "def": " Describes the dimension Softmax will be performed on",
+                "type": "int"
+            }
+        },
+        "pytorch": {
+            "torch.nn.Softmax": {
+                "dim": {
+                    "def": "A dimension along which Softmax will be computed (so every slice along dim will sum to 1).",
+                    "type": "int",
+                    "isRequired": false
+                }
+            },
+            "torch.nn.Softmax2d": {}
+        },
+        "tensorflow": {
+            "tf.keras.activations.softmax": {
+                "axis": {
+                    "def": "Integer, axis along which the softmax normalization is applied.",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "x": {
+                    "def": "Input tensor.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            },
+            "tf.keras.layers.Softmax": {
+                "axis": {
+                    "def": "Integer, or list of Integers, axis along which the softmax normalization is applied.",
+                    "isRequired": false,
+                    "type": [
+                        "int",
+                        "ints"
+                    ]
+                }
+            },
+            "tf.nn.softmax": {
+                "axis": {
+                    "def": "The dimension softmax would be performed on. The default is -1 which indicates the last dimension.",
+                    "isRequired": false,
+                    "type": "int"
+                },
+                "logits": {
+                    "def": "A non-empty Tensor. Must be one of the following types: half, float32, float64.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "Softplus": {
+        "onnx": {},
+        "pytorch": {
+            "torch.nn.Softplus": {
+                "beta": {
+                    "def": "the \u03b2\\beta\u03b2 value for the Softplus formulation",
+                    "type": "int",
+                    "isRequired": false
+                },
+                "threshold": {
+                    "def": "values above this revert to a linear function",
+                    "type": "int",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {
+            "tf.keras.activations.softplus": {
+                "x": {
+                    "def": "Input tensor.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            },
+            "tf.math.softplus": {
+                "features": {
+                    "def": "tensor",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "name": {
+                    "def": "Optional: name to associate with this operation.",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "Softsign": {
+        "onnx": {},
+        "pytorch": {
+            "torch.nn.Softsign": {}
+        },
+        "tensorflow": {
+            "tf.keras.activations.softsign": {
+                "x": {
+                    "def": "Input tensor.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            },
+            "tf.nn.softsign": {
+                "features": {
+                    "def": "A Tensor. Must be one of the following types: half, bfloat16, float32, float64.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "Sub": {
+        "onnx": {
+            "axis": {
+                "def": "If set, defines the broadcast dimensions",
+                "type": "int"
+            },
+            "broadcast": {
+                "def": "Pass 1 to enable broadcasting",
+                "type": "int"
+            }
+        },
+        "pytorch": {},
+        "tensorflow": {
+            "tf.math.subtract": {
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "x": {
+                    "def": "A Tensor. Must be one of the following types: bfloat16, half, float32, float64, uint8, int8, uint16, int16, int32, int64, complex64, complex128, uint32, uint64.",
+                    "isRequired": true,
+                    "type": "tensor"
+                },
+                "y": {
+                    "def": "A Tensor. Must have the same type as x.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            }
+        }
+    },
+    "Tanh": {
+        "onnx": {
+            "consumed_inputs": {
+                "def": "legacy optimization attribute.",
+                "type": "ints"
+            }
+        },
+        "pytorch": {
+            "torch.nn.Tanh": {}
+        },
+        "tensorflow": {
+            "tf.keras.activations.tanh": {
+                "x": {
+                    "def": "Input tensor.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            },
+            "tf.math.tanh": {
+                "name": {
+                    "def": "A name for the operation (optional).",
+                    "isRequired": false,
+                    "type": "string"
+                },
+                "x": {
+                    "def": "A Tensor. Must be one of the following types: bfloat16, half, float32, float64, complex64, complex128.",
+                    "isRequired": true,
+                    "type": "tensor"
+                }
+            }
+        }
+    },
+    "ThresholdedRelu": {
+        "onnx": {
+            "alpha": {
+                "def": "Threshold value",
+                "type": "float"
+            }
+        },
+        "pytorch": {},
+        "tensorflow": {
+            "tf.keras.layers.ThresholdedReLU": {
+                "theta": {
+                    "def": "Float >= 0. Threshold location of activation.",
+                    "isRequired": false,
+                    "type": "float"
+                }
+            }
+        }
+    },
+    "Upsample": {
+        "onnx": {
+            "mode": {
+                "def": "Two interpolation modes: nearest (default), and linear (including bilinear, trilinear, etc)",
+                "type": "string"
+            }
+        },
+        "pytorch": {
+            "torch.nn.Upsample": {
+                "align_corners": {
+                    "def": "if True, the corner pixels of the input and output tensors are aligned, and thus preserving the values at those pixels",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "mode": {
+                    "def": "the upsampling algorithm: one of 'nearest', 'linear', 'bilinear', 'bicubic' and 'trilinear'",
+                    "type": "string",
+                    "isRequired": false
+                },
+                "recompute_scale_factor": {
+                    "def": "recompute the scale_factor for use in the interpolation calculation",
+                    "type": "bool",
+                    "isRequired": false
+                },
+                "scale_factor": {
+                    "def": "multiplier for spatial size",
+                    "type": "float or tuplefloat or tuplefloat float or tuplefloat float float",
+                    "isRequired": false
+                },
+                "size": {
+                    "def": "output spatial sizes",
+                    "type": "int or tupleint or tupleint int or tupleint int int",
+                    "isRequired": false
+                }
+            }
+        },
+        "tensorflow": {}
+    }
+}
