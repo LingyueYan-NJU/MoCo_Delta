@@ -5,7 +5,6 @@ class Node:
         self.node_name = ""
         self.op_type = ""
         self.attributes = {}
-        self.initializers = {}
 
     def get_input_name(self):
         return self.input_name
