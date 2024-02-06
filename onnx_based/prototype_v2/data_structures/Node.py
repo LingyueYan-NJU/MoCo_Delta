@@ -4,6 +4,8 @@ class Node:
         self.output_name = ""
         self.node_name = ""
         self.op_type = ""
+
+        # attributes格式: {"para_name": {"name": "strides", "type": "INTS", "value": [1, 1]}, "para_name2": ......}
         self.attributes = {}
 
     def get_input_name(self):
